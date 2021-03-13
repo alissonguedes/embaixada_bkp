@@ -63,9 +63,7 @@
                 <div class="lk_menu">Gerenciar Usuários</div>
             </a>
 
-			{{ var_dump(session()->get('userdata')['id_grupo']) }}
-
-            @if (session()->get('userdata')['id_grupo'] === 1)
+            @if (session()->get('userdata')['id_grupo'] == 1)
                 <a href="{{ route('admin.idiomas') }}">
                     <div class="lk_menu">Gerenciar Idiomas</div>
                 </a>
