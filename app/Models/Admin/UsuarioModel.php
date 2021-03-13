@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -45,17 +46,59 @@ class UsuarioModel extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-	public function getUser($find = null) {
+	private $order = [];
+
+	public function getUsuario($find = null) {
+
+		$get = $this -> select(
+			'tb_acl_usuario.id',
+			'tb_acl_usuario.id_grupo',
+			DB::raw('(SELECT grupo FROM tb_acl_grupo WHERE id = id_grupo) as grupo'),
+			'tb_acl_usuario.nome',
+			'tb_acl_usuario.email',
+			'tb_acl_usuario.login',
+			'tb_acl_usuario.ultimo_login',
+			'tb_acl_usuario.status'
+		);
 
 		if ( !is_null($find) ) {
-
-			foreach ($find as $ind => $val) {
-				$this -> where($ind, $val);
-			}
-
+			$get -> where('id', $find);
+			return $get ;
 		}
 
-		return $this -> select('*') -> first();
+		if (isset($_GET['search']['value']) && !empty($_GET['search']['value'])) {
+            $get->where(function ($get) {
+                $search = $_GET['search']['value'];
+                $get->orWhere('tb_acl_usuario.id', 'like', $search . '%')
+                    ->orWhere('tb_acl_usuario.login', 'like', $search . '%')
+                    ->orWhere('tb_acl_usuario.email', 'like', $search . '%');
+            });
+        }
+
+		$this -> order = [
+			DB::raw('(SELECT grupo FROM tb_acl_grupo WHERE tb_acl_grupo.id = tb_acl_usuario.id_grupo)'),
+			'tb_acl_usuario.email',
+			'tb_acl_usuario.ultimo_login',
+			'tb_acl_usuario.status'
+		];
+
+		// Order By
+		if (isset($_GET['order']) && $_GET['order'][0]['column'] != 0 ) {
+			$orderBy[$this -> order[$_GET['order'][0]['column']]] = $_GET['order'][0]['dir'];
+		} else {
+			$orderBy[$this -> order[1]] = 'desc';
+		}
+
+		foreach($orderBy as $key => $val) {
+			$get -> orderBy($key, $val);
+		}
+
+		return $get -> paginate($_GET['length'] ?? null);
+
+	}
+
+	public function getGrupos() {
+		return $this -> from('tb_acl_grupo') -> where('status', '1') -> get();
 	}
 
 	public function auth($login = null, $senha = null) {
@@ -63,9 +106,9 @@ class UsuarioModel extends Authenticatable
 		if ( ! is_null($login) ) {
 
 			$user = $this -> select('id', 'id_grupo', 'senha', 'permissao', 'nome', 'login', 'email', 'senha')
-						   -> where('login', $login)
-						   -> orWhere('email', $login)
-						   -> first();
+						  -> where('login', $login)
+						  -> orWhere('email', $login)
+						  -> first();
 
 			if ( isset($user) ) {
 
@@ -105,6 +148,127 @@ class UsuarioModel extends Authenticatable
 		}
 
 		return false;
+
+	}
+
+
+	public function create($request) {
+
+		$path = 'assets/embaixada/img/usuarios/';
+		$origName = null;
+		$fileName = null;
+		$imagem = null;
+
+		if ( $request -> file('imagem') ){
+
+			$file = $request -> file('imagem');
+
+			$fileName = sha1($file -> getClientOriginalName());
+			$fileExt  = $file -> getClientOriginalExtension();
+
+			$imgName  = explode('.', ($file -> getClientOriginalName()));
+
+			$origName = limpa_string($imgName[count($imgName) - 2], '_') . '.' . $fileExt;
+			$imagem = limpa_string($fileName) . '.' . $fileExt;
+
+			$file -> storeAs($path, $imagem);
+
+		}
+
+		$traducao	= [];
+		$data = [
+			'id_grupo' => $request -> grupo,
+			'nome' => $request -> nome,
+			'email' => $request -> email,
+			'login' => $request -> login,
+			'status' => isset($request -> status) ? $request -> status : '1'
+		];
+
+		foreach($_POST as $ind => $val) {
+
+			$lang = explode(':', $ind);
+			if ( count($lang) == 2) {
+				$traducao[$lang[1]][$lang[0]]  = $val;
+			}
+
+		}
+
+		if ( !is_null($imagem) )
+			$data['imagem'] = $path . $imagem;
+
+		if ( ! empty($_POST['senha']) ) {
+			$data['senha'] = hashCode($request -> senha);
+		}
+
+		return $this -> insert($data);
+
+	}
+
+	public function edit($request, $field = null) {
+
+		if ( is_null($field) ) {
+
+			$path = 'assets/embaixada/img/usuarios/';
+			$origName = null;
+			$fileName = null;
+			$imagem = null;
+
+			if ( $request -> file('imagem') ){
+
+				$file = $request -> file('imagem');
+
+				$fileName = sha1($file -> getClientOriginalName());
+				$fileExt  = $file -> getClientOriginalExtension();
+
+				$imgName  = explode('.', ($file -> getClientOriginalName()));
+
+				$origName = limpa_string($imgName[count($imgName) - 2], '_') . '.' . $fileExt;
+				$imagem = limpa_string($fileName) . '.' . $fileExt;
+
+				$file -> storeAs($path, $imagem);
+
+			}
+
+			$traducao	= [];
+			$data = [
+				'id_grupo' => $request -> grupo,
+				'nome' => $request -> nome,
+				'email' => $request -> email,
+				'login' => $request -> login,
+				'status' => isset($request -> status) ? $request -> status : '1'
+			];
+
+			foreach($_POST as $ind => $val) {
+
+				$lang = explode(':', $ind);
+				if ( count($lang) == 2) {
+					$traducao[$lang[1]][$lang[0]]  = $val;
+				}
+
+			}
+
+			if ( !is_null($imagem) )
+				$data['imagem'] = $path . $imagem;
+
+			if ( ! empty($_POST['senha']) ) {
+				$data['senha'] = hashCode($request -> senha);
+			}
+
+			return $this -> where('id', $request -> id) -> update($data);
+
+		} else {
+
+			$data = [ $field =>  $request -> value ];
+
+			return $this -> whereIn('id', $request -> id) -> update($data);
+
+		}
+
+	}
+
+	public function remove($request) {
+
+		return $this -> whereIn('id', $request -> id) -> delete();
 
 	}
 

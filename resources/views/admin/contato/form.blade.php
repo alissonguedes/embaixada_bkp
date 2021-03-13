@@ -31,11 +31,11 @@
         <div class="title_pg f_avante"
              style="place-content: start;">
 
-            <button data-href="{{ route('admin.contato') }}"
+            {{-- <button data-href="{{ route('admin.contato') }}"
                     class="btn btn-flat btn-small btn-floating transparent waves-effect waves-light white-text bt_ac btn-flat mr-1"
                     data-tooltip="Voltar">
                 <i class="material-icons">arrow_back</i>
-            </button>
+            </button> --}}
 
             <div class="mr-2">Informações Gerais do Site</div>
 

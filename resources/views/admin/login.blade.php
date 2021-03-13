@@ -52,7 +52,6 @@
                             <input type="email"
                                    name="login"
                                    class="amber-border"
-                                   value="alissonguedes87@gmail.com"
                                    id="login"
                                    autofocus="autofocus">
                             <label for="login">
@@ -73,7 +72,6 @@
                             <input type="password"
                                    name="senha"
                                    class="amber-border"
-                                   value="admin"
                                    id="senha"
                                    disabled="disabled"
                                    autofocus="autofocus"
