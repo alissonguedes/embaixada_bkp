@@ -4,7 +4,7 @@
 
     <link rel="stylesheet"
           media="screen"
-          href="/embaixada2/public/admin/assets/styles/admin/themes/pages/login/login.css">
+          href="{{ asset('assets/styles/admin/themes/pages/login/login.css') }}">
 
     <div class="area_left">
         <div class="logotw">
