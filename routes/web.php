@@ -41,6 +41,7 @@ Route::prefix('/admin') -> group(function($admin){
 	Route::get('/dashboard', [Dashboard::class, 'index']) -> name('admin.dashboard');
 	Route::get('/logout', [AuthController::class, 'logout']) -> name('admin.auth.logout');
 	Route::get('/api/token', [ApiController::class, 'token']) -> name('api.token');
+	Route::post('/api/tinymce', [ApiController::class, 'upload_img_tinymce']) -> name('api.tinymce');
 
 	/** Login */
 	Route::prefix('login') -> group(function() {
@@ -113,6 +114,8 @@ Route::prefix('/admin') -> group(function($admin){
 		Route::patch('/{campo}', [PaginasController::class, 'replace']) -> name('admin.paginas.patch') -> where('id', '[0-9]+');
 		Route::delete('/', [PaginasController::class, 'delete']) -> name('admin.paginas.delete');
 
+		Route::delete('{id}/arquivo/{file}', [PaginasController::class, 'delete_file']) -> name('admin.paginas.delete.file');
+
 	});
 
 	/** Notícias */
@@ -138,6 +141,8 @@ Route::prefix('/admin') -> group(function($admin){
 		Route::put('/', [FotosController::class, 'update']) -> name('admin.fotos.put') -> where('id', '[0-9]+');
 		Route::patch('/{campo}', [FotosController::class, 'replace']) -> name('admin.fotos.patch') -> where('id', '[0-9]+');
 		Route::delete('/', [FotosController::class, 'delete']) -> name('admin.fotos.delete');
+
+		Route::delete('{id}/arquivo/{file}', [FotosController::class, 'delete_file']) -> name('admin.fotos.delete.file');
 
 	});
 

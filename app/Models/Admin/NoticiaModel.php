@@ -144,7 +144,7 @@ class NoticiaModel extends Authenticatable
 
 		if ( is_null($field) ) {
 
-			$path = 'assets/embaixada/img/paginas/';
+			$path = '/assets/embaixada/img/paginas/';
 			$origName = null;
 			$fileName = null;
 			$imagem = null;

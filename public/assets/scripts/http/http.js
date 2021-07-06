@@ -85,6 +85,17 @@ var Http = {
 
     },
 
+    delete: (url, callback) => {
+
+        Http.post(url, {
+            'method': 'delete'
+        }, (response) => {
+            Form.showMessage(response.message);
+            return callback();
+        });
+
+    },
+
     open: (type, url) => {
 
         if (window.XMLHttpRequest) {

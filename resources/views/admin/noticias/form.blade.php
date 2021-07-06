@@ -136,35 +136,29 @@
                             </div>
                             <!-- END Idioma -->
 
-                            <!-- BEGIN imagem -->
+							<!-- BEGIN imagem de capa -->
                             <div class="row">
                                 <div class="input-field media conj_img_edit">
                                     <div class="img_icon_pdf image_view z-depth-4 material-icons">
                                         @if (isset($row) && $row->imagem)
-                                            <img src="{{ asset($row->imagem) }}"
-                                                 class="img_cem materialboxed original">
-                                            <input type="hidden"
-                                                   name="original_name">
+                                            <img src="{{ asset($row->imagem) }}" class="img_cem materialboxed original">
+                                            <input type="hidden" name="original_name">
                                         @endif
                                     </div>
                                     <div class="nome_arquivo"
-                                         data-placeholder="{{ isset($row) && $row->imagem ? basename($row->imagem) : 'Selecione uma imagem' }}">
+                                        data-placeholder="Imagem de capa">
                                     </div>
                                     <div class="bt_excluir waves-effect redefinir amber"
-                                         style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
+                                        style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
                                         <i class="material-icons">undo</i>
                                     </div>
                                     <div class="btn_add_new_image waves-effect image_alt amber">
                                         <i class="material-icons">add_photo_alternate</i>
                                     </div>
-                                    <input type="file"
-                                           name="imagem"
-                                           id="img_perfil"
-                                           accept="image">
+                                    <input type="file" name="imagem" id="img_perfil" accept="image">
                                 </div>
                             </div>
-                            <!-- END imagem -->
-
+                            <!-- END imagem de capa -->
 
                             <!-- BEGIN Status -->
                             <div class="row">
@@ -239,19 +233,11 @@
                                     <!-- BEGIN Texto -->
                                     <div class="row">
                                         <div class="input-field amber-border browser-default">
-                                            <div class="editor basic--editor"
-                                                 placeholder="Texto da notícia"
-                                                 style="min-height: 400px;">
-                                                <?= isset($row) && !is_null($texto) ? $texto[$idioma->sigla] : null ?>
-                                                </div>
-                                                <input type="hidden"
-                                                       name="{{ $idioma->sigla }}:texto"
-                                                       id="texto">
-                                            </div>
+											<textarea name="{{ $idioma->sigla }}:texto" class="editor full--editor" placeholder="Texto da notícia" style="min-height: 600px !important;"><?= isset($row) && !is_null($texto) ? $texto[$idioma->sigla] : null ?></textarea>
                                         </div>
-                                        <!-- END Texto -->
-
+                                        </div>
                                     </div>
+									<!-- END Texto -->
 
                                 @endforeach
 

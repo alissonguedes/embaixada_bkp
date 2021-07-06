@@ -19,7 +19,7 @@ class NoticiaModel extends Model
 		'status',
 	];
 
-	public function getNoticia($find = null) {
+	public function getNoticia($find = null, $limit = null) {
 
 		$get = $this -> select('*');
 
@@ -30,13 +30,13 @@ class NoticiaModel extends Model
 		}
 
 		if (isset($_GET['search']['value']) && !empty($_GET['search']['value'])) {
-            $get->where(function ($get) {
-                $search = $_GET['search']['value'];
-                $get->orWhere('id', 'like', $search . '%')
-                    ->orWhere('descricao', 'like', $search . '%')
-                    ->orWhere('status', 'like', $search . '%');
-            });
-        }
+			$get->where(function ($get) {
+				$search = $_GET['search']['value'];
+				$get->orWhere('id', 'like', $search . '%')
+					->orWhere('descricao', 'like', $search . '%')
+					->orWhere('status', 'like', $search . '%');
+			});
+		}
 
 		// Order By
 		if (isset($_GET['order']) && $_GET['order'][0]['column'] != 0 ) {
@@ -49,15 +49,15 @@ class NoticiaModel extends Model
 			$get -> orderBy($key, $val);
 		}
 
-		return $get -> paginate($_GET['length'] ?? null);
+		return $get -> paginate($limit);
 
 	}
 
     public function getDestaques() {
 
-        $this -> limit = 6;
+        $this -> limit = 3;
 
-        return $this -> getNoticia();
+        return $this -> getNoticia(null, 3);
 
     }
 

@@ -11,6 +11,28 @@
     list-style: none;
 }
 
+.collection {
+    border: none;
+}
+
+.collection-item {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: #000 !important;
+    color: var(--amber) !important
+}
+
+.collection-item .circle {
+    background: transparent !important;
+}
+
+.collection-item .materialboxed {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    height: 100%;
+    vertical-align: middle;
+}
+
 html,
 body {
     margin: 0;

@@ -5,7 +5,7 @@
 @endif
 
 {? $titulo_pag = tradutor(json_decode($row->titulo, true)) ?? $row -> titulo_principal; ?}
-{? $subtitulo_pag = tradutor(json_decode($row -> subtitulo, true)) ?? $row -> subtitulo_pag; ?}
+{? $subtitulo_pag = tradutor(json_decode($row -> subtitulo, true)) ?? $row -> subtitulo; ?}
 {? $texto_pag = tradutor(json_decode($row -> texto, true)) ?? $row -> texto_pag; ?}
 {? $imagem = !empty($noticia -> imagem) && file_exists(public_path($row->imagem)) ? asset($noticia -> imagem) : null; ?}
 {? $data_add = $row -> created_at; ?}

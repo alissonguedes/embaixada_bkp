@@ -168,4 +168,32 @@ class PaginasController extends Controller
 
 		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
 	}
+
+	public function delete_file(Request $request, $id, $file)
+	{
+
+		if ( ! Session::has('userdata')) {
+			if ( $request -> ajax() )
+				return abort(403);
+			else
+				return redirect() -> route('admin.auth.login');
+		}
+
+		$url = url('admin/paginas');
+		$type = 'back';
+
+		if ($this->pagina_model->remove_file($file)) {
+			$status = 'success';
+			$message = 'Arquivo removido com sucesso!';
+		} else {
+			$type = null;
+			$status = 'error';
+			$message = 'Não foi possível remover o arquivo. Por favor, tente novamente.';
+		}
+
+		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+
+	}
+
+
 }

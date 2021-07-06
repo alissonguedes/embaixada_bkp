@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class PaginaModel extends Authenticatable
 {
@@ -87,26 +88,10 @@ class PaginaModel extends Authenticatable
 
 	public function create($request) {
 
-		$path = 'assets/embaixada/img/paginas/';
+		$path = 'assets/embaixada/documentos/';
 		$origName = null;
 		$fileName = null;
-		$imagem = null;
-
-		if ( $request -> file('imagem') ){
-
-			$file = $request -> file('imagem');
-
-			$fileName = sha1($file -> getClientOriginalName());
-			$fileExt  = $file -> getClientOriginalExtension();
-
-			$imgName  = explode('.', ($file -> getClientOriginalName()));
-
-			$origName = limpa_string($imgName[count($imgName) - 2], '_') . '.' . $fileExt;
-			$imagem = limpa_string($fileName) . '.' . $fileExt;
-
-			$file -> storeAs($path, $imagem);
-
-		}
+		$arquivo = null;
 
 		$traducao	= [];
 		$data = [
@@ -129,39 +114,117 @@ class PaginaModel extends Authenticatable
 
 		}
 
-		if ( !is_null($imagem) )
-			$data['imagem'] = $path . $imagem;
+		if ( !is_null($arquivo) )
+			$data['arquivo'] = $path . $arquivo;
 
 		$data['titulo'] = json_encode($traducao['titulo']);
 		$data['subtitulo'] = json_encode($traducao['subtitulo']);
 		$data['texto'] = json_encode($traducao['texto']);
 
-		return $this -> insert($data);
+        if ( $id = $this -> insertGetId($data)) {
+
+			if ( $request -> file('arquivo') ) {
+
+				$file = $request -> file('arquivo');
+
+				foreach ( $file as $f ) {
+
+					$fileName = $f -> getClientOriginalName();
+					$fileExt  = $f -> getClientOriginalExtension();
+					$fileExt  = $fileExt != '' ? '.' . $fileExt : '.txt';
+
+					$imgName  = explode('.', ($f -> getClientOriginalName()));
+
+					$origName = limpa_string($imgName[count($imgName) - 2 > 0 ? count($imgName) - 2 : 0], '_') . $fileExt;
+					$arquivo = uniqid(sha1(limpa_string($fileName))) . $fileExt;
+
+					$f -> storeAs($path, $arquivo);
+
+					$files[] = [
+						'id_modulo' => $id,
+						'modulo' => 'page',
+						'path' => $path . $arquivo,
+						'realname' => $origName,
+						'author' => Session::get('userdata')['nome'],
+						'titulo' => null,
+						'descricao' => null,
+						'clicks' => 0,
+						'url' => null,
+						'size' => $f -> getSize()
+					];
+
+				}
+
+				$this -> from('tb_attachment') -> insert($files);
+
+			}
+
+			return true;
+
+        }
+
+		return false;
+
+	}
+
+	public function getAttach($id) {
+
+		return $this -> select('*')
+			-> from('tb_attachment')
+			-> where('id_modulo', $id)
+			-> where('modulo', 'page')
+			-> orderBy('realname')
+			-> get();
 
 	}
 
 	public function edit($request, $field = null) {
 
+		$request -> validate([
+			'arquivo' => 'required|max:8192'
+		]);
+
+		$files = [];
+		$path = 'assets/embaixada/documentos/';
+		$origName = null;
+		$fileName = null;
+		$arquivo = null;
+
 		if ( is_null($field) ) {
 
-			$path = 'assets/embaixada/img/paginas/';
-			$origName = null;
-			$fileName = null;
-			$imagem = null;
+			if ( $request -> file('arquivo') ) {
 
-			if ( $request -> file('imagem') ){
+				$file = $request -> file('arquivo');
 
-				$file = $request -> file('imagem');
+				foreach ( $file as $f ) {
 
-				$fileName = sha1($file -> getClientOriginalName());
-				$fileExt  = $file -> getClientOriginalExtension();
+					$fileName = $f -> getClientOriginalName();
+					$fileExt  = $f -> getClientOriginalExtension();
+					$fileExt  = $fileExt != '' ? '.' . $fileExt : '.txt';
 
-				$imgName  = explode('.', ($file -> getClientOriginalName()));
+					$imgName  = explode('.', ($f -> getClientOriginalName()));
 
-				$origName = limpa_string($imgName[count($imgName) - 2], '_') . '.' . $fileExt;
-				$imagem = limpa_string($fileName) . '.' . $fileExt;
+					$origName = limpa_string($imgName[count($imgName) - 2 > 0 ? count($imgName) - 2 : 0], '_') . $fileExt;
+					$arquivo = uniqid(sha1(limpa_string($fileName))) . $fileExt;
 
-				$file -> storeAs($path, $imagem);
+					$f -> storeAs($path, $arquivo);
+
+					$files[] = [
+						'id_modulo' => $request -> id,
+						'modulo' => 'page',
+						'path' => $path . $arquivo,
+						'realname' => $origName,
+						'author' => Session::get('userdata')['nome'],
+						'titulo' => null,
+						'descricao' => null,
+						'clicks' => 0,
+						'url' => null,
+						'size' => $f -> getSize()
+					];
+
+				}
+
+				$this -> from('tb_attachment') -> insert($files);
 
 			}
 
@@ -184,9 +247,6 @@ class PaginaModel extends Authenticatable
 				}
 			}
 
-			if ( !is_null($imagem) )
-				$data['imagem'] = $path . $imagem;
-
 			$data['titulo'] = json_encode($traducao['titulo']);
 			$data['subtitulo'] = json_encode($traducao['subtitulo']);
 			$data['texto'] = json_encode($traducao['texto']);
@@ -205,7 +265,43 @@ class PaginaModel extends Authenticatable
 
 	public function remove($request) {
 
+		$this -> remove_file($request -> id);
 		return $this -> whereIn('id', $request -> id) -> delete();
+
+	}
+
+	public function remove_file($id) {
+
+		if ( is_array($id) ) {
+			$column = 'id_modulo';
+		} else {
+			$column = 'id';
+		}
+
+		$files = $this -> from('tb_attachment')
+			-> select('path')
+			-> where($column, $id)
+			-> get();
+
+		if ( isset($files) )
+		{
+
+			foreach ( $files as $file ) {
+
+				$file = public_path($file -> path);
+
+			}
+
+			$un = file_exists($file) ? unlink($file) : true;
+
+			if ( $un )
+				return $this -> from('tb_attachment') -> where($column, $id) -> delete();
+
+			return true;
+
+		}
+
+		return false;
 
 	}
 

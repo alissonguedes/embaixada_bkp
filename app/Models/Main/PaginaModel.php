@@ -22,7 +22,7 @@ class PaginaModel extends Model
 			'P.titulo',
 			'P.subtitulo',
 			'P.texto',
-			'P.imagem',
+			'P.arquivo',
 			'P.created_at',
 			'P.updated_at',
 			'P.idioma',
@@ -42,11 +42,11 @@ class PaginaModel extends Model
 			$get -> where('M.link', $menu);
 		}
 
-		if ( !is_null($this -> limit) ) $get -> limit($this -> limit);
+		if ( ! is_null($this -> limit) ) $get -> limit($this -> limit);
 
 		$this -> orderBy('date_time', 'desc');
 
-		if ( !is_null($menu) ) {
+		if ( ! is_null($menu) ) {
 
 			if( is_numeric($menu) ){
 				$get -> where('P.id', $menu);
@@ -99,7 +99,6 @@ class PaginaModel extends Model
 						-> first();
 
 		$get -> orderBy('created_at', 'desc');
-
 
 		return $get -> get();
 

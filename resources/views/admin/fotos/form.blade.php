@@ -26,12 +26,11 @@
     <div class="container_right panel">
 
         <!-- Header search bar starts -->
-        <div class="title_pg f_avante"
-             style="place-content: start;">
+        <div class="title_pg f_avante" style="place-content: start;">
 
             <button data-href="{{ route('admin.fotos') }}"
-                    class="btn btn-flat btn-small btn-floating transparent waves-effect waves-light white-text bt_ac btn-flat mr-1"
-                    data-tooltip="Voltar">
+                class="btn btn-flat btn-small btn-floating transparent waves-effect waves-light white-text bt_ac btn-flat mr-1"
+                data-tooltip="Voltar">
                 <i class="material-icons">arrow_back</i>
             </button>
 
@@ -56,10 +55,8 @@
 
                             @if (isset($row))
                                 <button class="btn btn-large excluir waves-effect"
-                                        value="{{ isset($row) ? $row->id : null }}"
-                                        data-tooltip="Excluir"
-                                        data-link="{{ route('admin.fotos.delete') }}"
-                                        style="border: none">
+                                    value="{{ isset($row) ? $row->id : null }}" data-tooltip="Excluir"
+                                    data-link="{{ route('admin.fotos.delete') }}" style="border: none">
                                     <i class="material-icons">delete_forever</i>
                                 </button>
                                 <div class="divider"></div>
@@ -70,15 +67,6 @@
 
                     </div>
 
-                    <ul class="tabs">
-                        <li class="tab"><a href="#informations">Informações</a></li>
-                        @foreach ($idiomas as $idioma)
-                            <li class="tab">
-                                <a href="#{{ limpa_string($idioma->sigla, '') }}">{{ $idioma->descricao }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-
                 </div>
                 <!-- END Toolbar -->
 
@@ -88,73 +76,45 @@
             <!-- BEGIN panel-body -->
             <div class="area_dashboard panel-body pl-0 pr-0 pt-1">
 
-                <form method="post"
-                      action="{{ route('admin.fotos.insert') }}"
-                      novalidate
-                      enctype="multipart/form-data"
-                      autocomplete="off">
+                <form method="post" action="{{ route('admin.fotos.insert') }}" novalidate enctype="multipart/form-data"
+                    autocomplete="off">
 
                     <div class="row">
 
                         <!-- Informações -->
-                        <div class="col l6 s12"
-                             id="informations">
+                        <div class="col l6 s12" id="informations">
 
                             <!-- BEGIN título -->
                             <div class="row">
                                 <div class="input-field amber-text amber-border mb-2">
                                     <label class="grey-text">Nome do álbum</label>
-                                    <input type="text"
-                                           name="nome"
-                                           id="nome"
-                                           class="box_input amber-text"
-                                           value="{{ isset($row) ? $row->nome : null }}"
-                                           autofocus="autofocus">
+                                    <input type="text" name="nome" id="nome" class="box_input amber-text"
+                                        value="{{ isset($row) ? $row->nome : null }}" autofocus="autofocus">
                                 </div>
                             </div>
                             <!-- END título -->
 
-                            <!-- BEGIN imagem -->
-                            <div class="row">
-                                <div class="input-field media conj_img_edit">
-                                    <div class="img_icon_pdf image_view z-depth-4 material-icons">
-                                        @if (isset($row) && $row->imagem)
-                                            <img src="{{ asset($row->imagem) }}"
-                                                 class="img_cem materialboxed original">
-                                            <input type="hidden"
-                                                   name="original_name">
-                                        @endif
-                                    </div>
-                                    <div class="nome_arquivo"
-                                         data-placeholder="{{ isset($row) && $row->imagem ? basename($row->imagem) : 'Selecione uma imagem' }}">
-                                    </div>
-                                    <div class="bt_excluir waves-effect redefinir amber"
-                                         style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
-                                        <i class="material-icons">undo</i>
-                                    </div>
-                                    <div class="btn_add_new_image waves-effect image_alt amber">
-                                        <i class="material-icons">add_photo_alternate</i>
-                                    </div>
-                                    <input type="file"
-                                           name="imagem"
-                                           id="img_perfil"
-                                           accept="image">
-                                </div>
-                            </div>
-                            <!-- END imagem -->
+							<!-- BEGIN título -->
+							<div class="row">
+								<div class="col l6 no-padding">
+									<div class="input-field amber-text mb-2">
+										<label class="grey-text">Tradução:</label>
+										<br>
+									</div>
+								</div>
+							</div>
+							<!-- END título -->
 
                             <!-- BEGIN Tradução -->
-                            {? $traducao = ( isset($row) && ! empty($row -> traducao) ? json_decode($row->traducao,true) : null )?}
+                            {? $traducao = ( isset($row) && ! empty($row -> titulo) ? json_decode($row->titulo,true) : null )?}
                             @foreach ($idiomas as $idioma)
                                 <div class="row">
-                                    <div class="col l6 no-padding">
+                                    <div class="col l12 no-padding">
                                         <div class="input-field amber-text amber-border mb-2">
                                             <label class="grey-text">{{ $idioma->descricao }}</label>
-                                            <input type="text"
-                                                   name="traducao:{{ $idioma->sigla }}"
-                                                   id="{{ $idioma->sigla }}"
-                                                   class="box_input amber-text"
-                                                   value="{{ $traducao[$idioma->sigla] ?? null }}">
+                                            <input type="text" name="{{ $idioma->sigla }}:titulo"
+                                                id="sigla:{{ $idioma->sigla }}" class="box_input amber-text"
+                                                value="{{ $traducao[$idioma->sigla] ?? null }}">
                                         </div>
                                     </div>
                                 </div>
@@ -165,19 +125,15 @@
                             <div class="row">
 
                                 <div class="col s1 no-margin no-padding">
-                                    <span for="status"
-                                          class="active grey-text"
-                                          style="font-size: 1rem; font-family: roboto;">Status</span>
+                                    <span for="status" class="active grey-text"
+                                        style="font-size: 1rem; font-family: roboto;">Status</span>
                                 </div>
 
                                 <div class="col s2">
                                     <label>
-                                        <input type="checkbox"
-                                               name="status"
-                                               id="status"
-                                               {{ !isset($row) || $row->status === '1' ? 'checked="checked"' : null }}
-                                               class="indigo"
-                                               value="1">
+                                        <input type="checkbox" name="status" id="status"
+                                            {{ !isset($row) || $row->status === '1' ? 'checked="checked"' : null }}
+                                            class="indigo" value="1">
                                         <span>Ativo</span>
                                     </label>
                                 </div>
@@ -185,57 +141,93 @@
                             </div>
                             <!-- END Status -->
 
+                            <!-- BEGIN imagem de capa -->
+                            <div class="row">
+                                <div class="input-field media conj_img_edit">
+                                    <div class="img_icon_pdf image_view z-depth-4 material-icons">
+                                        @if (isset($row) && $row->imagem)
+                                            <img src="{{ asset($row->imagem) }}" class="img_cem materialboxed original">
+                                            <input type="hidden" name="original_name">
+                                        @endif
+                                    </div>
+                                    <div class="nome_arquivo" data-placeholder="Imagem de capa">
+                                    </div>
+                                    <div class="bt_excluir waves-effect redefinir amber"
+                                        style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
+                                        <i class="material-icons">undo</i>
+                                    </div>
+                                    <div class="btn_add_new_image waves-effect image_alt amber">
+                                        <i class="material-icons">add_photo_alternate</i>
+                                    </div>
+                                    <input type="file" name="imagem" id="img_perfil" accept="image">
+                                </div>
+                            </div>
+                            <!-- END imagem de capa -->
+
+                            <!-- BEGIN imagens do álbum -->
+                            <div class="row">
+                                <div class="input-field media conj_img_edit">
+                                    <div class="nome_arquivo" data-placeholder="Selecione as imagens do álbum">
+                                    </div>
+                                    <div class="bt_excluir waves-effect redefinir amber"
+                                        style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
+                                        <i class="material-icons">undo</i>
+                                    </div>
+                                    <div class="btn_add_new_image waves-effect image_alt amber">
+                                        <i class="material-icons">upload</i>
+                                    </div>
+                                    <input type="file" name="arquivo[]" id="img_album" accept="image" multiple>
+                                </div>
+                            </div>
+                            <!-- END imagem do álbum -->
+
+                            <!-- LISTAGEM DE ARQUIVOS -->
+
+                            <div class="row">
+
+                                @if (isset($row))
+
+                                    @php
+                                        $page = new App\Models\Admin\FotoModel();
+                                        $arquivos = $page->getFotos($row->id);
+                                    @endphp
+
+                                    @if (isset($arquivos))
+                                        <div class="input-field media">
+                                            <div class="grey-text">
+                                                <span class="count-files">{{ count($arquivos) }}</span>
+                                                @if (count($arquivos) > 1) arquivos
+                                                cadastrados @else arquivo cadastrado @endif
+                                            </div>
+                                            <br>
+                                            <ul class="collection" style="max-height: 300px; overflow-y: scroll;">
+                                                @foreach ($arquivos as $file)
+                                                    <li class="collection-item avatar" id="file_{{ $file->id }}">
+                                                       <div class="circle">
+														   <img src="{{ asset($file->path) }}" alt=""
+														   class="materialboxed">
+														</div>
+                                                        <p>{{ $file->realname }}</p>
+                                                        <span class="title grey-text"
+                                                            data-tooltip="{{ asset($file->path) }}" data-position="top"
+                                                            style="display: block; max-width: 70%; overflow: hidden; word-wrap: nowrap; text-overflow: ellipsis;">{{ asset($file->path) }}</span>
+                                                        <a href="javascript:void(0);"
+                                                            data-url="{{ route('admin.fotos.delete.file', [$row->id, $file->id]) }}"
+                                                            id="{{ $file->id }}"
+                                                            class="secondary-content btn-floating btn-small amber waves-effect right remover_arquivo">
+                                                            <i class="material-icons black-text">close</i></a>
+                                                        <input type="hidden" name="arquivos[]" value="{{ $file->path }}">
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                @endif
+
+                            </div>
+
                         </div>
                         <!-- END Informações -->
-
-                        <!-- BEGIN Idiomas -->
-                        <div id="idiomas">
-
-                            @foreach ($idiomas as $idioma)
-
-                                {? $titulo = isset($row) && !empty($row -> titulo) ? json_decode($row -> titulo, true) : null; ?}
-                                {? $descricao = isset($row) && !empty($row -> descricao) ? json_decode($row -> descricao, true) : null; ?}
-                                {? $texto = isset($row) && !empty($row -> texto) ? json_decode($row -> texto, true) : null; ?}
-
-                                <div id="{{ limpa_string($idioma->sigla, '') }}"
-                                     class="col l6 s12">
-
-                                    <div class="row">
-                                        <span class="amber-text">IDIOMA: {{ $idioma->descricao }}</span>
-                                    </div>
-
-                                    <!-- BEGIN título -->
-                                    <div class="row">
-                                        <div class="input-field amber-text amber-border mb-2">
-                                            <label class="grey-text">Título</label>
-                                            <input type="text"
-                                                   name="{{ $idioma->sigla }}:titulo"
-                                                   id="title"
-                                                   class="box_input amber-text"
-                                                   value="{{ isset($row) && !is_null($titulo) ? $titulo[$idioma->sigla] : null }}"
-                                                   autofocus="autofocus">
-                                        </div>
-                                    </div>
-                                    <!-- END título -->
-
-                                    <!-- BEGIN descrição -->
-                                    <div class="row">
-                                        <div class="input-field amber-text amber-border mb-2">
-                                            <label class="grey-text">Descrição</label>
-                                            <input type="text"
-                                                   name="{{ $idioma->sigla }}:descricao"
-                                                   id="descricao"
-                                                   class="box_input amber-text"
-                                                   value="{{ isset($row) && !is_null($descricao) ? $descricao[$idioma->sigla] : null }}">
-                                        </div>
-                                    </div>
-                                    <!-- END descrição -->
-
-                                </div>
-                            @endforeach
-
-                        </div>
-                        <!-- END Idiomas -->
 
                     </div>
 
@@ -245,28 +237,19 @@
 
                             <div class="row">
                                 <button type="submit"
-                                        class="amber btn col btn-large black-text waves-effect">Salvar</button>
+                                    class="amber btn col btn-large black-text waves-effect">Salvar</button>
                             </div>
 
-                            <input type="hidden"
-                                   name="acao"
-                                   value="login">
-                            <input type="hidden"
-                                   name="id"
-                                   value="{{ isset($row) ? $row->id : null }}">
-                            <input type="hidden"
-                                   name="_method"
-                                   value="{{ isset($row) ? 'put' : 'post' }}">
+                            <input type="hidden" name="acao" value="login">
+                            <input type="hidden" name="id" value="{{ isset($row) ? $row->id : null }}">
+                            <input type="hidden" name="_method" value="{{ isset($row) ? 'put' : 'post' }}">
 
                             @if (!isset($row))
-                                <input type="hidden"
-                                       name="editavel"
-                                       value="{{ $editavel }}">
+                                <input type="hidden" name="editavel" value="{{ $editavel }}">
                             @endif
 
-                            <input type="hidden"
-                                   name="dicionario"
-                                   value="{{ isset($row) ? $row->id_dicionario : null }}">
+                            <input type="hidden" name="dicionario"
+                                value="{{ isset($row) ? $row->id_dicionario : null }}">
                             {{ $input_label_hidden }}
 
                         </div>
@@ -277,6 +260,7 @@
 
             </div>
             <!-- END panel-body -->
+
 
         </div>
         <!-- END panel-content -->

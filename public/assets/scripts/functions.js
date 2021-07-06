@@ -111,39 +111,88 @@ function editor() {
 
     // });
 
-    // // Editor básico
-    $('.basic--editor').each(function() {
+    // // // Editor básico
+    // $('.basic--editor').each(function() {
 
-        var editor = new Quill(this, {
-            placeholder: typeof $(this).attr('placeholder') !== 'undefined' ? $(this).attr('placeholder') : null,
-            theme: 'snow'
-        });
-
-    });
-
-
-    // // Editor completo
-    // $('.full--editor').each(function(){
-    //     tinymce.init({
-    //         selector: '.' + $(this).attr('class').replace(/\s/g, '.'),
-    //         height: typeof $(this).data('height') !== 'undefined' ? $(this).data('height') : 250,
-    //         menubar: true,
-    //         plugins: [
-    //             'quickbars advlist autolink link image lists charmap print preview hr anchor pagebreak',
-    //             'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-    //             'table emoticons template paste help'
-    //         ],
-    //         toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
-    //             'bullist numlist outdent indent | link | print preview media fullpage | ' +
-    //             'forecolor backcolor emoticons | help',
-    //         menu: {
-    //             favs: {title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons'}
-    //         },
-    //         menubar: 'favs file edit view insert format tools table help',
-    //         content_css: typeof $(this).data('style') !== 'undefined' ? $(this).data('style') : BASE_PATH + 'styles/style.css',
-    //         placeholder: typeof $(this).attr('placeholder') !== 'undefined' ? $(this).attr('placeholder') : null
+    //     var editor = new Quill(this, {
+    //         placeholder: typeof $(this).attr('placeholder') !== 'undefined' ? $(this).attr('placeholder') : null,
+    //         theme: 'snow'
     //     });
+
     // });
+
+
+    // Editor completo
+    $('.full--editor').each(function() {
+        tinymce.init({
+            selector: '.' + $(this).attr('class').replace(/\s/g, '.'),
+
+            // images_upload_base_path: 'teste',
+            images_upload_handler: function(blobInfo, success, failure) {
+
+                var xhr, formData;
+                var token = $('meta[name="csrf-token"]').attr('content');
+
+                xhr = new XMLHttpRequest();
+                xhr.withCredentials = false;
+                xhr.open('POST', BASE_URL + 'api/tinymce');
+
+                xhr.setRequestHeader("X-CSRF-Token", token);
+                xhr.onload = function() {
+                    var json;
+                    if (xhr.status != 200) {
+                        failure('HTTP Error: ' + xhr.status);
+                        return;
+                    }
+                    json = JSON.parse(xhr.responseText);
+
+                    if (!json || typeof json.location != 'string') {
+                        failure('Invalid JSON: ' + xhr.responseText);
+                        return;
+                    }
+
+                    success(json.location);
+
+                };
+
+                formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                xhr.send(formData);
+
+            },
+            file_picker_callback: function(cb, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                input.onchange = function() {
+                    var file = this.files[0];
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                    var blobInfo = blobCache.create(id, file);
+                    blobCache.add(blobInfo);
+                    cb(blobInfo.blobUri(), { title: file.name });
+                };
+                input.click();
+            },
+            height: typeof $(this).data('height') !== 'undefined' ? $(this).data('height') : 550,
+            menubar: true,
+            plugins: [
+                'quickbars advlist autolink link image lists charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link | print preview media fullpage | ' +
+                'forecolor backcolor emoticons | help | image',
+            menu: {
+                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+            },
+            menubar: 'favs file edit view insert format tools table help',
+            content_css: typeof $(this).data('style') !== 'undefined' ? $(this).data('style') : BASE_PATH + 'styles/style.css',
+            placeholder: typeof $(this).attr('placeholder') !== 'undefined' ? $(this).attr('placeholder') : null
+        });
+    });
 
 }
 
@@ -710,3 +759,62 @@ var Events = {
     }
 
 };
+
+function create_element(id) {
+
+    $('.dropzone').each(function() {
+
+        $(this).find('[type="file"]').on('change', function() {
+
+            console.log($(this).val());
+            var self = $(this);
+            var $len = (self.parent().find('[type="file"]').length);
+
+            if (typeof id === 'undefined')
+                var id = $(this).attr('id');
+            else
+                var id = 'file' + id;
+
+            if ($('#' + id).is(':visible')) {
+
+                for (var i = 0; i < document.getElementById(id).files.length; i++) {
+
+                    console.log(id);
+                    src = window.URL.createObjectURL(document.querySelector('#' + id).files[i]);
+
+                    var div = $('<div/>', {
+                        'class': 'miniaturas',
+                    });
+
+                    var img = $('<img/>', {
+                        'src': src,
+                        'class': '',
+                    });
+
+                    $(this).parent().append(div.append(img));
+                    // $(img).materialbox();
+
+                }
+
+                $(this).parent().append($('<input/>', {
+                    'type': 'file',
+                    'name': 'file[]',
+                    'id': 'file' + ($len++),
+                    'multiple': 'multiple',
+                    'title': ''
+                }));
+
+                var new_file = 'file' + id;
+
+                create_element(new_file);
+
+
+            }
+
+            self.hide();
+
+        })
+
+    });
+
+}

@@ -25,7 +25,11 @@
             <div class="bt_atalho">
                 <div class="icon_atalho"><img src="{{ asset('img/icon/pessoas.png') }}"
                          class="img_cem"></div>
-                <div class="txt_atalho translate">{{ tradutor('quero_obter_um_visto') }}</div>
+                <div class="txt_atalho translate">{{ tradutor([
+					'pt-br' => 'Quero obter um visto',
+					'en' => 'I want to get a visa',
+					'hr' => 'Szeretnék vízumot szerezni'
+				]) }}</div>
             </div>
         </a>
 
@@ -34,7 +38,11 @@
             <div class="bt_atalho">
                 <div class="icon_atalho"><img src="{{ asset('img/icon/bandeiras.png') }}"
                          class="img_cem"></div>
-                <div class="txt_atalho translate">{{ tradutor('procuro_servicos_para_cidadaos_angolanos') }}</div>
+                <div class="txt_atalho translate">{{ tradutor([
+					'pt-br' => 'Procuro serviços para cidadãos angolanos',
+					'en' => 'I\'m looking for services for Angolan citizens',
+					'hr' => 'Szolgáltatásokat keresek angolai állampolgárok számára'
+				]) }}</div>
             </div>
         </a>
 
@@ -43,7 +51,11 @@
             <div class="bt_atalho">
                 <div class="icon_atalho"><img src="{{ asset('img/icon/chapeu.png') }}"
                          class="img_cem"></div>
-                <div class="txt_atalho">{{ tradutor('quero_estudar_na_hungria') }}</div>
+                <div class="txt_atalho">{{ tradutor([
+					'pt-br' => 'Quero estudar na Hungria',
+					'en' => 'I want to study in Hungary',
+					'hr' => 'Magyarországon szeretnék tanulni'
+				]) }}</div>
             </div>
         </a>
 
@@ -52,7 +64,11 @@
             <div class="bt_atalho">
                 <div class="icon_atalho"><img src="{{ asset('img/icon/trofeu.png') }}"
                          class="img_cem"></div>
-                <div class="txt_atalho">{{ tradutor('procuro_oportunidade_de_negocios') }}</div>
+                <div class="txt_atalho">{{ tradutor([
+					'pt-br' => 'Procuro oportunidades de negócios',
+					'en' => 'I\'m looking for business opportunities',
+					'hr' => 'Üzleti lehetőségeket keresek'
+				]) }}</div>
             </div>
         </a>
 
@@ -61,16 +77,25 @@
             <div class="bt_atalho">
                 <div class="icon_atalho"><img src="{{ asset('img/icon/aviao.png') }}"
                          class="img_cem"></div>
-                <div class="txt_atalho">{{ tradutor('quero_visitar_a_hungria') }}</div>
+                <div class="txt_atalho">{{ tradutor([
+					'pt-br' => 'Quero visitar a Hungria',
+					'en' => 'I want to visit Hungary',
+					'hr' => 'Magyarországra akarok látogatni'
+				]) }}</div>
             </div>
         </a>
 
         <!--atalho-->
         <a href="">
             <div class="bt_atalho">
-                <div class="icon_atalho"><img src="{{ asset('img/icon/terra.png') }}"
-                         class="img_cem"></div>
-                <div class="txt_atalho">{{ tradutor('procuro_informacoes_sobre_politica_hungara') }}</div>
+                <div class="icon_atalho">
+					<img src="{{ asset('img/icon/terra.png') }}" class="img_cem">
+						</div>
+                <div class="txt_atalho">{{ tradutor([
+					'pt-br' => 'Procuro informações sobre política Hungara',
+					'en' => 'I\'m looking for information on Hungarian politics',
+					'hr' => 'Információt keresek a magyar politikáról'
+				]) }}</div>
             </div>
         </a>
     </div>

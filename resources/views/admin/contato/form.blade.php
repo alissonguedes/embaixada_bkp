@@ -20,96 +20,92 @@
         @endif
 
     @endif
-    {{-- <input type="hidden"
+   {{-- <input type="hidden"
     			name="label"
                    value="{{ $input_label_hidden }}"> --}}
 @section('content')
 
-    <div class="container_right panel">
+    <form method="post" action="{{ route('admin.contato.insert') }}" novalidate enctype="multipart/form-data"
+        autocomplete="off">
 
-        <!-- Header search bar starts -->
-        <div class="title_pg f_avante"
-             style="place-content: start;">
+        <div class="container_right panel">
 
-            {{-- <button data-href="{{ route('admin.contato') }}"
+            <!-- Header search bar starts -->
+            <div class="title_pg f_avante" style="place-content: start;">
+
+                {{-- <button data-href="{{ route('admin.contato') }}"
                     class="btn btn-flat btn-small btn-floating transparent waves-effect waves-light white-text bt_ac btn-flat mr-1"
                     data-tooltip="Voltar">
                 <i class="material-icons">arrow_back</i>
             </button> --}}
 
-            <div class="mr-2">Informações Gerais do Site</div>
-
-        </div>
-        <!-- Header search bar Ends -->
-
-        <!-- BEGIN panel-content -->
-        <div class="panel-content">
-
-            <!-- BEGIN panel-header -->
-            <div class="panel-header no-border">
-
-                <!-- BEGIN Toolbar -->
-                <div class="toolbar bts_acao f_bebas">
-
-                    <div class="buttons">
-
-                        <!-- BEGIN Lista de Botões -->
-                        <div class="buttons show-buttons">
-
-                            @if (isset($row))
-                                <button class="btn btn-large excluir waves-effect"
-                                        value="{{ isset($row) ? $row->id : null }}"
-                                        data-tooltip="Excluir"
-                                        data-link="{{ route('admin.contato.delete') }}"
-                                        style="border: none">
-                                    <i class="material-icons">delete_forever</i>
-                                </button>
-                                <div class="divider"></div>
-                            @endif
-
-                        </div>
-                        <!-- END Lista de Botões -->
-
-                    </div>
-
-                    <ul class="tabs">
-                        <li class="tab"><a href="#informations"
-                               class="waves-effect waves-light">Informações</a></li>
-                        @foreach ($idiomas as $idioma)
-                            <li class="tab disabled">
-                                <a href="#{{ limpa_string($idioma->sigla, '') }}"
-                                   class="waves-effect">{{ $idioma->descricao }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-
-                </div>
-                <!-- END Toolbar -->
+                <div class="mr-2">Informações Gerais do Site</div>
 
             </div>
-            <!-- END panel-header -->
+            <!-- Header search bar Ends -->
 
-            <!-- BEGIN panel-body -->
-            <div class="area_dashboard panel-body pl-0 pr-0 pt-1">
+            <!-- BEGIN panel-content -->
+            <div class="panel-content">
 
-                <form method="post"
-                      action="{{ route('admin.contato.insert') }}"
-                      novalidate
-                      enctype="multipart/form-data"
-                      autocomplete="off">
+                <!-- BEGIN panel-header -->
+                <div class="panel-header no-border">
+
+                    <!-- BEGIN Toolbar -->
+                    <div class="toolbar bts_acao f_bebas">
+
+                        <div class="buttons">
+
+                            <!-- BEGIN Lista de Botões -->
+                            <div class="buttons show-buttons">
+
+                                @if (isset($row))
+                                    <button class="btn btn-large excluir waves-effect"
+                                        value="{{ isset($row) ? $row->id : null }}" data-tooltip="Excluir"
+                                        data-link="{{ route('admin.contato.delete') }}" style="border: none">
+                                        <i class="material-icons">delete_forever</i>
+                                    </button>
+                                    <div class="divider"></div>
+                                @endif
+
+                            </div>
+                            <!-- END Lista de Botões -->
+
+                        </div>
+
+                        <ul class="tabs">
+                            <li class="tab"><a href="#informations" class="waves-effect waves-light">Informações</a></li>
+                            @foreach ($idiomas as $idioma)
+                                <li class="tab disabled">
+                                    <a href="#{{ limpa_string($idioma->sigla, '') }}"
+                                        class="waves-effect">{{ $idioma->descricao }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <button type="submit" class="amber btn btn-large black-text waves-effect right no-margin">
+                            <i class="material-icons left">save</i>
+                            Salvar
+                        </button>
+
+                    </div>
+                    <!-- END Toolbar -->
+
+                </div>
+                <!-- END panel-header -->
+
+                <!-- BEGIN panel-body -->
+                <div class="area_dashboard panel-body pl-0 pr-0 pt-1">
 
                     <!--------------------------------------------------------->
 
                     <!-- BEGIN card Informações -->
-                    <div id="informations"
-                         class="row">
+                    <div id="informations" class="row">
 
                         <!-- BEGIN col.s6 -->
                         <div class="col l6 s12 no-padding">
 
                             <!-- BEGIN col s12 -->
-                            <div id="informations"
-                                 class="col s12">
+                            <div id="informations" class="col s12">
 
                                 <!-- BEGIN card.bg-opacity -->
                                 <div class="card bg-opacity-1">
@@ -129,11 +125,8 @@
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">corporate_fare</i>
                                                 <label class="grey-text">Título do site</label>
-                                                <input type="text"
-                                                       name="site_title"
-                                                       id="site_title"
-                                                       class="box_input amber-text"
-                                                       value="{{ get_config('site_title') }}">
+                                                <input type="text" name="site_title" id="site_title"
+                                                    class="box_input amber-text" value="{{ get_config('site_title') }}">
                                             </div>
                                         </div>
                                         <!-- END Título do Site -->
@@ -143,12 +136,9 @@
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">notes</i>
                                                 <label class="grey-text">Descrição do site</label>
-                                                <input type="url"
-                                                       name="site_description"
-                                                       id="site_description"
-                                                       class="box_input amber-text"
-                                                       value="{{ get_config('site_description') }}"
-                                                       maxlength="160">
+                                                <input type="url" name="site_description" id="site_description"
+                                                    class="box_input amber-text"
+                                                    value="{{ get_config('site_description') }}" maxlength="160">
                                             </div>
                                         </div>
                                         <!-- END Descrição do site -->
@@ -158,11 +148,8 @@
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">vpn_lock</i>
                                                 <label class="grey-text">Domínio</label>
-                                                <input type="url"
-                                                       name="site_url"
-                                                       id="site_url"
-                                                       class="box_input amber-text"
-                                                       value="{{ get_config('site_url') }}">
+                                                <input type="url" name="site_url" id="site_url" class="box_input amber-text"
+                                                    value="{{ get_config('site_url') }}">
                                             </div>
                                         </div>
                                         <!-- END Domínio -->
@@ -173,13 +160,11 @@
                                                 <i class="material-icons prefix">language</i>
                                                 <label class="grey-text">Idioma Padrão</label>
                                                 <select name="language">
-                                                    <option value=""
-                                                            disabled="disabled"
-                                                            selected="selected">Selecione o idioma padrão do site</option>
+                                                    <option value="" disabled="disabled" selected="selected">Selecione o idioma padrão do site</option>
 
                                                     @foreach ($idiomas as $lang)
                                                         <option value="{{ $lang->sigla }}"
-                                                                {{ configuracoes('language') === $lang->sigla || get_config('language') == $lang->sigla ? 'selected="selected"' : null }}>{{ $lang->descricao . ' (' . $lang->sigla . ')' }}</option>
+                                                            {{ configuracoes('language') === $lang->sigla || get_config('language') == $lang->sigla ? 'selected="selected"' : null }}>{{ $lang->descricao . ' (' . $lang->sigla . ')' }}</option>
                                                     @endforeach
 
                                                 </select>
@@ -193,23 +178,20 @@
                                                 <div class="img_icon_pdf image_view z-depth-4 material-icons">
                                                     @if (!empty(get_config('site_logo')))
                                                         <img src="{{ asset(get_config('site_logo')) }}"
-                                                             class="img_cem materialboxed original">
+                                                            class="img_cem materialboxed original">
                                                     @endif
                                                 </div>
                                                 <div class="nome_arquivo"
-                                                     data-placeholder="{{ !empty(get_config('original_logo_name')) ? get_config('original_logo_name') : 'Logo do site' }}">
+                                                    data-placeholder="{{ !empty(get_config('original_logo_name')) ? get_config('original_logo_name') : 'Logo do site' }}">
                                                 </div>
                                                 <div class="bt_excluir waves-effect redefinir amber"
-                                                     style="{{ !empty(get_config('site_logo')) ? 'display: none;' : '' }}">
+                                                    style="{{ !empty(get_config('site_logo')) ? 'display: none;' : '' }}">
                                                     <i class="material-icons">undo</i>
                                                 </div>
                                                 <div class="btn_add_new_image waves-effect image_alt amber">
                                                     <i class="material-icons">add_photo_alternate</i>
                                                 </div>
-                                                <input type="file"
-                                                       name="site_logo"
-                                                       id="img_perfil"
-                                                       accept="image">
+                                                <input type="file" name="site_logo" id="img_perfil" accept="image">
                                             </div>
                                         </div>
                                         <!-- END site_logo -->
@@ -231,14 +213,10 @@
                                             @endif
 
                                             <div class="chips amber-border amber-text"
-                                                 data-tags="{{ json_encode($tags) }}">
-                                                <input id="site_tags"
-                                                       type="text"
-                                                       placeholder="Tags do site">
+                                                data-tags="{{ json_encode($tags) }}">
+                                                <input id="site_tags" type="text" placeholder="Tags do site">
                                             </div>
-                                            <input type="hidden"
-                                                   name="site_tags"
-                                                   value="{{ get_config('site_tags') }}">
+                                            <input type="hidden" name="site_tags" value="{{ get_config('site_tags') }}">
 
                                         </div>
                                         <!-- END Tags do site -->
@@ -247,17 +225,6 @@
                                     <!-- END card-content -->
 
                                     <!-- BEGIN card-action -->
-                                    <div class="card-action bg-opacity-1 transparent">
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <button type="submit"
-                                                        class="amber btn btn-large black-text waves-effect right">
-                                                    <i class="material-icons left">save</i>
-                                                    Salvar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!-- END card-action -->
 
                                 </div>
@@ -289,11 +256,9 @@
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">mail_outline</i>
                                                 <label class="grey-text">E-Mail</label>
-                                                <input type="email"
-                                                       name="contact_email"
-                                                       id="contact_email"
-                                                       class="box_input amber-text"
-                                                       value="{{ get_config('contact_email') }}">
+                                                <input type="email" name="contact_email" id="contact_email"
+                                                    class="box_input amber-text"
+                                                    value="{{ get_config('contact_email') }}">
                                             </div>
                                         </div>
                                         <!-- END Empresa -->
@@ -302,12 +267,11 @@
                                         <div class="row">
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">call</i>
-                                                <label class="grey-text {{ !empty(get_config('contact_phone')) ? 'active' : null }}">Telefone</label>
-                                                <input type="tel"
-                                                       name="contact_phone"
-                                                       id="contact_phone"
-                                                       class="box_input amber-text is_phone"
-                                                       value="{{ get_config('contact_phone') }}">
+                                                <label
+                                                    class="grey-text {{ !empty(get_config('contact_phone')) ? 'active' : null }}">Telefone</label>
+                                                <input type="tel" name="contact_phone" id="contact_phone"
+                                                    class="box_input amber-text is_phone"
+                                                    value="{{ get_config('contact_phone') }}">
                                             </div>
                                         </div>
                                         <!-- END Telefone -->
@@ -316,32 +280,17 @@
                                         <div class="row">
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">textsms</i>
-                                                <label class="grey-text {{ !empty(get_config('contact_cel')) ? 'active' : null }}">Celular</label>
-                                                <input type="tel"
-                                                       name="contact_cel"
-                                                       id="contact_cel"
-                                                       class="box_input amber-text is_celular"
-                                                       value="{{ get_config('contact_cel') }}">
+                                                <label
+                                                    class="grey-text {{ !empty(get_config('contact_cel')) ? 'active' : null }}">Celular</label>
+                                                <input type="tel" name="contact_cel" id="contact_cel"
+                                                    class="box_input amber-text is_celular"
+                                                    value="{{ get_config('contact_cel') }}">
                                             </div>
                                         </div>
                                         <!-- END Celular -->
 
                                     </div>
                                     <!-- END card-content -->
-
-                                    <!-- BEGIN card-action -->
-                                    <div class="card-action bg-opacity-1 transparent">
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <button type="submit"
-                                                        class="amber btn btn-large black-text waves-effect right">
-                                                    <i class="material-icons left">save</i>
-                                                    Salvar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END card-action -->
 
                                 </div>
                                 <!-- END card.bg-opacity -->
@@ -361,8 +310,7 @@
                         <div class="col l6 s12 no-padding">
 
                             <!-- BEGIN col s12 -->
-                            <div id="informations"
-                                 class="col s12">
+                            <div id="informations" class="col s12">
 
                                 <!-- BEGIN card.bg-opacity -->
                                 <div class="card bg-opacity-1">
@@ -382,11 +330,8 @@
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">facebook</i>
                                                 <label class="grey-text">Facebook</label>
-                                                <input type="url"
-                                                       name="facebook"
-                                                       id="facebook"
-                                                       class="box_input amber-text"
-                                                       value="{{ get_config('facebook') }}">
+                                                <input type="url" name="facebook" id="facebook" class="box_input amber-text"
+                                                    value="{{ get_config('facebook') }}">
                                             </div>
                                         </div>
                                         <!-- END Facebook -->
@@ -396,11 +341,8 @@
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">party_mode</i>
                                                 <label class="grey-text">Instagram</label>
-                                                <input type="url"
-                                                       name="instagram"
-                                                       id="instagram"
-                                                       class="box_input amber-text"
-                                                       value="{{ get_config('instagram') }}">
+                                                <input type="url" name="instagram" id="instagram"
+                                                    class="box_input amber-text" value="{{ get_config('instagram') }}">
                                             </div>
                                         </div>
                                         <!-- END Instagram -->
@@ -410,31 +352,14 @@
                                             <div class="input-field amber-text amber-border mb-2">
                                                 <i class="material-icons prefix">workspaces</i>
                                                 <label class="grey-text">LinkedIn</label>
-                                                <input type="url"
-                                                       name="linkedin"
-                                                       id="linkedin"
-                                                       class="box_input amber-text"
-                                                       value="{{ get_config('linkedin') }}">
+                                                <input type="url" name="linkedin" id="linkedin" class="box_input amber-text"
+                                                    value="{{ get_config('linkedin') }}">
                                             </div>
                                         </div>
                                         <!-- END LinkedIn -->
 
                                     </div>
                                     <!-- END card-content -->
-
-                                    <!-- BEGIN card-action -->
-                                    <div class="card-action bg-opacity-1 transparent">
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <button type="submit"
-                                                        class="amber btn btn-large black-text waves-effect right">
-                                                    <i class="material-icons left">save</i>
-                                                    Salvar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END card-action -->
 
                                 </div>
                                 <!-- END card.bg-opacity -->
@@ -467,11 +392,8 @@
                                             <div class="col s8 pl-0">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">Endereço</label>
-                                                    <input type="text"
-                                                           name="address"
-                                                           id="address"
-                                                           class="box_input amber-text"
-                                                           value="{{ get_config('address') }}">
+                                                    <input type="text" name="address" id="address"
+                                                        class="box_input amber-text" value="{{ get_config('address') }}">
                                                 </div>
                                             </div>
                                             <!-- END Endereço -->
@@ -480,11 +402,9 @@
                                             <div class="col s4 pr-0">
                                                 <div class="input-field amber-text amber-border">
                                                     <label class="grey-text">Número</label>
-                                                    <input type="text"
-                                                           name="address_nro"
-                                                           id="address_nro"
-                                                           class="box_input amber-text"
-                                                           value="{{ get_config('address_nro') }}">
+                                                    <input type="text" name="address_nro" id="address_nro"
+                                                        class="box_input amber-text"
+                                                        value="{{ get_config('address_nro') }}">
                                                 </div>
                                             </div>
                                             <!-- END Número -->
@@ -499,11 +419,9 @@
                                             <div class="col s4 pl-0">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">CEP</label>
-                                                    <input type="text"
-                                                           name="cep"
-                                                           id="cep"
-                                                           class="box_input amber-text is_cep"
-                                                           value="{{ get_config('cep') }}">
+                                                    <input type="text" name="cep" id="cep"
+                                                        class="box_input amber-text is_cep"
+                                                        value="{{ get_config('cep') }}">
                                                 </div>
                                             </div>
                                             <!-- END CEP -->
@@ -512,11 +430,9 @@
                                             <div class="col s8 pl-3 pr-0">
                                                 <div class="input-field amber-text amber-border">
                                                     <label class="grey-text">Complemento</label>
-                                                    <input type="text"
-                                                           name="complemento"
-                                                           id="complemento"
-                                                           class="box_input amber-text"
-                                                           value="{{ get_config('complemento') }}">
+                                                    <input type="text" name="complemento" id="complemento"
+                                                        class="box_input amber-text"
+                                                        value="{{ get_config('complemento') }}">
                                                 </div>
                                             </div>
                                             <!-- END Complemento -->
@@ -531,11 +447,8 @@
                                             <div class="col s4 pl-0">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">Bairro</label>
-                                                    <input type="text"
-                                                           name="bairro"
-                                                           id="bairro"
-                                                           class="box_input amber-text"
-                                                           value="{{ get_config('bairro') }}">
+                                                    <input type="text" name="bairro" id="bairro"
+                                                        class="box_input amber-text" value="{{ get_config('bairro') }}">
                                                 </div>
                                             </div>
                                             <!-- END Bairro -->
@@ -544,11 +457,8 @@
                                             <div class="col s6">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">Cidade</label>
-                                                    <input type="text"
-                                                           name="cidade"
-                                                           id="cidade"
-                                                           class="box_input amber-text"
-                                                           value="{{ get_config('cidade') }}">
+                                                    <input type="text" name="cidade" id="cidade"
+                                                        class="box_input amber-text" value="{{ get_config('cidade') }}">
                                                 </div>
                                             </div>
                                             <!-- END Cidade -->
@@ -557,12 +467,8 @@
                                             <div class="col s2 pr-0 mb-2">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">UF</label>
-                                                    <input type="text"
-                                                           name="uf"
-                                                           id="uf"
-                                                           maxlength="2"
-                                                           class="box_input amber-text"
-                                                           value="{{ get_config('uf') }}">
+                                                    <input type="text" name="uf" id="uf" maxlength="2"
+                                                        class="box_input amber-text" value="{{ get_config('uf') }}">
                                                 </div>
                                             </div>
                                             <!-- END UF -->
@@ -577,21 +483,16 @@
                                             <div class="col s11 pl-0">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">Mapa</label>
-                                                    <input type="text"
-                                                           name="gmaps"
-                                                           id="gmaps"
-                                                           class="box_input amber-text"
-                                                           value="{{ get_config('gmaps') }}">
+                                                    <input type="text" name="gmaps" id="gmaps" class="box_input amber-text"
+                                                        value="{{ get_config('gmaps') }}">
                                                 </div>
                                             </div>
                                             <!-- END Maps -->
 
                                             <div class="col s1 mt-2">
                                                 <button type="button"
-                                                        class="btn btn-floating padding-4 waves-effect activator"
-                                                        id="preview"
-                                                        data-tooltip="Ver o mapa"
-                                                        disabled="disabled">
+                                                    class="btn btn-floating padding-4 waves-effect activator" id="preview"
+                                                    data-tooltip="Ver o mapa" disabled="disabled">
                                                     <i class="material-icons grey-text">more_vert</i>
                                                 </button>
                                             </div>
@@ -604,25 +505,11 @@
 
                                     <div class="card-reveal">
                                         <button type="button"
-                                                class="btn btn-floating card-title grey-text text-darken-4 waves-effect waves-light">
+                                            class="btn btn-floating card-title grey-text text-darken-4 waves-effect waves-light">
                                             <i class="material-icons">close</i>
                                         </button>
                                         <div id="iframe"></div>
                                     </div>
-
-                                    <!-- BEGIN card-action -->
-                                    <div class="card-action bg-opacity-1 transparent">
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <button type="submit"
-                                                        class="amber btn btn-large black-text waves-effect right">
-                                                    <i class="material-icons left">save</i>
-                                                    Salvar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END card-action -->
 
                                 </div>
                                 <!-- END card.bg-opacity -->
@@ -710,14 +597,15 @@
                     </div>
                     <!-- END Idiomas --> --}}
 
-                </form>
+                </div>
+                <!-- END panel-body -->
 
             </div>
-            <!-- END panel-body -->
+            <!-- END panel-content -->
 
         </div>
-        <!-- END panel-content -->
 
-    </div>
+
+    </form>
 
 @endsection

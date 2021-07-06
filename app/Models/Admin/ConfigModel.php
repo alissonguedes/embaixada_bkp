@@ -52,6 +52,16 @@ class ConfigModel extends Authenticatable
 		'status',
 	];
 
+	public function debug($get) {
+		echo '==> ';
+		echo '<br>';
+		$query = str_replace(array('?'), array('\'%s\''), $get -> toSql());
+		$query = vsprintf($query, $get -> getBindings());
+		dump($query);
+		echo '<br>';
+		echo '==> ';
+	}
+
 	public function getConfig($find = null) {
 
 		$get = $this -> select('id', 'config', 'value');
@@ -108,13 +118,12 @@ class ConfigModel extends Authenticatable
 
 			$file -> storeAs($path, $imagem);
 
+			$data[] = ['config' => 'site_logo', 'value' => $path . $imagem];
+			$data[] = ['config' => 'original_logo_name', 'value' => $origName];
+
 		}
 
 		$traducao	= [];
-
-		// Salva a imagem da logo
-		$data[] = ['config' => 'site_logo', 'value' => (!is_null($imagem) ? $path . $imagem : null)];
-		$data[] = ['config' => 'original_logo_name', 'value' =>  (!is_null($imagem) ? $origName : null)];
 
 		foreach($_POST as $ind => $val) {
 			if($ind !== 'site_logo')

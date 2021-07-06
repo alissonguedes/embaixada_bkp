@@ -16,8 +16,7 @@ if (!function_exists('get_config')) {
 
 use Illuminate\Support\Carbon;
 
-function tradutor($traducao, $lang = null, $except = 'Tradução não disponível para este idioma')
-{
+function tradutor($traducao, $lang = null, $except = 'Tradução não disponível para este idioma') {
 
 	$idioma = is_null($lang) ? ( isset($_COOKIE['idioma']) ? $_COOKIE['idioma'] : get_config('language') ) : $lang;
 

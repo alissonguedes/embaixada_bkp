@@ -32,10 +32,10 @@
             <br>
 
             @if (!is_null($imagem))
-                <div class="img_news">
+                {{-- <div class="img_news">
                     <img src="{{ $imagem }}"
                          class="img_cem">
-                </div>
+                </div> --}}
             @endif
 
         @endif

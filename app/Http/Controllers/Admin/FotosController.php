@@ -30,7 +30,7 @@ class FotosController extends Controller
 		}
 
 		if ($request->ajax()) {
-			$dados['paginate'] = $this->foto_model->getFoto();
+			$dados['paginate'] = $this->foto_model->getAlbum();
 
 			return view('admin.fotos.list', $dados);
 		}
@@ -51,7 +51,7 @@ class FotosController extends Controller
 		$dados = [];
 
 		if (!is_null($id)) {
-			$dados['row'] = $this->foto_model->getFoto($id)->first();
+			$dados['row'] = $this->foto_model->getAlbum($id)->first();
 		}
 
 		$dados['idiomas'] = $this->idioma_model->getIdioma();
@@ -164,4 +164,31 @@ class FotosController extends Controller
 
 		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
 	}
+
+	public function delete_file(Request $request, $id, $file)
+	{
+
+		if ( ! Session::has('userdata')) {
+			if ( $request -> ajax() )
+				return abort(403);
+			else
+				return redirect() -> route('admin.auth.login');
+		}
+
+		$url = url('admin/fotos');
+		$type = 'back';
+
+		if ($this->foto_model->remove_file($file)) {
+			$status = 'success';
+			$message = 'Arquivo removido com sucesso!';
+		} else {
+			$type = null;
+			$status = 'error';
+			$message = 'Não foi possível remover o arquivo. Por favor, tente novamente.';
+		}
+
+		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+
+	}
+
 }

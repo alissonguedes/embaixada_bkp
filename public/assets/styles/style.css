@@ -900,13 +900,14 @@ input.no-border,
     position: relative;
     left: 0;
     width: auto;
-    font-size: 13px;
-    color: #b00020 !important;
+    font-size: 15px !important;
+    color: #ff8400 !important;
     font-weight: 400;
     display: flex;
     align-items: flex-start;
     line-height: normal;
     margin-top: 3px;
+    padding-left: 15px;
 }
 
 .input-field .prefix~.error {

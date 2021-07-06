@@ -8,27 +8,17 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="Organização Atos"
-          content="Organização Atos">
-    <meta name="description"
-          content="" />
-    <meta name="keywords"
-          content="" />
-    <meta name="robots"
-          content="index, follow">
+    <meta name="Organização Atos" content="Organização Atos">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="index, follow">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="theme-color"
-          content="{{ config('theme_color') }}">
-    <meta name="apple-mobile-web-app-status-bar-style"
-          content="{{ config('theme_color') }}">
-    <meta name="msapplication-navbutton-color"
-          content="{{ config('theme_color') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="theme-color" content="{{ config('theme_color') }}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{{ config('theme_color') }}">
+    <meta name="msapplication-navbutton-color" content="{{ config('theme_color') }}">
 
     <title>{{ tradutor('test') }} - @yield('title')</title>
-    <meta name="csrf-token"
-          content="{{ csrf_token() }}">
 
     @include('admin/layouts/styles')
 
@@ -49,6 +39,7 @@
             @show
 
             @include('admin/layouts/footer')
+            <meta name="csrf-token" content="{{ csrf_token() }}">
 
         </div>
 

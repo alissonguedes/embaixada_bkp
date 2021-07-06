@@ -52,7 +52,7 @@ class FotoModel extends Authenticatable
 		'status',
 	];
 
-	public function getFoto($find = null) {
+	public function getAlbum($find = null) {
 
 		$get = $this -> select('*');
 
@@ -85,9 +85,52 @@ class FotoModel extends Authenticatable
 
 	}
 
+	public function getFotos($find = null) {
+
+		$get = $this -> select('*');
+
+		$get -> from('tb_attachment');
+
+		$get -> where('id_modulo', $find);
+		$get -> where('modulo', 'album');
+
+		if (isset($_GET['search']['value']) && !empty($_GET['search']['value'])) {
+            $get->where(function ($get) {
+                $search = $_GET['search']['value'];
+                $get->orWhere('id', 'like', $search . '%')
+                    ->orWhere('descricao', 'like', $search . '%')
+                    ->orWhere('status', 'like', $search . '%');
+            });
+        }
+
+		// Order By
+		if (isset($_GET['order']) && $_GET['order'][0]['column'] != 0 ) {
+			$orderBy[$this -> order[$_GET['order'][0]['column']]] = $_GET['order'][0]['dir'];
+		} else {
+			$orderBy[$this -> order[1]] = 'desc';
+		}
+
+		foreach($orderBy as $key => $val) {
+			$get -> orderBy($key, $val);
+		}
+
+		return $get -> paginate($_GET['length'] ?? null);
+
+	}
+
 	public function create($request) {
 
-		$path = 'assets/embaixada/img/fotos/';
+		$traducao	= [];
+		$data = [
+			'nome'		=> $request -> nome,
+			'slug'		=> limpa_string(sha1(uniqid($request -> nome))),
+			'titulo'	=> null,
+			'descricao'	=> null,
+			'status'	=> isset($request -> status) ? $request -> status : '0'
+		];
+
+		// Gravar imagem de capa
+		$path = 'assets/embaixada/img/galeria/thumbs/';
 		$origName = null;
 		$fileName = null;
 		$imagem = null;
@@ -108,15 +151,6 @@ class FotoModel extends Authenticatable
 
 		}
 
-		$traducao	= [];
-		$data = [
-			'nome'		=> $request -> nome,
-			'slug'		=> limpa_string(sha1(uniqid($request -> nome))),
-			'titulo'	=> null,
-			'descricao'	=> null,
-			'status'	=> isset($request -> status) ? $request -> status : '0'
-		];
-
 		if ( !is_null($imagem) )
 			$data['imagem'] = $path . $imagem;
 
@@ -127,10 +161,70 @@ class FotoModel extends Authenticatable
 			}
 		}
 
-		$data['titulo'] = json_encode($traducao['titulo']);
-		$data['descricao'] = json_encode($traducao['descricao']);
+		$data['titulo'] = !empty($traducao['titulo']) ? json_encode($traducao['titulo']) : null;
+		$data['descricao'] = !empty($traducao['descricao']) ? json_encode($traducao['descricao']) : null;
 
-		return $this -> insert($data);
+		if ( $id = $this -> insertGetId($data) ) {
+
+			// Gravar Fotos no álbum
+			$path = 'assets/embaixada/img/galeria/' . $id . '/';
+			$origName = null;
+			$fileName = null;
+			$imagem = null;
+
+			if ( $request -> file('arquivo') ) {
+
+				$file = $request -> file('arquivo');
+
+				foreach ( $file as $f ) {
+
+					$fileName = $f -> getClientOriginalName();
+					$fileExt  = $f -> getClientOriginalExtension();
+					$fileExt  = $fileExt != '' ? '.' . $fileExt : '.txt';
+
+					$imgName  = explode('.', ($f -> getClientOriginalName()));
+
+					$origName = limpa_string($imgName[count($imgName) - 2 > 0 ? count($imgName) - 2 : 0], '_') . $fileExt;
+					$arquivo = sha1(limpa_string($fileName)) . $fileExt;
+
+					$issetFoto = $this -> from('tb_attachment')
+						-> select('path')
+						-> where('path', $path . $arquivo)
+						-> where('id_modulo', $request -> id)
+						-> where('modulo', 'album')
+						-> get()
+						-> first();
+
+					if ( ! isset($issetFoto) ){
+
+						$f -> storeAs($path, $arquivo);
+
+						$files = [
+							'id_modulo' => $id,
+							'modulo' => 'album',
+							'path' => $path . $arquivo,
+							'realname' => $origName,
+							'author' => Session::get('userdata')['nome'],
+							'titulo' => null,
+							'descricao' => null,
+							'clicks' => 0,
+							'url' => null,
+							'size' => $f -> getSize()
+						];
+
+						$insert = $this -> from('tb_attachment') -> insert($files);
+
+					}
+
+				}
+
+			}
+
+			return true;
+
+		}
+
+		return false;
 
 	}
 
@@ -138,7 +232,71 @@ class FotoModel extends Authenticatable
 
 		if ( is_null($field) ) {
 
-			$path = 'assets/embaixada/img/fotos/';
+			// Gravar Fotos no álbum
+			$path = 'assets/embaixada/img/galeria/' . $request -> id . '/';
+			$origName = null;
+			$fileName = null;
+			$imagem = null;
+
+			if ( $request -> file('arquivo') ) {
+
+				$file = $request -> file('arquivo');
+
+				foreach ( $file as $f ) {
+
+					$fileName = $f -> getClientOriginalName();
+					$fileExt  = $f -> getClientOriginalExtension();
+					$fileExt  = $fileExt != '' ? '.' . $fileExt : '.txt';
+
+					$imgName  = explode('.', ($f -> getClientOriginalName()));
+
+					$origName = limpa_string($imgName[count($imgName) - 2 > 0 ? count($imgName) - 2 : 0], '_') . $fileExt;
+					$arquivo = sha1(limpa_string($fileName)) . $fileExt;
+
+					$issetFoto = $this -> from('tb_attachment')
+						-> select('path')
+						-> where('path', $path . $arquivo)
+						-> where('id_modulo', $request -> id)
+						-> where('modulo', 'album')
+						-> get()
+						-> first();
+
+					if ( ! isset($issetFoto) ){
+
+						$f -> storeAs($path, $arquivo);
+
+						$files = [
+							'id_modulo' => $request -> id,
+							'modulo' => 'album',
+							'path' => $path . $arquivo,
+							'realname' => $origName,
+							'author' => Session::get('userdata')['nome'],
+							'titulo' => null,
+							'descricao' => null,
+							'clicks' => 0,
+							'url' => null,
+							'size' => $f -> getSize()
+						];
+
+						$insert = $this -> from('tb_attachment') -> insert($files);
+
+					}
+
+				}
+
+			}
+
+			$traducao	= [];
+			$data = [
+				'nome'		=> $request -> nome,
+				'slug'		=> limpa_string(uniqid(sha1($request -> nome))),
+				'titulo'	=> null,
+				'descricao'	=> null,
+				'status'	=> isset($request -> status) ? $request -> status : '0'
+			];
+
+			// Gravar imagem de capa
+			$path = 'assets/embaixada/img/galeria/thumbs/';
 			$origName = null;
 			$fileName = null;
 			$imagem = null;
@@ -159,27 +317,18 @@ class FotoModel extends Authenticatable
 
 			}
 
-			$traducao	= [];
-			$data = [
-				'nome'		=> $request -> nome,
-				'slug'		=> limpa_string(sha1(uniqid($request -> nome))),
-				'titulo'	=> null,
-				'descricao'	=> null,
-				'status'	=> isset($request -> status) ? $request -> status : '0'
-			];
-
 			if ( !is_null($imagem) )
 				$data['imagem'] = $path . $imagem;
 
 			foreach($_POST as $ind => $val) {
 				$lang = explode(':', $ind);
-				if ( count($lang) == 2) {
+				if ( count($lang) == 2 && ! is_null($val)) {
 					$traducao[$lang[1]][$lang[0]] = $val;
 				}
 			}
 
-			$data['titulo'] = json_encode($traducao['titulo']);
-			$data['descricao'] = json_encode($traducao['descricao']);
+			$data['titulo'] = !empty($traducao['titulo']) ? json_encode($traducao['titulo']) : null;
+			$data['descricao'] = !empty($traducao['descricao']) ? json_encode($traducao['descricao']) : null;
 
 			return $this -> where('id', $request -> id) -> update($data);
 

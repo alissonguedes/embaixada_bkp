@@ -38,7 +38,21 @@ function core() {
     }, 200);
 
     $('[data-tooltip]').tooltip();
-    $('.materialboxed').materialbox();
+
+    $('.materialboxed').each(function() {
+
+        var materialbox = $(this);
+        materialbox.materialbox({
+            // 'onOpenStart': function() {
+            //     materialbox.removeClass('circle');
+            // },
+            'onCloseEnd': function() {
+                materialbox.parents('.collection').css('overflow-y', 'inherit');
+            }
+        });
+
+    });
+
 
     $(window).on('resize', function() {
         resizeble();
@@ -176,11 +190,23 @@ function core() {
         $('.carousel').carousel('next');
     }, 3000)
 
-
     if ($('input[name="url"]#url').length) {
         var URL = window.location.href;
         if (URL.split('/').pop() !== 'login')
             document.getElementById('url').value = URL;
     }
+
+    $('.remover_arquivo').on('click', function(e) {
+
+        e.preventDefault();
+        var self = $(this);
+
+        Http.delete($(this).data('url'), function() {
+            var len = self.parents('ul').find('li').length;
+            self.parents('li#file_' + self.attr('id')).remove();
+            $('.count-files').html(len - 1);
+        });
+
+    });
 
 }

@@ -1,7 +1,6 @@
-
 <script>
-var BASE_URL  = '<?= dirname(request() -> url()); ?>/';
-var BASE_PATH = '<?= base_path(); ?>';
+    var BASE_URL = "{{ url('/') }}/admin/";
+    var BASE_PATH = "{{ base_path() }}";
 </script>
 
 <!-- plugins | jQuery/Materialize -->
@@ -12,9 +11,7 @@ var BASE_PATH = '<?= base_path(); ?>';
 <script src="{{ asset('assets/plugins/jquery/form.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatable/v10.2/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/isotope/js/isotope.min.js') }}"></script>
-
-<!-- <link rel="stylesheet" href="{{ asset('assets/plugins/jodit/jodit.min.css') }}"> -->
-<script src="{{ asset('assets/plugins/quill/js/quill.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
 
 <!-- scripts | Padrão -->
 <script src="{{ asset('assets/scripts/materializecss.js') }}"></script>
@@ -24,8 +21,7 @@ var BASE_PATH = '<?= base_path(); ?>';
 <script src="{{ asset('assets/scripts/http/http.js') }}"></script>
 <script src="{{ asset('assets/scripts/http/request.js') }}"></script>
 <script src="{{ asset('assets/scripts/form.js') }}"></script>
-
 <script src="{{ asset('assets/scripts/core.js') }}"></script>
 
 <!-- scripts | tacticweb -->
-<script src="{{ asset('assets/tacticweb/scripts/core.js') }}"></script>
+{{-- <script src="{{ asset('assets/tacticweb/scripts/core.js') }}"></script> --}}
