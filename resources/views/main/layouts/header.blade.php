@@ -1,7 +1,7 @@
 <header>
     <!--img_bandeira_angola-->
     <div class="simbolo_angola">
-        <img src="{{ asset('img/simbolo_angola.png') }}" class="img_cem">
+        <img src="{{ asset('assets/embaixada/img/simbolo_angola.png') }}" class="img_cem">
     </div>
 
     <!--barra de pesquisa-->
@@ -10,7 +10,7 @@
             <input type="text" name="busca" class="barrabusca" placeholder="{{ tradutor('pesquisar') }}">
             <!--fixo-->
             <div class="bt_busca">
-                <img src="{{ asset('img/lupa.png') }}" class="img_cem">
+                <img src="{{ asset('assets/embaixada/img/lupa.png') }}" class="img_cem">
             </div>
         </form>
     </div>
@@ -20,7 +20,7 @@
 
         <!--logo-->
         <div class="insignia">
-            <img src="{{ get_config('site_logo') }}" class="img_cem">
+            <img src="{{ asset(get_config('site_logo')) }}" class="img_cem">
         </div>
         <div class="nome_site">
             <div class="nome1">{{ tradutor('embaixada_da_republica') }}</div>
@@ -73,12 +73,12 @@
 
     <!--botão mobile-->
     <div class="bt_menu_mob" data-element=".menu" id="bt_menu">
-        <img src="{{ asset('img/bt_mob.png') }}" class="img_cem">
+        <img src="{{ asset('assets/embaixada/img/bt_mob.png') }}" class="img_cem">
     </div>
 
     <!--design_header-->
     <div class="design_header">
-        <img src="{{ asset('img/top_black.png') }}" class="img_cem">
+        <img src="{{ asset('assets/embaixada/img/top_black.png') }}" class="img_cem">
     </div>
 
 </header>

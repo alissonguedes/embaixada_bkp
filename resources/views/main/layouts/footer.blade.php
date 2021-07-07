@@ -1,8 +1,10 @@
 <!--area preta-->
 <div class="area_preta_top">
-    <img src="{{ asset('img/top_middle.png') }}" class="img_cem">
+    <img src="{{ asset('assets/embaixada/img/top_middle.png') }}" class="img_cem">
 </div>
+
 <div class="area_preta">
+
     <div class="title_area_preta">{{ tradutor('conheca_mais_a_hungria') }}</div>
 
     <?php $foto = new App\Models\Main\PaginaModel(); ?>
@@ -28,7 +30,7 @@
 </div>
 
 <div class="area_preta_bottom">
-    <img src="{{ asset('img/top_footer.png') }}" class="img_cem">
+    <img src="{{ asset('assets/embaixada/img/top_footer.png') }}" class="img_cem">
 </div>
 
 <div class="footer">
@@ -46,14 +48,10 @@
         </div>
     </div>
 
-    <!--<div class="socialmedia">
-    <a href="" target="_blank"><div class="social"><img src="{{ asset('img/icon/facebook.png') }}" class="img_cem"></div></a>
-    <a href="" target="_blank"><div class="social"><img src="{{ asset('img/icon/instagram.png') }}" class="img_cem"></div></a>
-    <a href="" target="_blank"><div class="social"><img src="{{ asset('img/icon/twitter.png') }}" class="img_cem"></div></a>
-  </div>-->
+    {{-- <div class="socialmedia">
+		<a href="" target="_blank"><div class="social"><img src="{{ asset('assets/embaixada/img/icon/facebook.png') }}" class="img_cem"></div></a>
+		<a href="" target="_blank"><div class="social"><img src="{{ asset('assets/embaixada/img/img/icon/instagram.png') }}" class="img_cem"></div></a>
+		<a href="" target="_blank"><div class="social"><img src="{{ asset('assets/embaixada/img/img/icon/twitter.png') }}" class="img_cem"></div></a>
+	</div> --}}
 
 </div>
-
-<body>
-
-    </html>

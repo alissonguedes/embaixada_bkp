@@ -99,7 +99,7 @@ class ConfigModel extends Authenticatable
 	public function create($request) {
 
 		$data   = [];
-		$path = 'assets/embaixada/img/configracoes/';
+		$path = 'assets/embaixada/img/';
 		$origName = null;
 		$fileName = null;
 		$imagem = null;

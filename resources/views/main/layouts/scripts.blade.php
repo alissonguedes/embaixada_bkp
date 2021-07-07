@@ -1,21 +1,21 @@
 <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="{{asset('js/lightbox.js')}}"></script>
-<script src="{{asset('js/circle_plugin.js')}}"></script>
-<script src="{{ asset('admin/assets/plugins/materializecss/materialize.min.js') }}"></script>
-<script type="text/javascript" src="{{asset('js/easySlider1.7.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/customizado.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/rhinoslider-1.05.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/mousewheel.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/easing.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/customizado.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/jssor.slider.mini.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/jquery.scrollbox.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/depoimento.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/sss.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/jquery.pikachoose.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/jquery.touchwipe.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('assets/embaixada/js/lightbox.js')}}"></script>
+<script src="{{asset('assets/embaixada/js/circle_plugin.js')}}"></script>
+<script src="{{ asset('assets/plugins/materializecss/materialize.min.js') }}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/easySlider1.7.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/customizado.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/rhinoslider-1.05.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/mousewheel.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/easing.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/customizado.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/jssor.slider.mini.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/jquery.scrollbox.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/depoimento.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/sss.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/jquery.pikachoose.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/jquery.touchwipe.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/app.js')}}"></script>
 
 <script language="javascript">
 $(document).ready(
@@ -42,7 +42,7 @@ $(window).on('load', function() {
 </script>
 
 
-<script type="text/javascript" src="{{asset('js/jssor.slider.mini.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/embaixada/js/jssor.slider.mini.js')}}"></script>
 
 <!-- use jssor.slider.debug.js instead for debug -->
 <script>

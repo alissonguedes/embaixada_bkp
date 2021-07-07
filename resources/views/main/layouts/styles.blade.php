@@ -1,9 +1,9 @@
 <!-- CSS ================================================== -->
-<link rel="stylesheet" href="{{ asset('css/layout.css') }}">
-<link rel="stylesheet" href="{{ asset('css/internas.css') }}">
-<link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
-<link rel="stylesheet" href="{{ asset('css/sss.css') }}">
-<link rel="stylesheet" href="{{ asset('css/css3.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('assets/embaixada/css/layout.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/embaixada/css/internas.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/embaixada/css/lightbox.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/embaixada/css/sss.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/embaixada/css/css3.css') }}" type="text/css">
 
 <!-- Favicons ================================================== -->
 <link rel="shortcut icon" href="favicon.png">

@@ -7,13 +7,13 @@
 
     <!--arte página inicial-->
     <div class="area_art">
-        <img src="{{ asset('img/arte.jpg') }}"
+        <img src="{{ asset('assets/embaixada/img/arte.jpg') }}"
              class="img_cem">
     </div>
 
     <!--base page-->
     <div class="base_top">
-        <img src="{{ asset('img/top_banner.png') }}"
+        <img src="{{ asset('assets/embaixada/img/top_banner.png') }}"
              class="img_cem">
     </div>
 
@@ -23,7 +23,7 @@
         <!--atalho-->
         <a href="">
             <div class="bt_atalho">
-                <div class="icon_atalho"><img src="{{ asset('img/icon/pessoas.png') }}"
+                <div class="icon_atalho"><img src="{{ asset('assets/embaixada/img/icon/pessoas.png') }}"
                          class="img_cem"></div>
                 <div class="txt_atalho translate">{{ tradutor([
 					'pt-br' => 'Quero obter um visto',
@@ -36,7 +36,7 @@
         <!--atalho-->
         <a href="">
             <div class="bt_atalho">
-                <div class="icon_atalho"><img src="{{ asset('img/icon/bandeiras.png') }}"
+                <div class="icon_atalho"><img src="{{ asset('assets/embaixada/img/icon/bandeiras.png') }}"
                          class="img_cem"></div>
                 <div class="txt_atalho translate">{{ tradutor([
 					'pt-br' => 'Procuro serviços para cidadãos angolanos',
@@ -49,7 +49,7 @@
         <!--atalho-->
         <a href="">
             <div class="bt_atalho">
-                <div class="icon_atalho"><img src="{{ asset('img/icon/chapeu.png') }}"
+                <div class="icon_atalho"><img src="{{ asset('assets/embaixada/img/icon/chapeu.png') }}"
                          class="img_cem"></div>
                 <div class="txt_atalho">{{ tradutor([
 					'pt-br' => 'Quero estudar na Hungria',
@@ -62,7 +62,7 @@
         <!--atalho-->
         <a href="">
             <div class="bt_atalho">
-                <div class="icon_atalho"><img src="{{ asset('img/icon/trofeu.png') }}"
+                <div class="icon_atalho"><img src="{{ asset('assets/embaixada/img/icon/trofeu.png') }}"
                          class="img_cem"></div>
                 <div class="txt_atalho">{{ tradutor([
 					'pt-br' => 'Procuro oportunidades de negócios',
@@ -75,7 +75,7 @@
         <!--atalho-->
         <a href="">
             <div class="bt_atalho">
-                <div class="icon_atalho"><img src="{{ asset('img/icon/aviao.png') }}"
+                <div class="icon_atalho"><img src="{{ asset('assets/embaixada/img/icon/aviao.png') }}"
                          class="img_cem"></div>
                 <div class="txt_atalho">{{ tradutor([
 					'pt-br' => 'Quero visitar a Hungria',
@@ -89,7 +89,7 @@
         <a href="">
             <div class="bt_atalho">
                 <div class="icon_atalho">
-					<img src="{{ asset('img/icon/terra.png') }}" class="img_cem">
+					<img src="{{ asset('assets/embaixada/img/icon/terra.png') }}" class="img_cem">
 						</div>
                 <div class="txt_atalho">{{ tradutor([
 					'pt-br' => 'Procuro informações sobre política Hungara',
