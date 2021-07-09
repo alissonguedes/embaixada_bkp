@@ -4,18 +4,11 @@
     {{ exit(view('main.paginas.404')) }}
 @endif
 
-{? $titulo_pag = tradutor(json_decode($row->titulo, true)) ?? $row -> titulo_principal; ?}
-{? $subtitulo_pag = tradutor(json_decode($row -> subtitulo, true)) ?? $row -> subtitulo; ?}
-{? $texto_pag = tradutor(json_decode($row -> texto, true)) ?? $row -> texto_pag; ?}
-{? $imagem = !empty($noticia -> imagem) && file_exists(public_path($row->imagem)) ? asset($noticia -> imagem) : null; ?}
-{? $data_add = $row -> created_at; ?}
-{? $data_upd = $row -> updated_at; ?}
-
-@section('title', $titulo_pag)
+@section('title', tradutor($row->titulo))
 
 @section('content')
 
-    <div class="title_pg">{{ $titulo_pag }}</div>
+    <div class="title_pg">{{ tradutor($row->titulo) }}</div>
 
     <div class="geral">
 
@@ -25,12 +18,10 @@
 
                 @foreach ($pagina_model->getSubPages($row->id_menu) as $menu)
 
-                    {? $titulo_sub = tradutor(json_decode($menu -> titulo, true)) ?? $menu -> titulo_principal ?}
+                    {? $titulo_sub = tradutor($menu -> titulo) ?? $menu -> titulo_principal ?}
                     {? $link = $menu->slug != $row->slug && count($pagina_model->getSubPages($row->id_menu)) > 0 ? url($row->link . '/' . $menu->slug) : url($row->link); ?}
 
-                    <a href="{{ $link }}"
-                       class="lk_categs"
-                       style="display: block;">{{ $titulo_sub }}</a>
+                    <a href="{{ $link }}" class="lk_categs" style="display: block;">{{ $titulo_sub }}</a>
 
                 @endforeach
 
@@ -40,20 +31,24 @@
 
         <div class="container2">
 
+            {? $data_add = $row -> created_at; ?}
+            {? $data_upd = $row -> updated_at; ?}
+
             <div class="datapost">{{ tradutor($data_upd) }}</div>
 
-            <div class="subtitlepage">{{ $subtitulo_pag }}</div>
+            <div class="subtitlepage">{{ tradutor($row->subtitulo) }}</div>
+
+            {? $imagem = !empty($noticia -> imagem) && file_exists(public_path($row->imagem)) ? asset($noticia -> imagem) : null; ?}
 
             @if (!is_null($imagem))
                 <div class="img_news">
-                    <img src="{{ $imagem }}"
-                         class="img_cem">
+                    <img src="{{ $imagem }}" class="img_cem">
                 </div>
             @endif
 
             <div class="texto_pagina">
                 @php
-                    echo $texto_pag;
+                    echo tradutor($row->texto);
                 @endphp
             </div>
 

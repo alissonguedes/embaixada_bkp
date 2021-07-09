@@ -28,7 +28,11 @@
             </a>
 
             <a href="{{ route('admin.fotos') }}">
-                <div class="lk_menu">Fotos</div>
+                <div class="lk_menu">Galeria de Fotos</div>
+            </a>
+
+            <a href="{{ route('admin.links') }}">
+                <div class="lk_menu">Links Rápidos</div>
             </a>
 
             <a href="{{ route('admin.contato') }}">

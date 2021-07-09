@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\IdiomasController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\NoticiasController;
 use App\Http\Controllers\Admin\PaginasController;
+use App\Http\Controllers\Admin\LinksRapidosController;
 use App\Http\Controllers\Admin\FotosController;
 use App\Http\Controllers\Admin\ContatoController;
 use App\Http\Controllers\Admin\UsuariosController;
@@ -115,6 +116,21 @@ Route::prefix('/admin') -> group(function($admin){
 		Route::delete('/', [PaginasController::class, 'delete']) -> name('admin.paginas.delete');
 
 		Route::delete('{id}/arquivo/{file}', [PaginasController::class, 'delete_file']) -> name('admin.paginas.delete.file');
+
+	});
+
+	/** Links Rápidos */
+	Route::prefix('links') -> group(function(){
+
+		Route::get('/', [LinksRapidosController::class, 'index']) -> name('admin.links');
+		Route::get('/add', [LinksRapidosController::class, 'show_form']) -> name('admin.links.add');
+		Route::get('/{id}', [LinksRapidosController::class, 'show_form']) -> name('admin.links.edit') -> where('id', '[0-9]+');
+		Route::post('/', [LinksRapidosController::class, 'insert']) -> name('admin.links.insert');
+		Route::put('/', [LinksRapidosController::class, 'update']) -> name('admin.links.put') -> where('id', '[0-9]+');
+		Route::patch('/{campo}', [LinksRapidosController::class, 'replace']) -> name('admin.links.patch') -> where('id', '[0-9]+');
+		Route::delete('/', [LinksRapidosController::class, 'delete']) -> name('admin.links.delete');
+
+		Route::delete('{id}/arquivo/{file}', [LinksRapidosController::class, 'delete_file']) -> name('admin.links.delete.file');
 
 	});
 
@@ -258,8 +274,8 @@ Route::prefix('/') -> group(function() {
 	Route::get('/pagina-inicial', [Home::class, 'index']) -> name('home');
 
 	// PageController
-	Route::get('/fotos', [Paginas::class, 'fotos']);
-	Route::get('/fotos/{album}', [Paginas::class, 'fotos']);
+	// Route::get('/fotos', [Paginas::class, 'fotos']);
+	// Route::get('/fotos/{album}', [Paginas::class, 'fotos']);
 
 	// NoticiasController
 	Route::get('/noticias', [Noticias::class, 'index']) -> name('noticias');

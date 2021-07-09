@@ -209,4 +209,8 @@ function core() {
 
     });
 
+    requirejs([BASE_URL + '/../../assets/tacticweb/scripts/core.js'], () => {
+        init();
+    });
+
 }

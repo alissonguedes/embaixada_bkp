@@ -38,7 +38,7 @@
     <!--logo-->
     <div class="logo_footer">
         <div class="insignia">
-            <img src="{{ asset('img/insignia.png') }}" class="img_cem">
+            <img src="{{ asset(get_config('site_logo')) }}" class="img_cem">
         </div>
         <div class="nome_site">
             <div class="nome1" style="color: #000;">{{ tradutor('embaixada_da_republica') }}</div>

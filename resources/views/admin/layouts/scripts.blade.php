@@ -12,6 +12,7 @@
 <script src="{{ asset('assets/plugins/datatable/v10.2/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/isotope/js/isotope.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/requirejs/require.js') }}"></script>
 
 <!-- scripts | Padrão -->
 <script src="{{ asset('assets/scripts/materializecss.js') }}"></script>
@@ -24,4 +25,4 @@
 <script src="{{ asset('assets/scripts/core.js') }}"></script>
 
 <!-- scripts | tacticweb -->
-{{-- <script src="{{ asset('assets/tacticweb/scripts/core.js') }}"></script> --}}
+<script src="{{ asset('assets/tacticweb/scripts/core.js') }}"></script>

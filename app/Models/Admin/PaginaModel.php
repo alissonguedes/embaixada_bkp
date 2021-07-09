@@ -228,9 +228,26 @@ class PaginaModel extends Authenticatable
 
 			}
 
+			if ( isset($request -> album)){
+
+				foreach($request -> album as $album) {
+
+					$issetAlbum = $this -> from('tb_pagina_album') -> select('id') -> where('id_album', $album) -> where('id_pagina', $request -> id) -> get() -> first();
+
+					if ( ! isset($issetAlbum) ) {
+						$this -> from('tb_pagina_album') -> insert(['id_pagina' => $request -> id, 'id_album' => $album]);
+					}
+
+				}
+
+				$this -> from('tb_pagina_album') -> whereNotIn('id_album', $request -> album) -> where('id_pagina', $request -> id) -> delete();
+
+			}
+
 			$traducao	= [];
 			$data = [
 				'id_menu' => $request -> menu,
+				'tipo' => $request -> tipo_pagina ?? 'post',
 				'descricao' => $request -> descricao,
 				'slug' => limpa_string($request -> descricao),
 				'titulo' => null,

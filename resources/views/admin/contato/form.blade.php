@@ -20,7 +20,7 @@
         @endif
 
     @endif
-   {{-- <input type="hidden"
+    {{-- <input type="hidden"
     			name="label"
                    value="{{ $input_label_hidden }}"> --}}
 @section('content')
@@ -73,9 +73,8 @@
                         </div>
 
                         <ul class="tabs">
-                            <li class="tab"><a href="#informations" class="waves-effect waves-light">Informações</a></li>
                             @foreach ($idiomas as $idioma)
-                                <li class="tab disabled">
+                                <li class="tab">
                                     <a href="#{{ limpa_string($idioma->sigla, '') }}"
                                         class="waves-effect">{{ $idioma->descricao }}</a>
                                 </li>
@@ -99,13 +98,13 @@
                     <!--------------------------------------------------------->
 
                     <!-- BEGIN card Informações -->
-                    <div id="informations" class="row">
+                    <div class="row">
 
                         <!-- BEGIN col.s6 -->
                         <div class="col l6 s12 no-padding">
 
                             <!-- BEGIN col s12 -->
-                            <div id="informations" class="col s12">
+                            <div class="col s12">
 
                                 <!-- BEGIN card.bg-opacity -->
                                 <div class="card bg-opacity-1">
@@ -113,35 +112,48 @@
                                     <!-- BEGIN card-content -->
                                     <div class="card-content padding-6">
 
-                                        <div class="row">
-                                            <h3 class="card-title white-text">
-                                                <i class="material-icons left">public</i>
-                                                Site
-                                            </h3>
-                                        </div>
+                                        @foreach ($idiomas as $idioma)
 
-                                        <!-- BEGIN Título do Site -->
-                                        <div class="row">
-                                            <div class="input-field amber-text amber-border mb-2">
-                                                <i class="material-icons prefix">corporate_fare</i>
-                                                <label class="grey-text">Título do site</label>
-                                                <input type="text" name="site_title" id="site_title"
-                                                    class="box_input amber-text" value="{{ get_config('site_title') }}">
-                                            </div>
-                                        </div>
-                                        <!-- END Título do Site -->
+                                            <div id="{{ limpa_string($idioma->sigla, '') }}" class="">
 
-                                        <!-- BEGIN Descrição do site -->
-                                        <div class="row">
-                                            <div class="input-field amber-text amber-border mb-2">
-                                                <i class="material-icons prefix">notes</i>
-                                                <label class="grey-text">Descrição do site</label>
-                                                <input type="url" name="site_description" id="site_description"
-                                                    class="box_input amber-text"
-                                                    value="{{ get_config('site_description') }}" maxlength="160">
+												{? $titulo = isset($row) && !empty($row -> titulo) ? json_decode($row -> titulo, true) : null; ?}
+												{? $subtitulo = isset($row) && !empty($row -> subtitulo) ? json_decode($row -> subtitulo, true) : null; ?}
+												{? $texto = isset($row) && !empty($row -> texto) ? json_decode($row -> texto, true) : null; ?}
+
+                                                <div class="row">
+                                                    <h3 class="card-title white-text">
+                                                        <i class="material-icons left">public</i>
+                                                        Site <br><small class="amber-text">IDIOMA:
+                                                            {{ $idioma->descricao }}</small>
+                                                    </h3>
+                                                </div>
+
+                                                <!-- BEGIN Título do Site -->
+                                                <div class="row">
+                                                    <div class="input-field amber-text amber-border mb-2">
+                                                        <i class="material-icons prefix">corporate_fare</i>
+                                                        <label class="grey-text">Título do site</label>
+                                                        <input type="text" name="site_title" id="site_title"
+                                                            class="box_input amber-text"
+                                                            value="{{ get_config('site_title') }}">
+                                                    </div>
+                                                </div>
+                                                <!-- END Título do Site -->
+
+                                                <!-- BEGIN Descrição do site -->
+                                                <div class="row">
+                                                    <div class="input-field amber-text amber-border mb-2">
+                                                        <i class="material-icons prefix">notes</i>
+                                                        <label class="grey-text">Descrição do site</label>
+                                                        <input type="url" name="site_description" id="site_description"
+                                                            class="box_input amber-text"
+                                                            value="{{ get_config('site_description') }}" maxlength="160">
+                                                    </div>
+                                                </div>
+                                                <!-- END Descrição do site -->
+
                                             </div>
-                                        </div>
-                                        <!-- END Descrição do site -->
+                                        @endforeach
 
                                         <!-- BEGIN Domínio -->
                                         <div class="row">
@@ -200,7 +212,8 @@
                                         <div class="row">
 
                                             {? $tags = []; ?}
-                                            {? $site_tags = ! empty(get_config('site_tags')) ? explode(',', get_config('site_tags')) : null; ?}
+                                            {? $site_tags = ! empty(get_config('site_tags')) ? explode(',',
+                                            get_config('site_tags')) : null; ?}
 
                                             @if (isset($site_tags))
 
@@ -526,76 +539,6 @@
                     <!-- END card informações -->
 
                     <!--------------------------------------------------------->
-                    <!--------------------------------------------------------->
-
-                    {{-- <!-- BEGIN Idiomas -->
-                    <div id="idiomas"
-                         class="row">
-
-                        <div class="col s12">
-
-                            @foreach ($idiomas as $idioma)
-
-                                {? $titulo = isset($row) && !empty($row -> titulo) ? json_decode($row -> titulo, true) : null; ?}
-                                {? $subtitulo = isset($row) && !empty($row -> subtitulo) ? json_decode($row -> subtitulo, true) : null; ?}
-                                {? $texto = isset($row) && !empty($row -> texto) ? json_decode($row -> texto, true) : null; ?}
-
-                                <div id="{{ limpa_string($idioma->sigla, '') }}"
-                                     class="col l6 s12">
-
-                                    <div class="row">
-                                        <span class="amber-text">IDIOMA: {{ $idioma->descricao }}</span>
-                                    </div>
-
-                                    <!-- BEGIN título -->
-                                    <div class="row">
-                                        <div class="input-field amber-text amber-border mb-2">
-                                            <label class="grey-text">Título</label>
-                                            <input type="text"
-                                                   name="{{ $idioma->sigla }}:titulo"
-                                                   id="title"
-                                                   class="box_input amber-text"
-                                                   value="{{ isset($row) && !is_null($titulo) ? $titulo[$idioma->sigla] : null }}">
-                                        </div>
-                                    </div>
-                                    <!-- END título -->
-
-                                    <!-- BEGIN descrição -->
-                                    <div class="row">
-                                        <div class="input-field amber-text amber-border mb-2">
-                                            <label class="grey-text">Subtítulo</label>
-                                            <input type="text"
-                                                   name="{{ $idioma->sigla }}:subtitulo"
-                                                   id="subtitulo"
-                                                   class="box_input amber-text"
-                                                   value="{{ isset($row) && !is_null($subtitulo) ? $subtitulo[$idioma->sigla] : null }}">
-                                        </div>
-                                    </div>
-                                    <!-- END descrição -->
-
-                                    <!-- BEGIN Texto -->
-                                    <div class="row">
-                                        <div class="input-field amber-border browser-default">
-                                            <div class="editor basic--editor"
-                                                 placeholder="Texto da notícia"
-                                                 style="min-height: 400px;">
-                                                {{ isset($row) && !is_null($texto) ? $texto[$idioma->sigla] : null }}
-                                            </div>
-                                            <input type="hidden"
-                                                   name="{{ $idioma->sigla }}:texto"
-                                                   id="texto">
-                                        </div>
-                                    </div>
-                                    <!-- END Texto -->
-
-                                </div>
-
-                            @endforeach
-
-                        </div>
-
-                    </div>
-                    <!-- END Idiomas --> --}}
 
                 </div>
                 <!-- END panel-body -->

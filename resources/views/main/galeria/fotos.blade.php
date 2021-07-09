@@ -1,18 +1,16 @@
 @extends('main.layouts.app')
 
-{? $titulo_pag = 'Fotos' ?}
-
-@section('title', $titulo_pag)
+@section('title', tradutor($album->titulo))
 
 @section('content')
 
-    <div class="title_pg">{{ $titulo_pag }}</div>
+    <div class="title_pg">{{ tradutor($album->titulo) }}</div>
 
     <div class="geral">
 
         @if (isset($album))
 
-            <div class="subtitlepage">{{ tradutor(json_decode($album->titulo, true)) }}</div>
+            <div class="subtitlepage">{{ tradutor($album->titulo) }}</div>
             <div class="datapost">{{ tradutor($album->created_at) }}</div>
 
             <div class="texto_pagina">
@@ -20,12 +18,10 @@
                 <?php $fotos = $pagina_model->getFotos($album->slug); ?>
 
                 @if (!empty($album->capa) && file_exists(public_path($album->capa)))
-                    <div class="pikachoose"
-                         style="margin-bottom: 50px;">
+                    <div class="pikachoose" style="margin-bottom: 50px;">
                         <ul id="pikame">
                             @foreach ($fotos as $f)
-                                <li><img src="{{ asset($f->imagem) }}"
-                                         class="img_cem"></li>
+                                <li><img src="{{ asset($f->imagem) }}" class="img_cem"></li>
                             @endforeach
                         </ul>
                     </div>
@@ -33,8 +29,11 @@
 
                 @if (isset($albuns))
 
-                    <div class="s_item"
-                         style="clear: both;">Veja também:</div>
+                    <div class="s_item" style="clear: both;">{{ tradutor([
+						'en' => 'See too',
+						'hr' => 'Lásd is',
+						'pt-br' => 'Veja também'
+					]) }}:</div>
 
                     @foreach ($albuns as $a)
 
@@ -43,8 +42,7 @@
                                 <div class="conj_item_cont">
                                     <div class="img_item_cont">
                                         @if (!empty($a->capa) && file_exists(public_path($a->capa)))
-                                            <img src="{{ asset($a->capa) }}"
-                                                 class="img_cem">
+                                            <img src="{{ asset($a->capa) }}" class="img_cem">
                                         @endif
                                     </div>
                                     <div class="info_item_cont">

@@ -16,7 +16,7 @@ if (!function_exists('get_config')) {
 
 use Illuminate\Support\Carbon;
 
-function tradutor($traducao, $lang = null, $except = 'Tradução não disponível para este idioma') {
+function tradutor($traducao, $lang = null, $except = '' ) {
 
 	$idioma = is_null($lang) ? ( isset($_COOKIE['idioma']) ? $_COOKIE['idioma'] : get_config('language') ) : $lang;
 
@@ -37,17 +37,28 @@ function tradutor($traducao, $lang = null, $except = 'Tradução não disponíve
 
 	}
 
-	if ( is_array($traducao) ) {
+	$return = is_string($traducao) ? json_decode($traducao, true) : $traducao;
 
-		if ( !empty($traducao[$idioma]) ) {
-			return $traducao[$idioma];
-		} else {
-			return null;
+	if ( is_array($return) && array_key_exists($idioma, $return)) {
+
+		if ( !empty($return[$idioma]) ) {
+			return $return[$idioma];
 		}
+
+	} else {
+
+		return tradutor([$idioma => $traducao]);
 
 	}
 
-	return $except;
+	$catch = [
+		'en' => 'Translation not available for this language',
+		'hr' => 'A fordítás nem érhetó el ezen a nyelven',
+		'pt-br' => 'Tradução não disponível para este idioma'
+	];
+
+	$except = !empty($except) ? $except : $catch;
+	return $except[$idioma];
 
 }
 

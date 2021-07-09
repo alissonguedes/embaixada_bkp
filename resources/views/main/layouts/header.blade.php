@@ -7,7 +7,11 @@
     <!--barra de pesquisa-->
     <div class="head_1">
         <form method="post" action="">
-            <input type="text" name="busca" class="barrabusca" placeholder="{{ tradutor('pesquisar') }}">
+            <input type="text" name="busca" class="barrabusca" placeholder="{{ tradutor([
+				'en' => 'Search the site',
+				'hr' => 'Keressen az oldalon',
+				'pt-br' => 'Pesquisar no site'
+			]) }}">
             <!--fixo-->
             <div class="bt_busca">
                 <img src="{{ asset('assets/embaixada/img/lupa.png') }}" class="img_cem">
@@ -23,9 +27,17 @@
             <img src="{{ asset(get_config('site_logo')) }}" class="img_cem">
         </div>
         <div class="nome_site">
-            <div class="nome1">{{ tradutor('embaixada_da_republica') }}</div>
+            <div class="nome1">{{ tradutor([
+				'en' => 'EMBASSY OF THE REPUBLIC',
+				'hr' => 'A KÖZTÁRSASÁG NAGYKÖVETSÉGE',
+				'pt-br' =>'EMBAIXADA DA REPÚBLICA'
+			]) }}</div>
             <!--fixo-->
-            <div class="nome2">{{ tradutor('de_angola_na_hungria') }}</div>
+            <div class="nome2">{{ tradutor([
+				'en' => 'OF ANGOLA IN HUNGARY',
+				'hr' => 'ANGOLA MAGYARORSZÁGON',
+				'pt-br' => 'DE ANGOLA NA HUNGRIA'
+			]) }}</div>
             <!--fixo-->
         </div>
 

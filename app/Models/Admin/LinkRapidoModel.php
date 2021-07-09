@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
-class NoticiaModel extends Authenticatable
+class LinkRapidoModel extends Authenticatable
 {
 
     use HasFactory, Notifiable;
 
-	protected $table = 'tb_noticia';
+	protected $table = 'tb_link';
 
     /**
      * The attributes that are mass assignable.
@@ -52,7 +53,7 @@ class NoticiaModel extends Authenticatable
 		'status',
 	];
 
-	public function getNoticia($find = null) {
+	public function getLink($find = null) {
 
 		$get = $this -> select('*');
 
@@ -65,7 +66,7 @@ class NoticiaModel extends Authenticatable
             $get->where(function ($get) {
                 $search = $_GET['search']['value'];
                 $get->orWhere('id', 'like', $search . '%')
-                    ->orWhere('descricao', 'like', $search . '%')
+                    ->orWhere('label', 'like', $search . '%')
                     ->orWhere('status', 'like', $search . '%');
             });
         }
@@ -87,7 +88,17 @@ class NoticiaModel extends Authenticatable
 
 	public function create($request) {
 
-		$path = 'assets/embaixada/img/news/';
+		$traducao	= [];
+		$data = [
+			'titulo' => $request -> titulo,
+			'slug' => limpa_string($request -> titulo),
+			'descricao' => $request -> descricao,
+			'link' => $request -> link,
+			'status' => isset($request -> status) ? $request -> status : '0'
+		];
+
+		// Gravar o ícone do link
+		$path = 'assets/embaixada/links/';
 		$origName = null;
 		$fileName = null;
 		$imagem = null;
@@ -108,23 +119,13 @@ class NoticiaModel extends Authenticatable
 
 		}
 
-		$traducao	= [];
-		$data = [
-			'id_menu' 	=> 80, // $request -> menu,
-			'descricao'	=> $request -> descricao,
-			'slug'		=> limpa_string($request -> descricao),
-			'titulo'	=> null,
-			'subtitulo'	=> null,
-			'texto'		=> null,
-			'idioma'	=> $request -> idioma,
-			'status'	=> isset($request -> status) ? $request -> status : '0'
-		];
-
 		foreach($_POST as $ind => $val) {
 
 			$lang = explode(':', $ind);
 			if ( count($lang) == 2) {
 				$traducao[$lang[1]][$lang[0]]  = $val;
+			} else {
+				$traducao[$ind] = $val;
 			}
 
 		}
@@ -132,19 +133,51 @@ class NoticiaModel extends Authenticatable
 		if ( !is_null($imagem) )
 			$data['imagem'] = $path . $imagem;
 
-		$data['titulo'] = json_encode($traducao['titulo']);
-		$data['subtitulo'] = json_encode($traducao['subtitulo']);
-		$data['texto'] = json_encode($traducao['texto']);
+		$data['titulo'] = $traducao['titulo'];
+		$data['descricao'] = !empty($traducao['descricao']) ? json_encode($traducao['descricao']) : null;
 
-		return $this -> insert($data);
+        if ( $id = $this -> insertGetId($data)) {
+
+			return true;
+
+        }
+
+		return false;
+
+	}
+
+	public function getAttach($id) {
+
+		return $this -> select('*')
+			-> from('tb_attachment')
+			-> where('id_modulo', $id)
+			-> where('modulo', 'page')
+			-> orderBy('realname')
+			-> get();
 
 	}
 
 	public function edit($request, $field = null) {
 
+		$files = [];
+		$path = 'assets/embaixada/links/';
+		$origName = null;
+		$fileName = null;
+		$imagem = null;
+
 		if ( is_null($field) ) {
 
-			$path = '/assets/embaixada/img/news/';
+			$traducao	= [];
+			$data = [
+				'titulo' => $request -> titulo,
+				'slug' => limpa_string($request -> titulo),
+				'descricao' => $request -> descricao,
+				'link' => $request -> link,
+				'status' => isset($request -> status) ? $request -> status : '0'
+			];
+
+			// Gravar o ícone do link
+			$path = 'assets/embaixada/links/';
 			$origName = null;
 			$fileName = null;
 			$imagem = null;
@@ -165,31 +198,20 @@ class NoticiaModel extends Authenticatable
 
 			}
 
-			$traducao	= [];
-			$data = [
-				'id_menu' 	=> 80, // $request -> menu,
-				'descricao'	=> $request -> descricao,
-				'slug'		=> limpa_string($request -> descricao),
-				'titulo'	=> null,
-				'subtitulo'	=> null,
-				'texto'		=> null,
-				'idioma'	=> $request -> idioma,
-				'status'	=> isset($request -> status) ? $request -> status : '0'
-			];
+			if ( !is_null($imagem) )
+				$data['imagem'] = $path . $imagem;
 
 			foreach($_POST as $ind => $val) {
 				$lang = explode(':', $ind);
 				if ( count($lang) == 2) {
-					$traducao[$lang[1]][$lang[0]] = $val;
+					$traducao[$lang[1]][$lang[0]]  = $val;
+				} else {
+					$traducao[$ind] = $val;
 				}
 			}
 
-			if ( !is_null($imagem) )
-				$data['imagem'] = $path . $imagem;
-
-			$data['titulo'] = json_encode($traducao['titulo']);
-			$data['subtitulo'] = json_encode($traducao['subtitulo']);
-			$data['texto'] = json_encode($traducao['texto']);
+			$data['titulo'] = $traducao['titulo'];
+			$data['descricao'] = !empty($traducao['descricao']) ? json_encode($traducao['descricao']) : null;
 
 			return $this -> where('id', $request -> id) -> update($data);
 
@@ -205,7 +227,43 @@ class NoticiaModel extends Authenticatable
 
 	public function remove($request) {
 
+		$this -> remove_file($request -> id);
 		return $this -> whereIn('id', $request -> id) -> delete();
+
+	}
+
+	public function remove_file($id) {
+
+		if ( is_array($id) ) {
+			$column = 'id_modulo';
+		} else {
+			$column = 'id';
+		}
+
+		$files = $this -> from('tb_attachment')
+			-> select('path')
+			-> where($column, $id)
+			-> get();
+
+		if ( isset($files) )
+		{
+
+			foreach ( $files as $file ) {
+
+				$file = public_path($file -> path);
+
+			}
+
+			$un = file_exists($file) ? unlink($file) : true;
+
+			if ( $un )
+				return $this -> from('tb_attachment') -> where($column, $id) -> delete();
+
+			return true;
+
+		}
+
+		return false;
 
 	}
 

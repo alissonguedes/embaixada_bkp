@@ -298,7 +298,8 @@ header {
     margin-top: -320px;
 }
 
-.atalhos {
+
+/* .atalhos {
     width: 1000px;
     overflow: hidden;
     margin: 0 auto;
@@ -307,6 +308,15 @@ header {
     left: 50%;
     margin-left: -500px;
     font-weight: bold;
+} */
+
+.atalhos {
+    margin-top: -400px;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    place-content: center;
+    align-items: center;
 }
 
 .bt_atalho {
@@ -362,6 +372,15 @@ header {
     height: 450px;
 }
 
+.novidade h3,
+.novidade p {
+    width: 320px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .img_novidade {
     width: 80%;
     margin: 0 auto;
@@ -374,6 +393,7 @@ header {
 }
 
 .data {
+    display: block;
     width: 80%;
     margin: 0 auto;
     color: #4b4b4b;

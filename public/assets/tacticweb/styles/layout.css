@@ -1441,3 +1441,12 @@ table.datatable .dropdown-trigger:hover i {
 .chips .chip {
     background-color: var(--amber);
 }
+
+.switch {
+    padding: 20px 0;
+}
+
+.switch label {
+    font-size: 1rem;
+    margin-right: 30px;
+}
