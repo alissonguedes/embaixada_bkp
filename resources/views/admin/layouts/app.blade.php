@@ -18,9 +18,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="{{ config('theme_color') }}">
     <meta name="msapplication-navbutton-color" content="{{ config('theme_color') }}">
 
-    <title>{{ tradutor('test') }} - @yield('title')</title>
+    <title>
+        {{ tradutor([
+			'en' => 'EMBASSY OF THE REPUBLIC OF ANGOLA IN HUNGARY',
+			'hr' => 'A KÖZTÁRSASÁG NAGYKÖVETSÉGE ANGOLA MAGYARORSZÁGON',
+			'pt-br' => 'EMBAIXADA DA REPÚBLICA DE ANGOLA NA HUNGRIA',
+		]) }} - @yield('title')</title>
 
-    @include('admin/layouts/styles')
+    @include('admin.layouts.styles')
 
 </head>
 

@@ -1,14 +1,7 @@
-<!--area preta-->
-<div class="area_preta_top">
-    <img src="{{ asset('assets/embaixada/img/top_middle.png') }}" class="img_cem">
-</div>
+{{-- <div class="title_area_preta">{{ tradutor('conheca_mais_a_hungria') }}</div>
 
-<div class="area_preta">
-
-    <div class="title_area_preta">{{ tradutor('conheca_mais_a_hungria') }}</div>
-
-    <?php $foto = new App\Models\Main\PaginaModel(); ?>
-    <?php $albuns = $foto->getUltimosAlbuns(); ?>
+    @php $foto = new App\Models\Main\PaginaModel(); @endphp
+    @php $albuns = $foto->getUltimosAlbuns(); @endphp
 
     <!--fixo-->
     <div class="container3">
@@ -25,33 +18,124 @@
                 @endif
             @endforeach
         @endif
-    </div>
-
-</div>
+    </div> --}}
 
 <div class="area_preta_bottom">
-    <img src="{{ asset('assets/embaixada/img/top_footer.png') }}" class="img_cem">
+    <img src="{{ asset('assets/embaixada/img/top_middle.png') }}" class="img_cem">
 </div>
+<footer>
 
-<div class="footer">
+    <div class="cols_footer mil-pixel">
 
-    <!--logo-->
-    <div class="logo_footer">
-        <div class="insignia">
-            <img src="{{ asset(get_config('site_logo')) }}" class="img_cem">
+        <div class="col_footer1">
+
+            <div class="conj_contact">
+                <!--logo-->
+                <div class="insignia">
+                    <img src="{{ asset(get_config('site_logo')) }}" class="img_cem">
+                </div>
+                <div class="nome_site">
+                    <div class="nome1">
+                        {{ tradutor(['en' => 'EMBASSY OF THE REPUBLIC', 'hr' => 'A KÖZTÁRSASÁG NAGYKÖVETSÉGE', 'pt-br' => 'EMBAIXADA DA REPÚBLICA']) }}
+                    </div>
+                    <!--fixo-->
+                    <div class="nome2">
+                        {{ tradutor(['en' => 'OF ANGOLA IN HUNGARY', 'hr' => 'ANGOLA MAGYARORSZÁGON', 'pt-br' => 'DE ANGOLA NA HUNGRIA']) }}
+                    </div>
+                    <!--fixo-->
+                </div>
+            </div>
+
+            <div class="social_icons">
+                <a href="" target="_blank">
+                    <div class="icon_social">
+                        <img src="{{ asset('assets/embaixada/img/icon/whatsapp.png') }}" class="img_cem">
+                    </div>
+                </a>
+                <a href="" target="_blank">
+                    <div class="icon_social">
+                        <img src="{{ asset('assets/embaixada/img/icon/telegram.png') }}" class="img_cem">
+                    </div>
+                </a>
+                <a href="" target="_blank">
+                    <div class="icon_social">
+                        <img src="{{ asset('assets/embaixada/img/icon/instagram.png') }}" class="img_cem">
+                    </div>
+                </a>
+                <a href="" target="_blank">
+                    <div class="icon_social">
+                        <img src="{{ asset('assets/embaixada/img/icon/facebook.png') }}" class="img_cem">
+                    </div>
+                </a>
+                <a href="" target="_blank">
+                    <div class="icon_social">
+                        <img src="{{ asset('assets/embaixada/img/icon/youtube.png') }}" class="img_cem">
+                    </div>
+                </a>
+            </div>
+
         </div>
-        <div class="nome_site">
-            <div class="nome1" style="color: #000;">{{ tradutor('embaixada_da_republica') }}</div>
-            <!--fixo-->
-            <div class="nome2" style="color: #000;">{{ tradutor('de_angola_na_hungria') }}</div>
-            <!--fixo-->
+
+        <div class="col_footer2">
+            <div class="line1">
+
+                <div class="conj_contact">
+                    <div class="icon_contact"><img src="{{ asset('assets/embaixada/img/icon/local.png') }}"
+                            class="img_cem"></div>
+                    <div class="text_contact">
+                        {{ get_config('address') }}, {{ get_config('address_nro') }}
+                        <br>
+                        {{ get_config('bairro') }} - {{ get_config('cidade') }}
+                        {{ get_config('uf') }}
+                        {{ get_config('pais') }}
+                        {{-- Rua 51, nº 539 (Urbanização Harmonia) Lar do Patriota - Município de Talatona, Luanda, Angola --}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="line2">
+
+                <div class="conj_contact">
+                    <div class="icon_contact"><img src="{{ asset('assets/embaixada/img/icon/fone.png') }}"
+                            class="img_cem"></div>
+                    <div class="text_contact">
+                        {{ get_config('contact_phone') }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="line2">
+
+                <div class="conj_contact">
+                    <div class="icon_contact"><img src="{{ asset('assets/embaixada/img/icon/mail.png') }}"
+                            class="img_cem"></div>
+                    <div class="text_contact">
+                         {{ get_config('contact_email') }}
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 
-    {{-- <div class="socialmedia">
-		<a href="" target="_blank"><div class="social"><img src="{{ asset('assets/embaixada/img/icon/facebook.png') }}" class="img_cem"></div></a>
-		<a href="" target="_blank"><div class="social"><img src="{{ asset('assets/embaixada/img/img/icon/instagram.png') }}" class="img_cem"></div></a>
-		<a href="" target="_blank"><div class="social"><img src="{{ asset('assets/embaixada/img/img/icon/twitter.png') }}" class="img_cem"></div></a>
-	</div> --}}
+</footer>
+
+<div class="footer2">
+
+    <div class="mil-pixel">
+
+        <div class="copyright">Embaixada da Angola na Hungria
+            <?php echo date('Y'); ?>. Todos os direitos reservados.</div>
+        <div class="dev">
+            <a href="http://www.tacticweb.com.br" target="_blank">
+                <div class="tw">
+                </div>
+            </a>
+        </div>
+    </div>
 
 </div>

@@ -21,6 +21,8 @@
 $(document).ready(
 	function() {
 		$("#pikame").PikaChoose();
+		$(".dropdown-trigger").dropdown();
+
 	});
 $('[data-tooltip]').tooltip();
 </script>

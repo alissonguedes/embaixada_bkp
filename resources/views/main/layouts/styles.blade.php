@@ -1,9 +1,13 @@
 <!-- CSS ================================================== -->
+{{-- <link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/materializecss/materialize.min.css') }}"> --}}
+
 <link rel="stylesheet" href="{{ asset('assets/embaixada/css/layout.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/embaixada/css/footer.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/embaixada/css/internas.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/embaixada/css/lightbox.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/embaixada/css/sss.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/embaixada/css/css3.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('assets/tacticweb/styles/footer.css') }}" type="text/css">
 
 <!-- Favicons ================================================== -->
 <link rel="shortcut icon" href="favicon.png">

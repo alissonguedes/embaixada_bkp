@@ -98,6 +98,31 @@ class IdiomaModel extends Model
 			'status' => isset($request -> status) ? $request -> status : '0',
 		];
 
+		// Gravar imagem de capa
+		$path = 'assets/embaixada/img/localidades/';
+		$origName = null;
+		$fileName = null;
+		$imagem = null;
+
+		if ( $request -> file('imagem') ){
+
+			$file = $request -> file('imagem');
+
+			$fileName = sha1($file -> getClientOriginalName());
+			$fileExt  = $file -> getClientOriginalExtension();
+
+			$imgName  = explode('.', ($file -> getClientOriginalName()));
+
+			$origName = limpa_string($imgName[count($imgName) - 2], '_') . '.' . $fileExt;
+			$imagem = limpa_string($fileName) . '.' . $fileExt;
+
+			$file -> storeAs($path, $imagem);
+
+		}
+
+		if ( !is_null($imagem) )
+			$data['imagem'] = $path . $imagem;
+
 		return $this -> insert($data);
 
 	}
@@ -111,6 +136,31 @@ class IdiomaModel extends Model
 				'sigla' => $request -> sigla,
 				'status' => isset($request -> status) ? $request -> status : '0',
 			];
+
+			// Gravar imagem de capa
+			$path = 'assets/embaixada/img/localidades/';
+			$origName = null;
+			$fileName = null;
+			$imagem = null;
+
+			if ( $request -> file('imagem') ){
+
+				$file = $request -> file('imagem');
+
+				$fileName = sha1($file -> getClientOriginalName());
+				$fileExt  = $file -> getClientOriginalExtension();
+
+				$imgName  = explode('.', ($file -> getClientOriginalName()));
+
+				$origName = limpa_string($imgName[count($imgName) - 2], '_') . '.' . $fileExt;
+				$imagem = limpa_string($fileName) . '.' . $fileExt;
+
+				$file -> storeAs($path, $imagem);
+
+			}
+
+			if ( !is_null($imagem) )
+				$data['imagem'] = $path . $imagem;
 
 			return $this -> where('id', $request -> id) -> update($data);
 

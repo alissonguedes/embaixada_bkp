@@ -212,8 +212,7 @@
                                         <div class="row">
 
                                             {? $tags = []; ?}
-                                            {? $site_tags = ! empty(get_config('site_tags')) ? explode(',',
-                                            get_config('site_tags')) : null; ?}
+                                            {? $site_tags = ! empty(get_config('site_tags')) ? explode(',', get_config('site_tags')) : null; ?}
 
                                             @if (isset($site_tags))
 
@@ -467,7 +466,7 @@
                                             <!-- END Bairro -->
 
                                             <!-- BEGIN Cidade -->
-                                            <div class="col s6">
+                                            <div class="col s5">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">Cidade</label>
                                                     <input type="text" name="cidade" id="cidade"
@@ -477,7 +476,7 @@
                                             <!-- END Cidade -->
 
                                             <!-- BEGIN UF -->
-                                            <div class="col s2 pr-0 mb-2">
+                                            <div class="col s1 pr-0 mb-2">
                                                 <div class="input-field amber-text amber-border mb-2">
                                                     <label class="grey-text">UF</label>
                                                     <input type="text" name="uf" id="uf" maxlength="2"
@@ -485,6 +484,16 @@
                                                 </div>
                                             </div>
                                             <!-- END UF -->
+
+											<!-- BEGIN PAÍS -->
+                                            <div class="col s2 pr-0 mb-2">
+                                                <div class="input-field amber-text amber-border mb-2">
+                                                    <label class="grey-text">País</label>
+                                                    <input type="text" name="pais" id="pais"
+                                                        class="box_input amber-text" value="{{ get_config('pais') }}">
+                                                </div>
+                                            </div>
+                                            <!-- END PAÍS -->
 
                                         </div>
                                         <!-- END Bairro / Cidade / UF -->

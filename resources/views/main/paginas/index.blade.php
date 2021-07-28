@@ -12,20 +12,33 @@
 
     <div class="geral">
 
+        <!-- Dropdown Structure -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">three</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">Logo</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <!-- Dropdown Trigger -->
+                    <li>
+						<a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i
+                                class="material-icons right">arrow_drop_down</i>
+							</a>
+							</li>
+                </ul>
+            </div>
+        </nav>
+
+
         <div class="menu_categs">
 
-            @if ($pagina_model->getSubPages($row->id_menu)->count() > 0)
-
-                @foreach ($pagina_model->getSubPages($row->id_menu) as $menu)
-
-                    {? $titulo_sub = tradutor($menu -> titulo) ?? $menu -> titulo_principal ?}
-                    {? $link = $menu->slug != $row->slug && count($pagina_model->getSubPages($row->id_menu)) > 0 ? url($row->link . '/' . $menu->slug) : url($row->link); ?}
-
-                    <a href="{{ $link }}" class="lk_categs" style="display: block;">{{ $titulo_sub }}</a>
-
-                @endforeach
-
-            @endif
+            @php echo $paginas -> getMenus($row->id_menu) @endphp
 
         </div>
 

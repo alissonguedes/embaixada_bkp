@@ -54,6 +54,7 @@ class PaginasController extends Controller
 			$dados['row'] = $this->pagina_model->getPagina($id)->first();
 		}
 
+		$dados['paginas'] = $this -> pagina_model -> getGrupo($id);
 		$dados['idiomas'] = $this->idioma_model->getIdioma();
 		$dados['menus'] = $this->menu_model->getMenu();
 
@@ -104,6 +105,10 @@ class PaginasController extends Controller
 			'descricao' => ['required', Rule::unique('tb_pagina', 'descricao')->ignore($_POST['id'], 'id'), 'max:255'],
 			'menu' => ['required'],
 			'idioma' => ['required'],
+		]);
+
+		$request -> validate([
+			'arquivo' => 'required|max:8192'
 		]);
 
 		$url = url('admin/paginas ');

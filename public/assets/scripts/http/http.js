@@ -4,6 +4,10 @@ var xhr;
 
 var Http = {
 
+    back: () => {
+
+    },
+
     goTo: (url, params) => {
 
         Http.get(url);

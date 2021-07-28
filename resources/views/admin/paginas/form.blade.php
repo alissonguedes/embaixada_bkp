@@ -13,7 +13,7 @@
         {? $disabled = isset($row) && $row->editavel === '0' ? 'disabled="disabled"' : null; ?}
 
         @if ($disabled)
-            {? $input_label_hidden = '<input type="hidden" name="label" value="{{ $row->label }}">' ?}
+            {? $input_label_hidden = '<input type="hidden" name="label" value="{{ $row->label }}">'; ?}
             {? $editavel = $row->editavel; ?}
         @else
             {? $editavel = 1; ?}
@@ -120,16 +120,36 @@
                             </div>
                             <!-- END Menus -->
 
+                            <!-- BEGIN Subpágina -->
+                            <div class="row">
+                                <div class="input-field amber-text amber-border mb-2">
+                                    <label class="grey-text">Grupo</label>
+                                    <select name="grupo">
+                                        <option value="" disabled="disabled" selected="selected">Selecione o grupo da página
+                                        </option>
+                                        <option value="0">Nenhum</option>
+
+                                        @foreach ($paginas as $pag)
+                                            <option value="{{ $pag->id }}"
+                                                {{ isset($row) && $row->id_pagina == $pag->id ? 'selected="selected"' : null }}>{{ $pag->descricao }}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END Subpágina -->
+
                             <!-- BEGIN Idioma -->
                             <div class="row">
                                 <div class="input-field amber-text amber-border mb-2">
                                     <label class="grey-text">Idioma Padrão da página</label>
                                     <select name="idioma">
-                                        <option value="" disabled="disabled" selected="selected">Selecione o idioma padrão da página</option>
+                                        <option value="" disabled="disabled" selected="selected">Selecione o idioma padrão
+                                            da página</option>
 
                                         @foreach ($idiomas as $lang)
                                             <option value="{{ $lang->sigla }}"
-                                                {{ configuracoes('language') === $lang->sigla || (isset($row) && $row->idioma == $lang->sigla) ? 'selected="selected"' : null }}>{{ $lang->descricao . ' (' . $lang->sigla . ')' }}</option>
+                                                {{ configuracoes('language') === $lang->sigla || (isset($row) && $row->idioma == $lang->sigla) ? 'selected="selected"' : null }}> {{ $lang->descricao . ' (' . $lang->sigla . ')' }}</option>
                                         @endforeach
 
                                     </select>
@@ -137,129 +157,151 @@
                             </div>
                             <!-- END Idioma -->
 
+                            @if (isset($row) && $row->tipo == 'galeria')
+
+                                {? $active = 'display: none !important'; ?}
+                                {? $inactive = null ?}
+                                {? $checked = 'checked=checked'; ?}
+
+                            @else
+
+                                {? $active = null; ?}
+                                {? $inactive = 'display: none !important;'; ?}
+                                {? $checked = null; ?}
+
+                            @endif
+
                             <!-- BEGIN título -->
                             <div class="row">
                                 <div class="switch tipo-pagina">
-									<label class="grey-text">Galeria de fotos</label>
-									<label>
-										<input type="checkbox" class="amber" name="tipo_pagina" value="galeria">
-										<span class="lever"></span>
-									</label>
+                                    <label class="grey-text">Galeria de fotos</label>
+                                    <label>
+                                        <input type="checkbox" {{ $checked }} class="amber" name="tipo_pagina"
+                                            value="galeria">
+                                        <span class="lever"></span>
+                                    </label>
                                 </div>
                             </div>
                             <!-- END título -->
 
-							@if( ! isset($row) || ( isset($row) && $row -> modulo != 'galeria') )
-							<!-- BEGIN files_upload -->
-							<div id="files_upload">
+                            <!-- BEGIN files_upload -->
+                            <div id="files_upload" style="{{ $active }}">
 
-								<!-- BEGIN imagem -->
-								<div class="row">
-									<div class="input-field media conj_img_edit">
-										<div class="nome_arquivo" data-placeholder="Selecione um arquivo">
-										</div>
-										<div class="bt_excluir waves-effect redefinir amber"
-											style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
-											<i class="material-icons">undo</i>
-										</div>
-										<div class="btn_add_new_image waves-effect image_alt amber">
-											<i class="material-icons">upload</i>
-										</div>
-										<input type="file" name="arquivo[]" id="img_perfil" multiple>
-									</div>
-								</div>
-								<!-- END imagem -->
+                                <!-- BEGIN imagem -->
+                                <div class="row">
+                                    <div class="input-field media conj_img_edit">
+                                        <div class="nome_arquivo" data-placeholder="Selecione um arquivo">
+                                        </div>
+                                        <div class="bt_excluir waves-effect redefinir amber"
+                                            style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
+                                            <i class="material-icons">undo</i>
+                                        </div>
+                                        <div class="btn_add_new_image waves-effect image_alt amber">
+                                            <i class="material-icons">upload</i>
+                                        </div>
+                                        <input type="file" name="arquivo[]" id="img_perfil" multiple>
+                                    </div>
+                                </div>
+                                <!-- END imagem -->
 
-								<!-- LISTAGEM DE ARQUIVOS -->
+                                <!-- LISTAGEM DE ARQUIVOS -->
 
-								<div class="row">
+                                <div class="row">
 
-									@if (isset($row))
+                                    @if (isset($row))
 
-										@php
-											$page = new App\Models\Admin\PaginaModel();
-											$arquivos = $page->getAttach($row->id);
-										@endphp
+                                        @php
+                                            $page = new App\Models\Admin\PaginaModel();
+                                            $arquivos = $page->getAttach($row->id);
+                                        @endphp
 
-										@if (isset($arquivos))
-											<div class="input-field media">
-												<div class="grey-text">
-													<span class="count-files">{{ count($arquivos) }}</span>
-													@if (count($arquivos) > 1) arquivos cadastrados @else arquivo cadastrado @endif
-												</div>
-												<br>
-												<ul class="collection scroller" style="max-height: 300px;">
-													@foreach ($arquivos as $file)
-														<li class="collection-item avatar pl-3" id="file_{{ $file->id }}">
-															{{-- <img src="{{ asset($file->path) }}" alt=""
+                                        @if (isset($arquivos))
+                                            <div class="input-field media">
+                                                <div class="grey-text">
+                                                    <span class="count-files">{{ count($arquivos) }}</span>
+                                                    @if (count($arquivos) > 1) arquivos cadastrados @else arquivo cadastrado @endif
+                                                </div>
+                                                <br>
+                                                <ul class="collection scroller" style="max-height: 300px;">
+                                                    @foreach ($arquivos as $file)
+                                                        <li class="collection-item avatar pl-3"
+                                                            id="file_{{ $file->id }}">
+                                                            {{-- <img src="{{ asset($file->path) }}" alt=""
 																class="circle"> --}}
-															<p>{{ $file->realname }}</p>
-															<span class="title grey-text"
-																style="display: block; max-width: 70%; overflow: hidden; word-wrap: nowrap; text-overflow: ellipsis;">{{ asset($file->path) }}</span>
-															<a href="javascript:void(0);"
-																data-url="{{ route('admin.paginas.delete.file', [$row->id, $file->id]) }}"
-																id="{{ $file->id }}"
-																class="secondary-content btn-floating btn-small amber waves-effect right remover_arquivo">
-																<i class="material-icons black-text">close</i></a>
-															<input type="hidden" name="arquivos[]" value="{{ $file->path }}">
-														</li>
-													@endforeach
-												</ul>
-											</div>
-										@endif
-									@endif
+                                                            <p>{{ $file->realname }}</p>
+                                                            <span class="title grey-text"
+                                                                style="display: block; max-width: 70%; overflow: hidden; word-wrap: nowrap; text-overflow: ellipsis;">{{ asset($file->path) }}</span>
+                                                            <a href="javascript:void(0);"
+                                                                data-url="{{ route('admin.paginas.delete.file', [$row->id, $file->id]) }}"
+                                                                id="{{ $file->id }}"
+                                                                class="secondary-content btn-floating btn-small amber waves-effect right remover_arquivo">
+                                                                <i class="material-icons black-text">close</i></a>
+                                                            <input type="hidden" name="arquivos[]"
+                                                                value="{{ $file->path }}">
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    @endif
 
-								</div>
+                                </div>
 
-							</div>
-							<!-- END files_upload -->
+                            </div>
+                            <!-- END files_upload -->
 
-							@else
+                            <!-- BEGIN galeria -->
+                            <div id="galeria" class="mb-3" style="{{ $inactive }}">
+                                <div class="row">
+                                    <div class="col no-margin no-padding">
+                                        <button type="button"
+                                            class="amber btn btn-large black-text waves-effect modal-trigger"
+                                            data-target="modal-galeria">
+                                            Vincular Galeria
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END galeria -->
 
-							<!-- BEGIN galeria -->
-							<div id="galeria" class="mb-3" style="display: none;">
-								<div class="row">
-									<div class="col no-margin no-padding">
-										<button type="button" class="amber btn btn-large black-text waves-effect modal-trigger" data-target="modal-galeria">
-											Vincular Galeria
-										</button>
-									</div>
-								</div>
-							</div>
-							<!-- END galeria -->
+                            <div class="modal" id="modal-galeria">
+                                <div class="modal-content black white-text">
+                                    @php
+                                        $fotos = new App\Models\Admin\FotoModel();
+                                    @endphp
+                                    @if (isset($row) && isset($fotos))
+                                        <ul class="collection">
+                                            @foreach ($fotos->getAlbum() as $foto)
 
-							<div class="modal" id="modal-galeria">
-								<div class="modal-content black white-text">
-									@php
-									$fotos = new App\Models\Admin\FotoModel();
-									@endphp
-									@if ( isset($fotos) )
-									<ul class="collection">
-										@foreach ($fotos -> getAlbum() as $foto)
+                                                @php
+                                                    $issetAlbum = $fotos
+                                                        ->from('tb_pagina_album')
+                                                        ->select('id')
+                                                        ->where('id_album', $foto->id)
+                                                        ->where('id_pagina', $row->id)
+                                                        ->get()
+                                                        ->first();
+                                                    $checked = isset($issetAlbum) ? 'checked=checked' : null;
+                                                @endphp
 
-											@php
-											$issetAlbum = $fotos -> from('tb_pagina_album') -> select('id') -> where('id_album', $foto -> id) -> where('id_pagina', $row -> id) -> get() -> first();
-											$checked = isset($issetAlbum) ? 'checked=checked' : null;
-											@endphp
-
-											<li class="collection-item">
-												<label>
-													<input type="checkbox" name="album[]" id="{{ $foto -> id }}" value="{{ $foto -> id }}" class="amber" {{ $checked }}>
-													<span>
-														{{ $foto -> nome }}
-													</span>
-												</label>
-											</li>
-										@endforeach
-									</ul>
-									@endif
-								</div>
-								<div class="modal-footer black">
-									<button type="button" class="modal-close waves-effect waves-green btn-flat white-text">Feito</button>
-								</div>
-							</div>
-
-							@endif
+                                                <li class="collection-item">
+                                                    <label>
+                                                        <input type="checkbox" name="album[]" id="{{ $foto->id }}"
+                                                            value="{{ $foto->id }}" class="amber" {{ $checked }}>
+                                                        <span>
+                                                            {{ $foto->nome }}
+                                                        </span>
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
+                                <div class="modal-footer black">
+                                    <button type="button"
+                                        class="modal-close waves-effect waves-green btn-flat white-text">Feito</button>
+                                </div>
+                            </div>
 
                             <!-- BEGIN Status -->
                             <div class="row">

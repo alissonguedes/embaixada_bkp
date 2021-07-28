@@ -6,14 +6,18 @@
 <!--<![endif]-->
 
 <head>
-
     <meta charset="utf-8">
     <meta name="Organização Atos" content="Organização Atos">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="robots" content="index, follow">
 
-    <title><?= tradutor('__PAGE_TITLE__') ?> - @yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="theme-color" content="{{ config('theme_color') }}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{{ config('theme_color') }}">
+    <meta name="msapplication-navbutton-color" content="{{ config('theme_color') }}">
+
+    <title>{{ tradutor(get_config('site_title')) }} - @yield('title')</title>
 
     @include('main.layouts.styles')
 

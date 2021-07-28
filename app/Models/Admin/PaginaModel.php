@@ -95,6 +95,7 @@ class PaginaModel extends Authenticatable
 
 		$traducao	= [];
 		$data = [
+			'id_pagina' => isset($request -> grupo) ? $request -> grupo : 0,
 			'id_menu' => $request -> menu,
 			'descricao' => $request -> descricao,
 			'slug' => limpa_string($request -> descricao),
@@ -178,11 +179,16 @@ class PaginaModel extends Authenticatable
 
 	}
 
-	public function edit($request, $field = null) {
+	public function getGrupo($id = null) {
+		$pag = $this -> select('id', 'id_pagina', 'descricao')
+			-> from('tb_pagina');
 
-		$request -> validate([
-			'arquivo' => 'required|max:8192'
-		]);
+		if ( ! is_null($id) ) $pag -> where('id', '<>', $id);
+
+		return $pag -> get();
+	}
+
+	public function edit($request, $field = null) {
 
 		$files = [];
 		$path = 'assets/embaixada/documentos/';
@@ -246,6 +252,7 @@ class PaginaModel extends Authenticatable
 
 			$traducao	= [];
 			$data = [
+				'id_pagina' => isset($request -> grupo) ? $request -> grupo : 0,
 				'id_menu' => $request -> menu,
 				'tipo' => $request -> tipo_pagina ?? 'post',
 				'descricao' => $request -> descricao,

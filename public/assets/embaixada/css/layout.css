@@ -28,6 +28,19 @@ ul {
     width: 100%;
 }
 
+.mil-pixel {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.left {
+    float: left !important;
+}
+
+.right {
+    float: right !important;
+}
+
 .carregando {
     position: fixed;
     left: 0;
@@ -144,6 +157,10 @@ header {
     overflow: hidden;
 }
 
+header .topbar {
+    background: #000;
+}
+
 .simbolo_angola {
     width: 250px;
     height: 504px;
@@ -154,10 +171,9 @@ header {
 }
 
 .head_1 {
-    padding: 20px 100px;
+    padding: 20px 0px;
     overflow: hidden;
     background: #e61127;
-    width: 100%;
 }
 
 .barrabusca {
@@ -199,13 +215,17 @@ header {
     border: solid 1px #e5a6ad;
     width: 24px;
     cursor: pointer;
+    position: relative;
+    z-index: 99999;
 }
 
 .head_2 {
     background: #000;
-    padding: 20px 100px;
+    padding: 20px 0px;
     overflow: hidden;
     color: #fff;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 .insignia {
@@ -232,11 +252,12 @@ header {
 }
 
 .idioma {
-    float: left;
-    margin-left: 300px;
+    /* margin-left: 300px; */
     overflow: hidden;
-    margin-top: 20px;
-    width: 180px;
+    margin-top: 0px;
+    /* width: 180px; */
+    position: relative;
+    z-index: 99999;
 }
 
 .text_idioma {
@@ -245,22 +266,33 @@ header {
 }
 
 .icon_idioma {
-    width: 27px;
-    height: 27px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: solid 3px #fff;
+    background-color: #b40000;
+    padding: 5px 20px;
+    border-radius: 5px;
     margin: 0 5px;
-    float: left;
     cursor: pointer;
+    float: left;
+}
+
+.active {
+    background: #000;
+}
+
+.icon_idioma:hover {
+    background-color: #000;
+}
+
+header nav {
+    background: #000;
 }
 
 .menu {
-    background: #000;
-    padding: 0px 100px;
+    padding: 0px 0px;
     overflow: hidden;
     color: #fff;
     font-size: 16px;
+    width: 1000px;
+    margin: 0 auto;
 }
 
 .menu .lk {
@@ -452,7 +484,7 @@ header {
 .container3 {
     overflow: hidden;
     margin: 0 auto;
-    width: 1200px;
+    width: 900px;
 }
 
 .fotos {
@@ -558,14 +590,14 @@ header {
 
 .geral {
     overflow: hidden;
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
     position: relative;
     z-index: 9999;
 }
 
 .menu_categs {
-    width: 250px;
+    width: 200px;
     float: left;
     overflow: hidden;
     margin-top: 150px;
@@ -587,15 +619,15 @@ header {
 }
 
 .container2 {
-    width: 900px;
+    width: 750px;
     overflow: hidden;
     float: right;
 }
 
 .title_pg {
     margin: 0 auto;
-    margin-top: 350px;
-    width: 1200px;
+    margin-top: 400px;
+    width: 1000px;
     overflow: hidden;
     margin-bottom: 25px;
     font-family: 'futura';

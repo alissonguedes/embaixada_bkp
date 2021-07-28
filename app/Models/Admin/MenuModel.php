@@ -85,6 +85,15 @@ class MenuModel extends Authenticatable
 
 	}
 
+	public function getTitulo($link) {
+
+		$get = $this -> select('*');
+
+		$get -> where('link', $link);
+		return $get -> get() -> first();
+
+	}
+
 	public function create($request) {
 
 		$label		= $request -> label;

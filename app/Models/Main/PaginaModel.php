@@ -17,6 +17,7 @@ class PaginaModel extends Model
 		$get = $this -> select(
 			'P.id',
 			'P.id_menu',
+			'P.tipo',
 			'P.descricao AS titulo_principal',
 			'P.slug',
 			'P.titulo',
@@ -60,17 +61,19 @@ class PaginaModel extends Model
 
 	}
 
-	public function getSubPages($subpage, $page = null, $idioma = null) {
+	public function getSubPages($id_menu, $page = null, $idioma = null) {
 
-		$get = $this -> select('P.id AS id_pagina', 'P.titulo', 'P.descricao AS titulo_principal', 'P.slug')
+		$get = $this -> select('P.id AS id_pagina', 'P.id_menu', 'M.link', 'P.id_pagina AS id_parent', 'P.titulo', 'P.descricao AS titulo_principal', 'P.slug')
 						-> from('tb_pagina AS P')
 						-> join('tb_acl_menu AS M', 'M.id', '=', 'P.id_menu')
 						-> where('P.status', '1');
 
-		$get -> where('P.id_menu', $subpage);
+		$get -> where('P.id_menu', $id_menu);
 
-		if( ! is_null($page) )
-			$get -> where('P.id', '<>', $page);
+		// if( ! is_null($page) )
+		// 	$get -> where('P.id', '<>', $id_menu);
+		$page = ! is_null($page) ? $page : 0;
+		$get -> where('P.id_pagina', $page);
 
 		if ( !is_null($this -> limit) ) $get -> limit($this -> limit);
 
@@ -118,11 +121,12 @@ class PaginaModel extends Model
 	public function getFotos($id_album) {
 
 		return $this
-					-> select('F.id', 'F.legenda', 'F.descricao', 'F.imagem', 'F.autor')
-					-> from ('tb_album_foto AS F')
-					-> join('tb_album AS A', 'A.id', '=', 'F.id_album')
+					-> select('F.id', 'F.titulo', 'F.descricao', 'F.path', 'F.author')
+					-> from ('tb_attachment AS F')
+					-> join('tb_album AS A', 'A.id', '=', 'F.id_modulo')
 					-> where('A.status', '1')
 					-> where('A.slug', $id_album)
+					-> where('F.modulo', 'album')
 					-> orderBy('F.created_at', 'desc')
 					-> get();
 

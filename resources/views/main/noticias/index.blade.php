@@ -1,12 +1,16 @@
 @extends('main.layouts.app')
 
-<?php $titulo_pag = tradutor('novidades'); ?>
+@if (!isset($row)) {
+    {{ exit(view('main.paginas.404')) }}
+@endif
 
-@section('title', $titulo_pag)
+<?php $title = tradutor($title->traducao); ?>
+
+@section('title', $title)
 
 @section('content')
 
-    <div class="title_pg">{{ $titulo_pag }}</div>
+    <div class="title_pg">{{ $title }}</div>
 
     <br>
     <br>
@@ -14,9 +18,9 @@
 
     <div class="geral">
 
-        @if (isset($noticias))
+        @if (isset($row))
 
-            @foreach ($noticias as $news)
+            @foreach ($row as $news)
 
                 {? $titulo = json_decode($news->titulo, true) ?}
                 {? $subtitulo = json_decode($news->subtitulo, true) ?}
@@ -28,8 +32,7 @@
 
                         @if (!empty($news->imagem))
                             <div class="img_item_cont">
-                                <img src="{{ asset($news->imagem) }}"
-                                     class="img_cem">
+                                <img src="{{ asset($news->imagem) }}" class="img_cem">
                             </div>
                         @endif
 
@@ -37,8 +40,7 @@
 
                             <div class="title_itemm_cont">
                                 {{ tradutor($titulo) }}
-                                <div class="subtitlepage"
-                                     style="font-size: 16px; font-weight: normal;">
+                                <div class="subtitlepage" style="font-size: 16px; font-weight: normal;">
                                     {{ tradutor($subtitulo) }}
                                 </div>
                             </div>
@@ -57,7 +59,8 @@
 
         @else
 
-            <span data-translate="nao_exitem_noticias_publicadas_no_momento">Não existem notícias publicadas no momento.</span>
+            <span data-translate="nao_exitem_noticias_publicadas_no_momento">Não existem notícias publicadas no
+                momento.</span>
 
         @endif
 

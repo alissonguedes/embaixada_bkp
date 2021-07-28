@@ -348,4 +348,39 @@ class FotoModel extends Authenticatable
 
 	}
 
+	public function remove_file($id) {
+
+		if ( is_array($id) ) {
+			$column = 'id_modulo';
+		} else {
+			$column = 'id';
+		}
+
+		$files = $this -> from('tb_attachment')
+			-> select('path')
+			-> where($column, $id)
+			-> get();
+
+		if ( isset($files) )
+		{
+
+			foreach ( $files as $file ) {
+
+				$file = public_path($file -> path);
+
+			}
+
+			$un = file_exists($file) ? unlink($file) : true;
+
+			if ( $un )
+				return $this -> from('tb_attachment') -> where($column, $id) -> delete();
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
 }

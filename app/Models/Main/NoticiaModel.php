@@ -38,6 +38,8 @@ class NoticiaModel extends Model
 			});
 		}
 
+		$get -> where('status', '1');
+
 		// Order By
 		if (isset($_GET['order']) && $_GET['order'][0]['column'] != 0 ) {
 			$orderBy[$this -> order[$_GET['order'][0]['column']]] = $_GET['order'][0]['dir'];

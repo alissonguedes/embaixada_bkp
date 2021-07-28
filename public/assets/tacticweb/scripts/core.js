@@ -14,16 +14,6 @@ init = () => {
             }
         });
 
-        // var md_galeria = $('#modal-galeria').modal({
-        //     'onCloseEnd': function() {
-        //         md_galeria.find('input:checked').each(function() {
-        //             var value = $(this).val();
-        //             $(this).parents('form').find(':hidden[name="album[]"]').remove();
-        //             $(this).parents('form').append('<input type="hidden" name="album[]" value="' + value + '">');
-        //         });
-        //     }
-        // })
-
     });
 
 }
