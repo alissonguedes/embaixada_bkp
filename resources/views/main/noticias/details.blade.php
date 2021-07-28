@@ -4,7 +4,7 @@
     {{ exit(view('main.paginas.404')) }}
 @endif
 
-<?php $title = tradutor($row -> traducao); ?>
+<?php $title = tradutor($row -> titulo); ?>
 
 @section('title', $title)
 
