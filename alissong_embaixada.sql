@@ -246,6 +246,74 @@ CREATE TABLE `tb_attachment` (
   `status` enum('0','1') NOT NULL DEFAULT '1' COMMENT 'Situação de exibição do banner. 0 - Não exibir; 1 - Exibir.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `tb_attachment`
+--
+
+INSERT INTO `tb_attachment` (`id`, `id_modulo`, `modulo`, `path`, `realname`, `titulo`, `descricao`, `clicks`, `url`, `size`, `author`, `ordem`, `tags`, `created_at`, `updated_at`, `status`) VALUES
+(219, 1, 'album', 'assets/embaixada/img/galeria/2e6f9b0d5885b6010f9167787445617f553a735f/abf633ddbf9c01d32d113e0d51da62cbf19c7d6c.jpg', 'alisson_2.jpg', NULL, NULL, 0, NULL, 11384801, 'Alisson', 0, NULL, '2021-07-06 01:07:19', '2021-07-06 01:07:19', '1'),
+(220, 1, 'album', 'assets/embaixada/img/galeria/2e6f9b0d5885b6010f9167787445617f553a735f/5a5a1783689e098316d57eaf6f02bab2a36abddb.jpg', 'alisson_1.jpg', NULL, NULL, 0, NULL, 10571183, 'Alisson', 0, NULL, '2021-07-06 01:07:19', '2021-07-06 01:07:19', '1'),
+(221, 2, 'album', 'assets/embaixada/img/galeria/2/abf633ddbf9c01d32d113e0d51da62cbf19c7d6c.jpg', 'alisson_2.jpg', NULL, NULL, 0, NULL, 11384801, 'Alisson', 0, NULL, '2021-07-06 01:38:40', '2021-07-06 01:38:40', '1'),
+(222, 2, 'album', 'assets/embaixada/img/galeria/2/5a5a1783689e098316d57eaf6f02bab2a36abddb.jpg', 'alisson_1.jpg', NULL, NULL, 0, NULL, 10571183, 'Alisson', 0, NULL, '2021-07-06 01:38:40', '2021-07-06 01:38:40', '1'),
+(223, 2, 'album', 'assets/embaixada/img/galeria/2/a49bdb5edc7b780eb092a4728bcd0a7a609ee753.png', 'captura_de_tela_de_2021_07_01_16_49_46.png', NULL, NULL, 0, NULL, 125128, 'Alisson', 0, NULL, '2021-07-06 17:19:24', '2021-07-06 17:19:24', '1'),
+(224, 2, 'album', 'assets/embaixada/img/galeria/2/52f08bf48d4f69885ab96b04d62d5976ebbf0a33.png', 'captura_de_tela_de_2021_07_01_16_49_43.png', NULL, NULL, 0, NULL, 24467, 'Alisson', 0, NULL, '2021-07-06 17:19:24', '2021-07-06 17:19:24', '1'),
+(225, 2, 'album', 'assets/embaixada/img/galeria/2/38be193aa2efd49dfd53e006fc86fbfa704e597d.png', 'captura_de_tela_de_2021_06_29_19_22_05.png', NULL, NULL, 0, NULL, 271044, 'Alisson', 0, NULL, '2021-07-06 17:19:24', '2021-07-06 17:19:24', '1'),
+(226, 2, 'album', 'assets/embaixada/img/galeria/2/4d3a29d24414cd217cd0eaa6402057f9b09dcbae.png', 'captura_de_tela_de_2021_06_29_19_10_48.png', NULL, NULL, 0, NULL, 277276, 'Alisson', 0, NULL, '2021-07-06 17:19:24', '2021-07-06 17:19:24', '1'),
+(227, 2, 'album', 'assets/embaixada/img/galeria/2/dff6e2eede51175c88f38ab1bb00c0362610730c.png', 'captura_de_tela_de_2021_06_17_19_19_59.png', NULL, NULL, 0, NULL, 155689, 'Alisson', 0, NULL, '2021-07-06 17:19:24', '2021-07-06 17:19:24', '1'),
+(228, 3, 'album', 'assets/embaixada/img/galeria/3/a49bdb5edc7b780eb092a4728bcd0a7a609ee753.png', 'captura_de_tela_de_2021_07_01_16_49_46.png', NULL, NULL, 0, NULL, 125128, 'Alisson', 0, NULL, '2021-07-06 18:19:56', '2021-07-06 18:19:56', '1'),
+(229, 3, 'album', 'assets/embaixada/img/galeria/3/52f08bf48d4f69885ab96b04d62d5976ebbf0a33.png', 'captura_de_tela_de_2021_07_01_16_49_43.png', NULL, NULL, 0, NULL, 24467, 'Alisson', 0, NULL, '2021-07-06 18:19:56', '2021-07-06 18:19:56', '1'),
+(230, 3, 'album', 'assets/embaixada/img/galeria/3/38be193aa2efd49dfd53e006fc86fbfa704e597d.png', 'captura_de_tela_de_2021_06_29_19_22_05.png', NULL, NULL, 0, NULL, 271044, 'Alisson', 0, NULL, '2021-07-06 18:19:56', '2021-07-06 18:19:56', '1'),
+(231, 3, 'album', 'assets/embaixada/img/galeria/3/4d3a29d24414cd217cd0eaa6402057f9b09dcbae.png', 'captura_de_tela_de_2021_06_29_19_10_48.png', NULL, NULL, 0, NULL, 277276, 'Alisson', 0, NULL, '2021-07-06 18:19:56', '2021-07-06 18:19:56', '1'),
+(232, 3, 'album', 'assets/embaixada/img/galeria/3/dff6e2eede51175c88f38ab1bb00c0362610730c.png', 'captura_de_tela_de_2021_06_17_19_19_59.png', NULL, NULL, 0, NULL, 155689, 'Alisson', 0, NULL, '2021-07-06 18:19:56', '2021-07-06 18:19:56', '1'),
+(238, 8, 'album', 'assets/embaixada/img/galeria/8/a49bdb5edc7b780eb092a4728bcd0a7a609ee753.png', 'captura_de_tela_de_2021_07_01_16_49_46.png', NULL, NULL, 0, NULL, 125128, 'Alisson', 0, NULL, '2021-07-06 18:28:30', '2021-07-06 18:28:30', '1'),
+(239, 8, 'album', 'assets/embaixada/img/galeria/8/52f08bf48d4f69885ab96b04d62d5976ebbf0a33.png', 'captura_de_tela_de_2021_07_01_16_49_43.png', NULL, NULL, 0, NULL, 24467, 'Alisson', 0, NULL, '2021-07-06 18:28:30', '2021-07-06 18:28:30', '1'),
+(240, 8, 'album', 'assets/embaixada/img/galeria/8/38be193aa2efd49dfd53e006fc86fbfa704e597d.png', 'captura_de_tela_de_2021_06_29_19_22_05.png', NULL, NULL, 0, NULL, 271044, 'Alisson', 0, NULL, '2021-07-06 18:28:31', '2021-07-06 18:28:31', '1'),
+(241, 8, 'album', 'assets/embaixada/img/galeria/8/4d3a29d24414cd217cd0eaa6402057f9b09dcbae.png', 'captura_de_tela_de_2021_06_29_19_10_48.png', NULL, NULL, 0, NULL, 277276, 'Alisson', 0, NULL, '2021-07-06 18:28:31', '2021-07-06 18:28:31', '1'),
+(242, 8, 'album', 'assets/embaixada/img/galeria/8/dff6e2eede51175c88f38ab1bb00c0362610730c.png', 'captura_de_tela_de_2021_06_17_19_19_59.png', NULL, NULL, 0, NULL, 155689, 'Alisson', 0, NULL, '2021-07-06 18:28:31', '2021-07-06 18:28:31', '1'),
+(243, 9, 'album', 'assets/embaixada/img/galeria/9/a49bdb5edc7b780eb092a4728bcd0a7a609ee753.png', 'captura_de_tela_de_2021_07_01_16_49_46.png', NULL, NULL, 0, NULL, 125128, 'Alisson', 0, NULL, '2021-07-06 18:29:31', '2021-07-06 18:29:31', '1'),
+(244, 9, 'album', 'assets/embaixada/img/galeria/9/52f08bf48d4f69885ab96b04d62d5976ebbf0a33.png', 'captura_de_tela_de_2021_07_01_16_49_43.png', NULL, NULL, 0, NULL, 24467, 'Alisson', 0, NULL, '2021-07-06 18:29:31', '2021-07-06 18:29:31', '1'),
+(245, 9, 'album', 'assets/embaixada/img/galeria/9/38be193aa2efd49dfd53e006fc86fbfa704e597d.png', 'captura_de_tela_de_2021_06_29_19_22_05.png', NULL, NULL, 0, NULL, 271044, 'Alisson', 0, NULL, '2021-07-06 18:29:31', '2021-07-06 18:29:31', '1'),
+(246, 9, 'album', 'assets/embaixada/img/galeria/9/4d3a29d24414cd217cd0eaa6402057f9b09dcbae.png', 'captura_de_tela_de_2021_06_29_19_10_48.png', NULL, NULL, 0, NULL, 277276, 'Alisson', 0, NULL, '2021-07-06 18:29:31', '2021-07-06 18:29:31', '1'),
+(247, 9, 'album', 'assets/embaixada/img/galeria/9/dff6e2eede51175c88f38ab1bb00c0362610730c.png', 'captura_de_tela_de_2021_06_17_19_19_59.png', NULL, NULL, 0, NULL, 155689, 'Alisson', 0, NULL, '2021-07-06 18:29:31', '2021-07-06 18:29:31', '1'),
+(248, 15, 'page', 'assets/embaixada/documentos/a49bdb5edc7b780eb092a4728bcd0a7a609ee75360e4a312024a0.png', 'captura_de_tela_de_2021_07_01_16_49_46.png', NULL, NULL, 0, NULL, 125128, 'Alisson', 0, NULL, '2021-07-06 18:38:10', '2021-07-06 18:38:10', '1'),
+(249, 15, 'page', 'assets/embaixada/documentos/a49bdb5edc7b780eb092a4728bcd0a7a609ee75360e4a31faf546.png', 'captura_de_tela_de_2021_07_01_16_49_46.png', NULL, NULL, 0, NULL, 125128, 'Alisson', 0, NULL, '2021-07-06 18:38:23', '2021-07-06 18:38:23', '1'),
+(250, 15, 'page', 'assets/embaixada/documentos/52f08bf48d4f69885ab96b04d62d5976ebbf0a3360e4a31faf787.png', 'captura_de_tela_de_2021_07_01_16_49_43.png', NULL, NULL, 0, NULL, 24467, 'Alisson', 0, NULL, '2021-07-06 18:38:23', '2021-07-06 18:38:23', '1'),
+(251, 15, 'page', 'assets/embaixada/documentos/38be193aa2efd49dfd53e006fc86fbfa704e597d60e4a31faf82e.png', 'captura_de_tela_de_2021_06_29_19_22_05.png', NULL, NULL, 0, NULL, 271044, 'Alisson', 0, NULL, '2021-07-06 18:38:23', '2021-07-06 18:38:23', '1'),
+(252, 15, 'page', 'assets/embaixada/documentos/4d3a29d24414cd217cd0eaa6402057f9b09dcbae60e4a31fafa05.png', 'captura_de_tela_de_2021_06_29_19_10_48.png', NULL, NULL, 0, NULL, 277276, 'Alisson', 0, NULL, '2021-07-06 18:38:23', '2021-07-06 18:38:23', '1'),
+(253, 15, 'page', 'assets/embaixada/documentos/dff6e2eede51175c88f38ab1bb00c0362610730c60e4a31fafc09.png', 'captura_de_tela_de_2021_06_17_19_19_59.png', NULL, NULL, 0, NULL, 155689, 'Alisson', 0, NULL, '2021-07-06 18:38:23', '2021-07-06 18:38:23', '1'),
+(261, 11, 'album', 'assets/embaixada/img/galeria/11/39016e54567f7c1ab95ae62bb3cc52ad36bfd339.jpg', 'slide1.jpg', NULL, NULL, 0, NULL, 755152, 'Alisson', 0, NULL, '2021-07-22 18:04:02', '2021-07-22 18:04:02', '1'),
+(262, 11, 'album', 'assets/embaixada/img/galeria/11/352fd344bfcebdb18234b61597c517122d9b7c43.jpg', 'slide2.jpg', NULL, NULL, 0, NULL, 749338, 'Alisson', 0, NULL, '2021-07-22 18:04:02', '2021-07-22 18:04:02', '1'),
+(263, 11, 'album', 'assets/embaixada/img/galeria/11/8e16b34a309700374bba2e60dc17a13f66a7b1aa.jpg', 'slide3.jpg', NULL, NULL, 0, NULL, 746281, 'Alisson', 0, NULL, '2021-07-22 18:04:02', '2021-07-22 18:04:02', '1'),
+(264, 10, 'album', 'assets/embaixada/img/galeria/10/d9a0feaf9db6ac78bf8a0f9e304be90e34b8c2c3.png', 'aviao.png', NULL, NULL, 0, NULL, 3574, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(265, 10, 'album', 'assets/embaixada/img/galeria/10/4c963b44a19c071cacc84c5273c2106466a165ee.png', 'bandeiras.png', NULL, NULL, 0, NULL, 3276, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(266, 10, 'album', 'assets/embaixada/img/galeria/10/e5afa53f18b4b4de5adf0456c5540f707f477f52.png', 'chapeu.png', NULL, NULL, 0, NULL, 3600, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(267, 10, 'album', 'assets/embaixada/img/galeria/10/27e43c683c44b5ba76452ca7647fd988dc295493.png', 'facebook.png', NULL, NULL, 0, NULL, 4399, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(268, 10, 'album', 'assets/embaixada/img/galeria/10/a6ef7702ff9ec3b0d0e517307111c2155078ac56.png', 'fone.png', NULL, NULL, 0, NULL, 4793, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(269, 10, 'album', 'assets/embaixada/img/galeria/10/f5c6ac8a475d107a5b8d44cc931da509fae50376.png', 'fone2.png', NULL, NULL, 0, NULL, 4971, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(270, 10, 'album', 'assets/embaixada/img/galeria/10/cdd5345048e9ee94b81bb3b3e0306083dfe759bd.png', 'instagram.png', NULL, NULL, 0, NULL, 4181, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(271, 10, 'album', 'assets/embaixada/img/galeria/10/efcdf0dde7fc40a518a6a469627adf0dc1c17a7e.png', 'local.png', NULL, NULL, 0, NULL, 4012, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(272, 10, 'album', 'assets/embaixada/img/galeria/10/cd38ff60a22fe2f9e83f7f50efd21a21752ba71a.png', 'local2.png', NULL, NULL, 0, NULL, 4106, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(273, 10, 'album', 'assets/embaixada/img/galeria/10/91492c5259013efbbc48e04470dd3679561da11c.png', 'mail.png', NULL, NULL, 0, NULL, 3556, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(274, 10, 'album', 'assets/embaixada/img/galeria/10/cdd6f1fcfb9c14edeef24c7ed7c5369798b60ee8.png', 'pessoas.png', NULL, NULL, 0, NULL, 3369, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(275, 10, 'album', 'assets/embaixada/img/galeria/10/09051944b5510a8b053948b2a5672acdfad4b413.png', 'terra.png', NULL, NULL, 0, NULL, 3943, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(276, 10, 'album', 'assets/embaixada/img/galeria/10/125c0402b2f037899804be4fffe4cbd11067338e.png', 'trofeu.png', NULL, NULL, 0, NULL, 3512, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(277, 10, 'album', 'assets/embaixada/img/galeria/10/a10c60722724ba4741dd8e72d05497b6dc761570.png', 'whatsapp.png', NULL, NULL, 0, NULL, 4279, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(278, 10, 'album', 'assets/embaixada/img/galeria/10/37dfa3c4a4c45e930200576c7ef0a86c2fa40cf4.png', 'youtube.png', NULL, NULL, 0, NULL, 3562, 'Alisson', 0, NULL, '2021-07-22 19:14:11', '2021-07-22 19:14:11', '1'),
+(279, 12, 'album', 'assets/embaixada/img/galeria/12/6467b96dcbf23bd3aceb0cec25ab51ee26940f10.jpg', '8525b5a07413f4e1aa2eda63bbf0bcb129b12b78.jpg', NULL, NULL, 0, NULL, 15251, 'Alisson', 0, NULL, '2021-07-27 05:42:36', '2021-07-27 05:42:36', '1'),
+(280, 12, 'album', 'assets/embaixada/img/galeria/12/6e0814bb70e6c4a835442b8d82b35e8bc3c10a0d.jpg', '1612531833_020e05e7fd2a2589789c.jpg', NULL, NULL, 0, NULL, 15251, 'Alisson', 0, NULL, '2021-07-27 05:42:36', '2021-07-27 05:42:36', '1'),
+(281, 12, 'album', 'assets/embaixada/img/galeria/12/aaabbb142f2d9eb81f57b23fbd8ca5acd8fc8ada.jpg', '1612531842_314fc4ae3ba1a83cf0fc.jpg', NULL, NULL, 0, NULL, 18869, 'Alisson', 0, NULL, '2021-07-27 05:42:36', '2021-07-27 05:42:36', '1'),
+(282, 12, 'album', 'assets/embaixada/img/galeria/12/1559bdf6e11cf82963dc124385a50ffcc186473e.jpg', '1612531878_bd7502753e5de17e7b45.jpg', NULL, NULL, 0, NULL, 15251, 'Alisson', 0, NULL, '2021-07-27 05:42:36', '2021-07-27 05:42:36', '1'),
+(283, 12, 'album', 'assets/embaixada/img/galeria/12/124f1d5cde4223d12731945f7bb92f8f128cc34f.jpg', '1612531957_fa3c3a4c5e863f86e26d.jpg', NULL, NULL, 0, NULL, 18869, 'Alisson', 0, NULL, '2021-07-27 05:42:36', '2021-07-27 05:42:36', '1'),
+(284, 12, 'album', 'assets/embaixada/img/galeria/12/5d977c3dbe1f7561fff9a45eea3aa63399a85548.jpg', '1612531970_988317c9bd4ee27b70dc.jpg', NULL, NULL, 0, NULL, 18869, 'Alisson', 0, NULL, '2021-07-27 05:42:36', '2021-07-27 05:42:36', '1'),
+(285, 12, 'album', 'assets/embaixada/img/galeria/12/67de426d5086ea3707ab1a0ddce8f2354a899031.jpg', '1612531977_220a6c6c090a89d743e9.jpg', NULL, NULL, 0, NULL, 13786, 'Alisson', 0, NULL, '2021-07-27 05:42:36', '2021-07-27 05:42:36', '1'),
+(286, 13, 'album', 'assets/embaixada/img/galeria/13/6467b96dcbf23bd3aceb0cec25ab51ee26940f10.jpg', '8525b5a07413f4e1aa2eda63bbf0bcb129b12b78.jpg', NULL, NULL, 0, NULL, 15251, 'Alisson', 0, NULL, '2021-07-27 05:43:57', '2021-07-27 05:43:57', '1'),
+(287, 13, 'album', 'assets/embaixada/img/galeria/13/6e0814bb70e6c4a835442b8d82b35e8bc3c10a0d.jpg', '1612531833_020e05e7fd2a2589789c.jpg', NULL, NULL, 0, NULL, 15251, 'Alisson', 0, NULL, '2021-07-27 05:43:57', '2021-07-27 05:43:57', '1'),
+(288, 13, 'album', 'assets/embaixada/img/galeria/13/aaabbb142f2d9eb81f57b23fbd8ca5acd8fc8ada.jpg', '1612531842_314fc4ae3ba1a83cf0fc.jpg', NULL, NULL, 0, NULL, 18869, 'Alisson', 0, NULL, '2021-07-27 05:43:57', '2021-07-27 05:43:57', '1'),
+(289, 13, 'album', 'assets/embaixada/img/galeria/13/1559bdf6e11cf82963dc124385a50ffcc186473e.jpg', '1612531878_bd7502753e5de17e7b45.jpg', NULL, NULL, 0, NULL, 15251, 'Alisson', 0, NULL, '2021-07-27 05:43:57', '2021-07-27 05:43:57', '1'),
+(290, 13, 'album', 'assets/embaixada/img/galeria/13/124f1d5cde4223d12731945f7bb92f8f128cc34f.jpg', '1612531957_fa3c3a4c5e863f86e26d.jpg', NULL, NULL, 0, NULL, 18869, 'Alisson', 0, NULL, '2021-07-27 05:43:57', '2021-07-27 05:43:57', '1'),
+(291, 13, 'album', 'assets/embaixada/img/galeria/13/5d977c3dbe1f7561fff9a45eea3aa63399a85548.jpg', '1612531970_988317c9bd4ee27b70dc.jpg', NULL, NULL, 0, NULL, 18869, 'Alisson', 0, NULL, '2021-07-27 05:43:57', '2021-07-27 05:43:57', '1'),
+(292, 13, 'album', 'assets/embaixada/img/galeria/13/67de426d5086ea3707ab1a0ddce8f2354a899031.jpg', '1612531977_220a6c6c090a89d743e9.jpg', NULL, NULL, 0, NULL, 13786, 'Alisson', 0, NULL, '2021-07-27 05:43:57', '2021-07-27 05:43:57', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -504,6 +572,13 @@ CREATE TABLE `tb_noticia` (
   `status` enum('0','1') NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `tb_noticia`
+--
+
+INSERT INTO `tb_noticia` (`id`, `id_menu`, `descricao`, `slug`, `titulo`, `subtitulo`, `texto`, `imagem`, `idioma`, `created_at`, `updated_at`, `status`) VALUES
+(9, 80, 'teste', 'teste', '{\"en\":\"\",\"hr\":\"\",\"pt-br\":\"\"}', '{\"en\":\"\",\"hr\":\"\",\"pt-br\":\"\"}', '{\"en\":\"\",\"hr\":\"\",\"pt-br\":\"\"}', 'assets/embaixada/img/news/d52dadcd9688a4d77b152d5872f765f0db18bba4.jpg', 'pt-br', '2021-07-27 22:56:36', '2021-07-27 22:56:36', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -527,6 +602,16 @@ CREATE TABLE `tb_pagina` (
   `status` enum('0','1') NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `tb_pagina`
+--
+
+INSERT INTO `tb_pagina` (`id`, `id_menu`, `id_pagina`, `tipo`, `descricao`, `slug`, `titulo`, `subtitulo`, `texto`, `arquivo`, `idioma`, `created_at`, `updated_at`, `status`) VALUES
+(18, 81, 0, 'galeria', 'Fotos', 'fotos', '{\"en\":\"Photos\",\"hr\":\"Fot\\u00f3k\",\"pt-br\":\"Fotos\"}', '{\"en\":\"Fotos\",\"hr\":\"Fotos\",\"pt-br\":\"Fotos\"}', 0x7b22656e223a22222c226872223a22222c2270742d6272223a22227d, NULL, 'en', '2021-07-27 05:42:01', '2021-07-27 11:14:10', '1'),
+(21, 78, 0, 'post', 'Sobre', 'sobre', '{\"en\":\"Embasy\",\"hr\":\"Embaixada HR\",\"pt-br\":\"Embaixada PT\"}', '{\"en\":\"\",\"hr\":\"\",\"pt-br\":\"\"}', 0x7b22656e223a22222c226872223a22222c2270742d6272223a22227d, NULL, 'en', '2021-07-27 08:01:18', '2021-07-27 13:05:55', '1'),
+(22, 78, 21, 'post', 'Quero obter um visto', 'quero-obter-um-visto', '{\"en\":\"Visto en\",\"hr\":\"Visto hr\",\"pt-br\":\"Visto pt\"}', '{\"en\":\"Teste\",\"hr\":\"Teste\",\"pt-br\":\"Teste\"}', 0x7b22656e223a223c703e617364663c5c2f703e222c226872223a223c703e617364663c5c2f703e222c2270742d6272223a223c703e617364663c5c2f703e227d, NULL, 'pt-br', '2021-07-27 08:17:16', '2021-07-27 11:20:28', '1'),
+(23, 78, 22, 'post', 'Vistos', 'vistos', '{\"en\":\"Vistos\",\"hr\":\"Vistos\",\"pt-br\":\"Vistos\"}', '{\"en\":\"\",\"hr\":\"\",\"pt-br\":\"\"}', 0x7b22656e223a22222c226872223a22222c2270742d6272223a22227d, NULL, 'pt-br', '2021-07-27 08:21:47', '2021-07-27 11:22:08', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -542,6 +627,13 @@ CREATE TABLE `tb_pagina_album` (
   `status` enum('0','1') NOT NULL DEFAULT '1' COMMENT 'Situação de exibição do banner. 0 - Não exibir; 1 - Exibir.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `tb_pagina_album`
+--
+
+INSERT INTO `tb_pagina_album` (`id`, `id_album`, `id_pagina`, `created_at`, `updated_at`, `status`) VALUES
+(12, 12, 18, '2021-07-27 05:42:52', '2021-07-27 05:42:52', '1'),
+(14, 13, 18, '2021-07-27 06:08:34', '2021-07-27 06:08:34', '1');
 
 -- --------------------------------------------------------
 
@@ -619,6 +711,41 @@ INSERT INTO `tb_sys_config` (`id`, `config`, `value`, `created_at`, `updated_at`
 (22, 'pais', 'Angola', '2021-07-27 23:11:32', '2021-07-27 23:11:32');
 
 -- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_sys_config_versao-1`
+--
+
+CREATE TABLE `tb_sys_config_versao-1` (
+  `id` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `title` varchar(70) NOT NULL DEFAULT 'My New Site',
+  `description` varchar(160) DEFAULT NULL,
+  `quem_somos` longtext DEFAULT NULL,
+  `keywords` varchar(200) DEFAULT NULL,
+  `custodian` varchar(100) DEFAULT NULL,
+  `expires` varchar(60) DEFAULT NULL,
+  `revisit_after` varchar(20) DEFAULT NULL,
+  `rating` varchar(60) NOT NULL DEFAULT 'general',
+  `robots` varchar(16) NOT NULL DEFAULT 'index,follow',
+  `theme_color` varchar(26) DEFAULT NULL,
+  `logomarca` varchar(255) DEFAULT NULL,
+  `language` varchar(5) NOT NULL DEFAULT 'pt-BR',
+  `msg_manutencao` longtext DEFAULT NULL,
+  `msg_suspensao` longtext DEFAULT NULL,
+  `manutencao` enum('1','0') NOT NULL DEFAULT '0',
+  `bloqueado` enum('1','0') NOT NULL DEFAULT '0',
+  `force_www` enum('1','0') NOT NULL DEFAULT '0',
+  `force_https` enum('1','0') NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tb_sys_config_versao-1`
+--
+
+INSERT INTO `tb_sys_config_versao-1` (`id`, `url`, `path`, `title`, `description`, `quem_somos`, `keywords`, `custodian`, `expires`, `revisit_after`, `rating`, `robots`, `theme_color`, `logomarca`, `language`, `msg_manutencao`, `msg_suspensao`, `manutencao`, `bloqueado`, `force_www`, `force_https`) VALUES
+(1, 'localhost', '/embaixada', 'Embaixada da República de Angola na Hungria', '', NULL, NULL, 'Guedes, Alisson', NULL, NULL, 'general', '', NULL, NULL, 'pt-br', NULL, NULL, '0', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -870,6 +997,13 @@ ALTER TABLE `tb_sys_config`
   ADD UNIQUE KEY `id` (`id`,`config`);
 
 --
+-- Índices para tabela `tb_sys_config_versao-1`
+--
+ALTER TABLE `tb_sys_config_versao-1`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `url` (`url`);
+
+--
 -- Índices para tabela `tb_sys_dicionario`
 --
 ALTER TABLE `tb_sys_dicionario`
@@ -1061,6 +1195,12 @@ ALTER TABLE `tb_produto_categoria`
 --
 ALTER TABLE `tb_sys_config`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Número sequencial da tabela.', AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT de tabela `tb_sys_config_versao-1`
+--
+ALTER TABLE `tb_sys_config_versao-1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tb_sys_dicionario`

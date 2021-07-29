@@ -18,7 +18,7 @@
 
                 @foreach ($idiomas->getIdioma() as $lang)
                     @php
-                        $class = $_COOKIE['idioma'] == $lang->sigla ? 'active' : null;
+                        $class = (isset($_COOKIE['idioma']) && $_COOKIE['idioma'] == $lang->sigla) || get_config('language') == $lang -> sigla ? 'active' : null;
                     @endphp
                     <div class="icon_idioma {{ $class }}">
                         <a href="{{ url('api/translate/' . $lang->sigla) }}" class="languages" id="pt-br">
