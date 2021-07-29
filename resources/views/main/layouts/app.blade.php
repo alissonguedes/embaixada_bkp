@@ -23,7 +23,10 @@
 
 </head>
 
-<body>
+{{-- <body> --}}
+
+<body class="horizontal-layout page-header-light horizontal-menu 2-columns" data-open="click"
+    data-menu="horizontal-menu" data-col="2-columns">
 
     @include('main.layouts.header')
 

@@ -70,8 +70,6 @@ class PaginaModel extends Model
 
 		$get -> where('P.id_menu', $id_menu);
 
-		// if( ! is_null($page) )
-		// 	$get -> where('P.id', '<>', $id_menu);
 		$page = ! is_null($page) ? $page : 0;
 		$get -> where('P.id_pagina', $page);
 

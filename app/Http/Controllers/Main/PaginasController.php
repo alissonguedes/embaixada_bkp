@@ -63,18 +63,18 @@ class PaginasController extends Controller {
 		if ($menus) {
 
 			if ($id_parent != 0) {
-				$ul .= '<nav><div class="nav-wrapper">';
-				$ul .= '<ul class="collapsible collapsible-sub" data-collapsible="accordion">';
+				$ul .= '<div class="">';
+				$ul .= '<ul class="" id="menu_pag_' . $id_parent . '">';
 			} else {
-				$ul .= ' <ul id="slide-out" class="dropdown-content">';
+				$ul .= ' <ul id="">';
 			}
 
 			foreach ($menus as $m) {
-				$sub = $this -> getMenus($id_menu, $m -> id_pagina);
-				$link = $m -> id_pagina != 0 ? 'javascript:void(0);' : url($m -> link . '/' . $m -> slug);
-				$ul .= '<li>';
-				$ul .= '<a href="' . $link . '" class="lk_categs dropdown-trigger" style="display: block;">' . tradutor($m -> titulo) . '</a>';
-				$ul .= $sub;
+				$submenu = $this -> getMenus($id_menu, $m -> id_pagina);
+				$link = $m -> id_pagina == 0 ? 'javascript:void(0);' : url($m -> link . '/' . $m -> slug);
+				$ul .= '<li class="">';
+				$ul .= '<a href="' . $link . '" class="lk_categs"  data-target="menu_pag_' . $m -> id_pagina . '" style="display: block;">' . tradutor($m -> titulo) . '</a>';
+				$ul .= $submenu;
 				$ul .= '</li>';
 			}
 
@@ -82,7 +82,7 @@ class PaginasController extends Controller {
 			$ul .= '</ul>';
 
 			if ($id_parent != 0) {
-				$ul .= '</div><nav>';
+				$ul .= '</div>';
 			}
 
 		}
