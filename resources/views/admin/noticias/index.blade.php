@@ -10,9 +10,7 @@
             <div class="mr-2">Notícias - Lista</div>
             <div class="input-field outlined">
                 <i class="material-icons prefix">search</i>
-                <input type="search"
-                    class="dataTable_search white-text"
-                    placeholder="Pesquisar notícias">
+                <input type="search" class="dataTable_search white-text" placeholder="Pesquisar notícias">
             </div>
         </div>
         <!-- Header search bar Ends -->
@@ -25,8 +23,7 @@
                     <!-- BEGIN Lista de Botões -->
                     <div class="buttons">
                         <div class="buttons show-buttons">
-                            <button class="btn btn-large waves-effect"
-                                data-href="{{ route('admin.noticias.add') }}"
+                            <button class="btn btn-large waves-effect" data-href="{{ route('admin.noticias.add') }}"
                                 style="border: none">
                                 <i class="material-icons">add</i>
                             </button>
@@ -34,29 +31,18 @@
                         <div class="buttons hide-buttons">
 
                             <button class="btn btn-large waves-effect translator"
-                                data-link="{{ route('admin.dicionario') }}"
-                                data-tooltip="Traduzir"
-                                style="border: none">
+                                data-link="{{ route('admin.dicionario') }}" data-tooltip="Traduzir" style="border: none">
                                 <i class="material-icons">translate</i>
                             </button>
 
-                            <button class="btn btn-large update waves-effect"
-                                name="status"
-                                value="0"
-                                data-tooltip=""
-                                data-on="Bloquear"
-                                data-off="Desbloquear"
-                                data-link="{{ route('admin.noticias.patch', 'status') }}"
-                                data-method="patch">
-                                <i class="material-icons"
-                                    data-on="lock"
-                                    data-off="lock_open"></i>
+                            <button class="btn btn-large update waves-effect" name="status" value="0" data-tooltip=""
+                                data-on="Bloquear" data-off="Desbloquear"
+                                data-link="{{ route('admin.noticias.patch', 'status') }}" data-method="patch">
+                                <i class="material-icons" data-on="lock" data-off="lock_open"></i>
                             </button>
 
-                            <button class="btn btn-large excluir waves-effect"
-                                disabled="disabled"
-                                data-link="{{ route('admin.noticias.delete') }}"
-                                style="border: none"
+                            <button class="btn btn-large excluir waves-effect" disabled="disabled"
+                                data-link="{{ route('admin.noticias.delete') }}" style="border: none"
                                 data-tooltip="Excluir">
                                 <i class="material-icons">delete_forever</i>
                             </button>
@@ -75,24 +61,18 @@
 
             <!-- BEGIN panel-body -->
             <div class="area_dashboard panel-body p-0">
-                <table class="datatable responsiveDatatable"
-                    data-link="{{ route('admin.noticias') }}">
+                <table class="datatable responsiveDatatable" data-link="{{ route('admin.noticias') }}">
                     <thead>
                         <tr>
-                            <th class="disabled sortable white-text"
-                                width="1%"
-                                data-orderable="false">
+                            <th class="disabled sortable white-text" width="1%" data-orderable="false">
                                 <label>
-                                    <input type="checkbox"
-                                        class="amber"
-                                        id="check-all">
+                                    <input type="checkbox" class="amber" id="check-all">
                                     <span> </span>
                                 </label>
                             </th>
                             <th class="white-text">Titulo</th>
                             <th class="white-text center-align">Status</th>
-                            <th class="disabled white-text center-align"
-                                data-orderable="false"></th>
+                            <th class="disabled white-text center-align" data-orderable="false"></th>
                         </tr>
                     </thead>
                 </table>

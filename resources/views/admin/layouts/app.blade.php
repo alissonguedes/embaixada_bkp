@@ -23,7 +23,8 @@
 			'en' => 'EMBASSY OF THE REPUBLIC OF ANGOLA IN HUNGARY',
 			'hr' => 'A KÖZTÁRSASÁG NAGYKÖVETSÉGE ANGOLA MAGYARORSZÁGON',
 			'pt-br' => 'EMBAIXADA DA REPÚBLICA DE ANGOLA NA HUNGRIA',
-		]) }} - @yield('title')</title>
+		]) }} - @yield('title')
+	</title>
 
     @include('admin.layouts.styles')
 
@@ -34,7 +35,6 @@
     <div id="body">
 
         @include('admin.layouts.header')
-
         @include('admin.layouts.sidebar')
 
         <div id="main">

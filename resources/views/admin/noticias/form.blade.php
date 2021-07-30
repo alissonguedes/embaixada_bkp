@@ -13,9 +13,7 @@
         {? $disabled = isset($row) && $row->editavel === '0' ? 'disabled="disabled"' : null; ?}
 
         @if ($disabled)
-            {? $input_label_hidden = '<input type="hidden"
-                   name="label"
-                   value="{{ $row->label }}"> ?}
+            {? $input_label_hidden = '<input type="hidden" name="label" value="{{ $row->label }}">'; ?}
             {? $editavel = $row->editavel; ?}
         @else
             {? $editavel = 1; ?}
@@ -29,12 +27,11 @@
     <div class="container_right panel">
 
         <!-- Header search bar starts -->
-        <div class="title_pg f_avante"
-             style="place-content: start;">
+        <div class="title_pg f_avante" style="place-content: start;">
 
-            <button data-href="{{ route('admin.noticias') }}"
-                    class="btn btn-flat btn-small btn-floating transparent waves-effect waves-light white-text bt_ac btn-flat mr-1"
-                    data-tooltip="Voltar">
+            <button data-action="back"
+                class="btn btn-flat btn-small btn-floating transparent waves-effect waves-light white-text bt_ac btn-flat mr-1"
+                data-tooltip="Voltar">
                 <i class="material-icons">arrow_back</i>
             </button>
 
@@ -59,10 +56,8 @@
 
                             @if (isset($row))
                                 <button class="btn btn-large excluir waves-effect"
-                                        value="{{ isset($row) ? $row->id : null }}"
-                                        data-tooltip="Excluir"
-                                        data-link="{{ route('admin.noticias.delete') }}"
-                                        style="border: none">
+                                    value="{{ isset($row) ? $row->id : null }}" data-tooltip="Excluir"
+                                    data-link="{{ route('admin.noticias.delete') }}" style="border: none">
                                     <i class="material-icons">delete_forever</i>
                                 </button>
                                 <div class="divider"></div>
@@ -91,28 +86,20 @@
             <!-- BEGIN panel-body -->
             <div class="area_dashboard panel-body pl-0 pr-0 pt-1">
 
-                <form method="post"
-                      action="{{ route('admin.noticias.insert') }}"
-                      novalidate
-                      enctype="multipart/form-data"
-                      autocomplete="off">
+                <form method="post" action="{{ route('admin.noticias.insert') }}" novalidate enctype="multipart/form-data"
+                    autocomplete="off">
 
                     <div class="row">
 
                         <!-- Informações -->
-                        <div class="col l6 s12"
-                             id="informations">
+                        <div class="col l6 s12" id="informations">
 
                             <!-- BEGIN título -->
                             <div class="row">
                                 <div class="input-field amber-text amber-border mb-2">
                                     <label class="grey-text">Nome da notícia</label>
-                                    <input type="text"
-                                           name="descricao"
-                                           id="descricao"
-                                           class="box_input amber-text"
-                                           value="{{ isset($row) ? $row->descricao : null }}"
-                                           autofocus="autofocus">
+                                    <input type="text" name="descricao" id="descricao" class="box_input amber-text"
+                                        value="{{ isset($row) ? $row->descricao : null }}" autofocus="autofocus">
                                 </div>
                             </div>
                             <!-- END título -->
@@ -122,13 +109,12 @@
                                 <div class="input-field amber-text amber-border mb-2">
                                     <label class="grey-text">Idioma Padrão da notícia</label>
                                     <select name="idioma">
-                                        <option value=""
-                                                disabled="disabled"
-                                                selected="selected">Selecione o idioma padrão da notícia</option>
+                                        <option value="" disabled="disabled" selected="selected">Selecione o idioma padrão
+                                            da notícia</option>
 
                                         @foreach ($idiomas as $lang)
-                                            <option value="{{ $lang->sigla }}"
-                                                    {{ configuracoes('language') === $lang->sigla || (isset($row) && $row->idioma == $lang->sigla) ? 'selected="selected"' : null }}>{{ $lang->descricao . ' (' . $lang->sigla . ')' }}</option>
+                                            <option value="{{ $lang->sigla }}" {{ configuracoes('language') === $lang->sigla || (isset($row) && $row->idioma == $lang->sigla) ? 'selected="selected"' : null }}
+												>{{ $lang->descricao . ' (' . $lang->sigla . ')' }}</option>
                                         @endforeach
 
                                     </select>
@@ -136,7 +122,7 @@
                             </div>
                             <!-- END Idioma -->
 
-							<!-- BEGIN imagem de capa -->
+                            <!-- BEGIN imagem de capa -->
                             <div class="row">
                                 <div class="input-field media conj_img_edit">
                                     <div class="img_icon_pdf image_view z-depth-4 material-icons">
@@ -145,8 +131,7 @@
                                             <input type="hidden" name="original_name">
                                         @endif
                                     </div>
-                                    <div class="nome_arquivo"
-                                        data-placeholder="Imagem de capa">
+                                    <div class="nome_arquivo" data-placeholder="Imagem de capa">
                                     </div>
                                     <div class="bt_excluir waves-effect redefinir amber"
                                         style="{{ isset($row) && !empty($row->imagem) ? 'display: none;' : '' }}">
@@ -164,19 +149,15 @@
                             <div class="row">
 
                                 <div class="col s1 no-margin no-padding">
-                                    <span for="status"
-                                          class="active grey-text"
-                                          style="font-size: 1rem; font-family: roboto;">Status</span>
+                                    <span for="status" class="active grey-text"
+                                        style="font-size: 1rem; font-family: roboto;">Status</span>
                                 </div>
 
                                 <div class="col s2">
                                     <label>
-                                        <input type="checkbox"
-                                               name="status"
-                                               id="status"
-                                               {{ !isset($row) || $row->status === '1' ? 'checked="checked"' : null }}
-                                               class="indigo"
-                                               value="1">
+                                        <input type="checkbox" name="status" id="status"
+                                            {{ !isset($row) || $row->status === '1' ? 'checked="checked"' : null }}
+                                            class="indigo" value="1">
                                         <span>Ativo</span>
                                     </label>
                                 </div>
@@ -196,8 +177,7 @@
                                 {? $subtitulo = isset($row) && !empty($row -> subtitulo) ? json_decode($row -> subtitulo, true) : null; ?}
                                 {? $texto = isset($row) && !empty($row -> texto) ? json_decode($row -> texto, true) : null; ?}
 
-                                <div id="{{ limpa_string($idioma->sigla, '') }}"
-                                     class="col l6 s12">
+                                <div id="{{ limpa_string($idioma->sigla, '') }}" class="col l6 s12">
 
                                     <div class="row">
                                         <span class="amber-text">IDIOMA: {{ $idioma->descricao }}</span>
@@ -207,12 +187,10 @@
                                     <div class="row">
                                         <div class="input-field amber-text amber-border mb-2">
                                             <label class="grey-text">Título</label>
-                                            <input type="text"
-                                                   name="{{ $idioma->sigla }}:titulo"
-                                                   id="title"
-                                                   class="box_input amber-text"
-                                                   value="{{ isset($row) && !is_null($titulo) ? $titulo[$idioma->sigla] : null }}"
-                                                   autofocus="autofocus">
+                                            <input type="text" name="{{ $idioma->sigla }}:titulo" id="title"
+                                                class="box_input amber-text"
+                                                value="{{ isset($row) && !is_null($titulo) ? $titulo[$idioma->sigla] : null }}"
+                                                autofocus="autofocus">
                                         </div>
                                     </div>
                                     <!-- END título -->
@@ -221,11 +199,9 @@
                                     <div class="row">
                                         <div class="input-field amber-text amber-border mb-2">
                                             <label class="grey-text">Subtítulo</label>
-                                            <input type="text"
-                                                   name="{{ $idioma->sigla }}:subtitulo"
-                                                   id="subtitulo"
-                                                   class="box_input amber-text"
-                                                   value="{{ isset($row) && !is_null($subtitulo) ? $subtitulo[$idioma->sigla] : null }}">
+                                            <input type="text" name="{{ $idioma->sigla }}:subtitulo" id="subtitulo"
+                                                class="box_input amber-text"
+                                                value="{{ isset($row) && !is_null($subtitulo) ? $subtitulo[$idioma->sigla] : null }}">
                                         </div>
                                     </div>
                                     <!-- END descrição -->
@@ -233,61 +209,54 @@
                                     <!-- BEGIN Texto -->
                                     <div class="row">
                                         <div class="input-field amber-border browser-default">
-											<textarea name="{{ $idioma->sigla }}:texto" class="editor full--editor" placeholder="Texto da notícia" style="min-height: 600px !important;"><?= isset($row) && !is_null($texto) ? $texto[$idioma->sigla] : null ?></textarea>
-                                        </div>
+                                            <textarea name="{{ $idioma->sigla }}:texto" class="editor full--editor"
+                                                placeholder="Texto da notícia"
+                                                style="min-height: 600px !important;"><?= isset($row) && !is_null($texto) ? $texto[$idioma->sigla] : null ?></textarea>
                                         </div>
                                     </div>
-									<!-- END Texto -->
-
-                                @endforeach
-
-                            </div>
-                            <!-- END Idiomas -->
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col l6 s12 mt-3">
-
-                                <div class="row">
-                                    <button type="submit"
-                                            class="amber btn col btn-large black-text waves-effect">Salvar</button>
                                 </div>
+                                <!-- END Texto -->
 
-                                <input type="hidden"
-                                       name="acao"
-                                       value="login">
-                                <input type="hidden"
-                                       name="id"
-                                       value="{{ isset($row) ? $row->id : null }}">
-                                <input type="hidden"
-                                       name="_method"
-                                       value="{{ isset($row) ? 'put' : 'post' }}">
+                            @endforeach
 
-                                @if (!isset($row))
-                                    <input type="hidden"
-                                           name="editavel"
-                                           value="{{ $editavel }}">
-                                @endif
+                        </div>
+                        <!-- END Idiomas -->
 
-                                <input type="hidden"
-                                       name="dicionario"
-                                       value="{{ isset($row) ? $row->id_dicionario : null }}">
-                                {{ $input_label_hidden }}
+                    </div>
 
+                    <div class="row">
+
+                        <div class="col l6 s12 mt-3">
+
+                            <div class="row">
+                                <button type="submit"
+                                    class="amber btn col btn-large black-text waves-effect">Salvar</button>
                             </div>
+
+                            <input type="hidden" name="acao" value="login">
+                            <input type="hidden" name="id" value="{{ isset($row) ? $row->id : null }}">
+                            <input type="hidden" name="_method" value="{{ isset($row) ? 'put' : 'post' }}">
+
+                            @if (!isset($row))
+                                <input type="hidden" name="editavel" value="{{ $editavel }}">
+                            @endif
+
+                            <input type="hidden" name="dicionario"
+                                value="{{ isset($row) ? $row->id_dicionario : null }}">
+                            {{ $input_label_hidden }}
 
                         </div>
 
-                    </form>
+                    </div>
 
-                </div>
-                <!-- END panel-body -->
+                </form>
 
             </div>
-            <!-- END panel-content -->
+            <!-- END panel-body -->
 
         </div>
+        <!-- END panel-content -->
+
+    </div>
 
 @endsection

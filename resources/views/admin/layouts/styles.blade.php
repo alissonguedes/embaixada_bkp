@@ -24,12 +24,6 @@
 <!-- others styles -->
 <link rel="stylesheet" media="screen" href="{{ asset('assets/styles/colors.css') }}">
 <link rel="stylesheet" media="screen" href="{{ asset('assets/styles/style.css') }}">
-<link rel="stylesheet" media="screen" href="{{ asset('assets/styles/app-sidebar.css') }}">
-<link rel="stylesheet" media="screen" href="{{ asset('assets/styles/admin/themes/default.css') }}">
 
 <!-- styles tacticweb -->
-<link rel="stylesheet" media="screen" href="{{ asset('assets/tacticweb/styles/layout.css') }}">
-<link rel="stylesheet" media="screen" href="{{ asset('assets/tacticweb/styles/lightbox.css') }}">
-<link rel="stylesheet" media="screen" href="{{ asset('assets/tacticweb/styles/gallery.theme.css') }}">
-<link rel="stylesheet" media="screen" href="{{ asset('assets/tacticweb/styles/gallery.min.css') }}">
-<link rel="stylesheet" media="screen" href="{{ asset('assets/tacticweb/styles/rhinoslider-1.05.css') }}">
+<link rel="stylesheet" media="screen" href="{{ asset('assets/tacticweb/themes/default.css') }}">
