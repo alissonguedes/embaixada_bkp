@@ -3,6 +3,11 @@
     src: url('../fontes/avante.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'bebas';
+    src: url('../fontes/bebas.ttf') format('truetype');
+}
+
 :root {
     --amber: #ffc802 !important;
 }
@@ -13,7 +18,7 @@ body {
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
-    font-family: 'abel';
+    font-family: '----------------------------------------------------------------------bel';
 }
 
 
@@ -182,4 +187,88 @@ body {
 
 .input-field label {
     color: var(--amber) !important;
+}
+
+
+/** Login */
+
+#login-page {
+    background-color: #000;
+    background-image: url('../img/bg_login.jpg');
+    background-position: -232px center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+#login-page .tacticweb {
+    align-items: start center;
+    display: flex;
+    flex-direction: column;
+    padding-left: 145px;
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    height: calc(100vh - 1px);
+}
+
+#login-page .logo {
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    margin-top: 50px;
+    margin-left: -45px;
+    margin-bottom: 60px;
+}
+
+#login-page .tacticweb .title-1 {
+    font-family: 'Abel';
+    color: #fff;
+    font-size: 38px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px !important;
+}
+
+#login-page .tacticweb .title-2 {
+    font-family: 'bebas';
+    color: #fff;
+    font-size: 48px;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1;
+}
+
+#login-page .login-form {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    background-color: #fff;
+}
+
+#login-page #frm-login {
+    margin-top: 40px;
+}
+
+@media (min-width: 601px) and (max-width: 880px) {
+    #login-page .logo {
+        width: 200px;
+    }
+    #login-page .tacticweb {
+        padding-left: 30px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    #login-page .tacticweb {
+        padding-left: 50px;
+    }
+}
+
+@media screen and (min-width: 881px) and (max-width: 980px) {
+    #login-page .tacticweb {
+        padding-left: 110px;
+    }
 }

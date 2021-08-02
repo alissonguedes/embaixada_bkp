@@ -18,6 +18,30 @@ hr {
     margin: 0 auto;
 }
 
+.flex {
+    display: flex !important;
+}
+
+.flex-row {
+    flex-direction: row !important;
+}
+
+.flex-col {
+    flex-direction: column !important;
+}
+
+.flex-auto {
+    flex: 1 1 auto !important;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+.h-full {
+    height: 100% !important;
+}
+
 .btn,
 button,
 input,
@@ -612,6 +636,47 @@ select {
     padding: 0!important
 }
 
+
+/** Login Page */
+
+#btn-back,
+#input-pass {
+    display: none;
+}
+
+#frm-login {
+    margin-bottom: 60px;
+}
+
+#frm-login .form {
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+    width: 100%;
+}
+
+#boas-vindas {
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    font-size: 20px;
+}
+
+.form_login .vertical-align {
+    align-items: center;
+    display: flex;
+}
+
+.form_login .vertical-align button {
+    margin-right: 15px;
+}
+
+#frm-login .form #input-login,
+#frm-login .form #input-pass {
+    position: absolute;
+    width: 100%;
+}
+
 .navbar {
     z-index: 995;
 }
@@ -651,7 +716,14 @@ nav .nav-wrapper .btn {
     display: flex;
     left: 300px;
     position: absolute;
-    /* flex: 1 1 45px; */
+    color: var(--grey);
+    background: transparent;
+    flex: 1 1 45px;
+    font-size: 24px !important;
+}
+
+nav .nav-wrapper .btn i {
+    font-size: inherit;
 }
 
 ::placeholder {
@@ -730,8 +802,13 @@ nav .nav-wrapper .btn {
     display: flex;
     position: absolute;
     /* left: 340px; */
-    left: 330px;
+    left: 300px;
     align-items: center;
+}
+
+.header .header-search-wrapper~.page-title,
+.header .btn~.page-title {
+    margin-left: 30px;
 }
 
 .nav-wrapper .header .page-title .title {
