@@ -7,8 +7,8 @@
 <link rel="stylesheet" media="screen" href="{{ asset('assets/fonts/icons/icons.css') }}">
 
 <!-- styles -->
-<link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/animate.css') }}">
 <link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/materializecss/materialize.min.css') }}">
+<link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/animate.css') }}">
 <link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.css') }}">
 
 <link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/datatable/v10.2/jquery.dataTables.min.css') }}">

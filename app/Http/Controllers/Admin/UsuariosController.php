@@ -155,7 +155,7 @@ class UsuariosController extends Controller
 	public function delete(Request $request)
 	{
 
-		if ( ! Session::has('userdata')) {
+		if ( ! Session::has('userdata')) { 
 			if ( $request -> ajax() )
 				return abort(403);
 			else

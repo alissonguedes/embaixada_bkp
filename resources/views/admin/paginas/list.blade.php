@@ -8,47 +8,40 @@
 
             <td width="1%" data-disabled="true">
                 <label>
-                    <input type="checkbox" name="id[]" class="light-blue" value="{{ $row->id }}"
-                        data-status="{{ $row->status }}">
+                    <input type="checkbox" name="id[]" class="light-blue" value="{{ $row->id }}" data-status="{{ $row->status }}">
                     <span></span>
                 </label>
             </td>
             <td>{{ $row->descricao }}</td>
             <td class="center-align"><i class="material-icons">{{ $row->status === '0' ? 'lock' : 'check' }}</i>
             </td>
-            <td data-disabled="true">
-                <button data-href="{{ route('admin.paginas.edit', $row->id) }}"
-                    class="bt_edit btn-floating float-none">
+            <td class="center-align" data-disabled="true">
+                <button data-href="{{ route('admin.paginas.edit', $row->id) }}" class="btn btn-flat btn-edit btn-floating float-none">
                 </button>
             </td>
         </tr>
 
     @endforeach
 
-
     <div id="pagination">
 
         <ul>
             <li>
-                <button class="btn btn-small btn-floating waves-effect"
-                    data-href="{{ !$paginate->onFirstPage() ? $paginate->previousPageUrl() : '#' }}"
-                    {{ $paginate->onFirstPage() ? 'disabled' : null }}>
+                <button class="btn btn-flat btn-floating waves-effect" data-href="{{ !$paginate->onFirstPage() ? $paginate->previousPageUrl() : '#' }}" data-tooltip="Anterior" {{ $paginate->onFirstPage() ? 'disabled' : null }}>
                     <i class="material-icons">keyboard_arrow_left</i>
                 </button>
             </li>
 
-            @for ($i = 1; $i <= $paginate->lastPage(); $i++)
-                {? $class = ($i === $paginate -> currentPage() ) ? 'active' : null ?}
-                <li>
-                    <button data-href="{{ $paginate->currentPage() !== $i ? $paginate->url($i) : '#' }}"
-                        class="btn btn-small btn-floating waves-effect {{ $class }}">{{ $i }}</button>
-                </li>
-            @endfor
+            {{-- @for ($i = 1; $i <= $paginate->lastPage(); $i++)
+		{? $class = ($i === $paginate -> currentPage() ) ? 'active' : null ?}
+		<li>
+			<button data-href="{{ $paginate->currentPage() !== $i ? $paginate->url($i) : '#' }}"
+				class="btn btn-small btn-floating waves-effect {{ $class }}">{{ $i }}</button>
+		</li>
+	@endfor --}}
 
             <li>
-                <button class="btn btn-small btn-floating waves-effect"
-                    data-href="{{ $paginate->currentPage() < $paginate->lastPage() ? $paginate->nextPageUrl() : '#' }}"
-                    {{ $paginate->currentPage() === $paginate->lastPage() ? 'disabled' : null }}>
+                <button class="btn btn-flat btn-floating waves-effect" data-href="{{ $paginate->currentPage() < $paginate->lastPage() ? $paginate->nextPageUrl() : '#' }}" data-tooltip="Próxima" {{ $paginate->currentPage() === $paginate->lastPage() ? 'disabled' : null }}>
                     <i class="material-icons">keyboard_arrow_right</i>
                 </button>
             </li>
@@ -58,36 +51,20 @@
     </div>
 
     <div id="info">
-        <a href="#" class="amber-text">
-            {{ $paginate->firstItem() }} - {{ $paginate->lastItem() }} / {{ $paginate->total() }}
-        </a>
+        <button data-href="#" class="btn btn-flat waves-effect">
+            {{ $paginate->firstItem() }} - {{ $paginate->lastItem() }} de {{ $paginate->total() }}
+            {{-- {{ $paginate -> perPage() }} --}}
+        </button>
     </div>
 
 @else
 
-    <div class="white-text pt-2 center-align">
+    <div class="no-results white-text center-align">
         Nenhum registro encontrado.
     </div>
 
-    <div id="pagination">
-        <ul>
-            <li>
-                <button class="btn btn-small btn-floating waves-effect" data-href="#" disabled="disabled">
-                    <i class="material-icons">keyboard_arrow_left</i>
-                </button>
-            </li>
-            <li>
-                <button data-href="#" class="btn btn-small btn-floating waves-effect active">0</button>
-            </li>
-            <li>
-                <button class="btn btn-small btn-floating waves-effect" data-href="#" disabled="disabled">
-                    <i class="material-icons">keyboard_arrow_right</i>
-                </button>
-            </li>
-        </ul>
-    </div>
+    <div id="pagination"></div>
 
-    <div id="info" class="amber-text">
-    </div>
+    <div id="info"></div>
 
 @endif

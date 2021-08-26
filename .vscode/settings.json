@@ -1,5 +1,0 @@
-{
-	"blade.format.enable": true,
-	"bladeFormatter.format.wrapAttributes": "force-aligned",
-	"bladeFormatter.format.wrapLineLength": 1200
-}

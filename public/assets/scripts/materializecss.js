@@ -70,7 +70,7 @@ $(window).on("load", function() {
 
 function Materializecss() {
 
-    $('[maxlength]').each(function() {
+    $('[data-count="true"]').each(function() {
         var maxlength = $(this).attr('maxlength');
         $(this).attr('data-length', maxlength).characterCounter();
     });

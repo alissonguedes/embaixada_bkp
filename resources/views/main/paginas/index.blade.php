@@ -14,7 +14,6 @@
 
         <div class="menu_categs">
 
-
             <nav>
                 <a href="javascript:void(0);" class="mobile-menu-trigger">Open mobile menu</a>
                 <ul class="menu menu-bar">

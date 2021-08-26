@@ -172,8 +172,14 @@ var Http = {
                 document.title = title.innerHTML;
 
             if ($(responseHtml).find('#body').length) {
-                console.log(responseHtml)
+
+                // animate($('#main .content'), 'fadeOutLeft', function() {});
+                // setTimeout(function() {
                 $('#body').html($(responseHtml).find('#body').html());
+                //     animate($('#main .content'), 'fadeInRight');
+                //     core();
+                // }, 100);
+
             } else {
                 $('#main').html($(responseHtml).find('html').html());
             }

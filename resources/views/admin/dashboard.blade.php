@@ -1,19 +1,19 @@
 @extends('admin.layouts.app')
 
+@section('search', '')
+@section('title', 'Dashboard')
+
 @section('content')
 
-    <div class="container_right">
+<div class="dashboard content">
 
-        <!-- Header search bar starts -->
-        <div class="title_pg f_avante">
-            <div class="mr-2">Dashboard</div>
-        </div>
+    <div class="row">
 
-        <!-- BEGIN panel-body -->
-        <div class="area_dashboard panel-body pt-10">
-
+        <div class="col s12 mb-2">
             <div class="boas_vindas">
-                <span style="font-size: 38px;">Bem vindo, {{ session()->get('userdata')['nome'] }}.</span>
+                <span class="mb-1" style="display: block;font-size: 38px;">
+                    Bem vindo, {{ session()->get('userdata')['nome'] }}.
+                </span>
                 <br>
                 Esta é a área administrativa do seu site.
                 <br>
@@ -21,51 +21,77 @@
                 <br>
                 Fique a vontade.
             </div>
+        </div>
 
-            <a href="{{ route('admin.banners') }}">
-                <div class="conj_dash">
-                    <div class="item_dash">Banners Cadastrados</div>
-                    <div class="valor_dash f_bebas">{{ $total_banners }}</div>
+        <div class="col xl4 l4 m6 s6">
+            <div class="card bordered">
+                <div class="card-content no-padding">
+                    <a href="{{ route('admin.banners') }}" class="waves-effect waves-light">
+                        <span class="card-title">Banners Cadastrados</span>
+                        <p>{{ $total_banners }}</p>
+                    </a>
                 </div>
-            </a>
+            </div>
+        </div>
 
-            <!-- <a href="{{ route('admin.categorias') }}">
-               <div class="conj_dash">
-                <div class="item_dash">Categorias Cadastradas</div>
-                <div class="valor_dash f_bebas">{{ $total_categorias }}</div>
-               </div>
-              </a> -->
-
-            <a href="{{ route('admin.produtos') }}">
-                <div class="conj_dash">
-                    <div class="item_dash">Serviços Cadastrados</div>
-                    <div class="valor_dash f_bebas">{{ $total_produtos }}</div>
+        <div class="col xl4 l4 m6 s6">
+            <div class="card bordered">
+                <div class="card-content no-padding">
+                    <a href="{{ route('admin.produtos') }}" class="waves-effect waves-light">
+                        <span class="card-title">Serviços Cadastrados</span>
+                        <p>{{ $total_produtos }}</p>
+                    </a>
                 </div>
-            </a>
+            </div>
+        </div>
 
-            <a href="{{ route('admin.intencoes') }}">
-                <div class="conj_dash">
-                    <div class="item_dash">Interessados</div>
-                    <div class="valor_dash f_bebas">{{ $total_intencoes }}</div>
+        <div class="col xl4 l4 m6 s6">
+            <div class="card bordered">
+                <div class="card-content no-padding">
+                    <a href="{{ route('admin.intencoes') }}" class="waves-effect waves-light">
+                        <span class="card-title">Interessados</span>
+                        <p>{{ $total_intencoes }}</p>
+                    </a>
                 </div>
-            </a>
+            </div>
+        </div>
 
-            <!-- <a href="{{ route('admin.distribuidores') }}">
-               <div class="conj_dash">
-                <div class="item_dash">Distribuidores</div>
-                <div class="valor_dash f_bebas">{{ $total_distribuidores }}</div>
-               </div>
-              </a> -->
-
-            <a href="{{ route('admin.emails') }}">
-                <div class="conj_dash">
-                    <div class="item_dash">Contatos</div>
-                    <div class="valor_dash f_bebas">{{ $total_emails }}</div>
+        <div class="col xl4 l4 m6 s6">
+            <div class="card bordered">
+                <div class="card-content no-padding">
+                    <a href="{{ route('admin.emails') }}" class="waves-effect waves-light">
+                        <span class="card-title">Contatos</span>
+                        <p>{{ $total_emails }}</p>
+                    </a>
                 </div>
-            </a>
+            </div>
+        </div>
 
+        <div class="col xl4 l4 m6 s6">
+            <div class="card bordered">
+                <div class="card-content no-padding">
+                    <a href="{{ route('admin.categorias') }}" class="waves-effect waves-light">
+                        <span class="card-title">Categorias Cadastradas</span>
+                        <p>{{ $total_categorias }}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col xl4 l4 m6 s6">
+            <div class="card bordered">
+                <div class="card-content no-padding">
+                    <a href="{{ route('admin.distribuidores') }}" class="waves-effect waves-light">
+                        <span class="card-title">Distribuidores</span>
+                        <p>{{ $total_distribuidores }}</p>
+                    </a>
+                </div>
+            </div>
         </div>
 
     </div>
+
+</div>
+
 
 @endsection

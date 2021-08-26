@@ -2,7 +2,7 @@
 <!--[if lt IE 8 ]><html class="ie ie7" lang="pt-bt"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="pt-br"> <![endif]-->
 <!--[if (gte IE 8)|!(IE)]><!-->
-<html lang="<?= !isset($_COOKIE['idioma']) ? get_config('language') : $_COOKIE['idioma'] ?>">
+<html lang="{{ !isset($_COOKIE['idioma']) ? get_config('language') : $_COOKIE['idioma'] }}">
 <!--<![endif]-->
 
 <head>

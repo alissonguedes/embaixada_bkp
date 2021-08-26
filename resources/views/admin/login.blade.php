@@ -1,115 +1,75 @@
 @extends('admin.layouts.app')
 
-@section('content')
+@section('container')
 
-    <link rel="stylesheet"
-          media="screen"
-          href="{{ asset('assets/styles/admin/themes/pages/login/login.css') }}">
+    <div id="login-page" class="row">
 
-    <div class="area_left">
-        <div class="logotw">
-            <img src="{{ asset('assets/tacticweb/img/logotw.png') }}"
-                 class="img_cem">
-            <div class="title_tela1">Área</div>
-            <div class="title_tela2 f_bebas">ADMINISTRATIVA</div>
-        </div>
-    </div>
-
-    <div class="area_right">
-
-        <div class="logo_cliente">
-            <img src="{{ asset('assets/embaixada/img/insignia.png') }}"
-                 class="img_cem">
+        <div class="tacticweb col m8 l8 xl9 hide-on-small-only">
+            <p class="logo">
+                <img src="{{ asset('assets/tacticweb/img/logotw.png') }}" class="img_cem">
+            </p>
+            <h5 class="title-1">Área</h5>
+            <h2 class="title-2">ADMINISTRATIVA</h2>
         </div>
 
-        <div class="form_login">
+        <div class="login-form padding-3 col s12 m5 l4 xl3">
 
-            <div class="row">
-                <div class="input-field col s12 vertical-align no-padding">
-                    <button type="button"
-                            id="btn-back"
-                            class="btn btn-floating left transparent z-depth-0">
-                        <i class="material-icons grey-text text-darken-4">keyboard_arrow_left</i>
-                    </button>
-                    <h5 id="boas-vindas"
-                        class="animated lightSpeedInLeft faster delay-15"> Olá, seja bem-vindo!</h5>
-                </div>
+            <div id="logo-cliente">
+                <img src="{{ asset(get_config('site_logo')) }}" alt="asdf">
             </div>
 
-            <form novalidate
-                  id="frm-login"
-                  class="login-form"
-                  action="{{ route('admin.auth.login') }}"
-                  method="post"
-                  enctype="multipart/form-data"
-                  autocomplete="off">
+            <div id="boas-vindas" class="vertical-align no-padding">
+                <button type="button" id="btn-back" class="btn btn-small btn-floating transparent left z-depth-0">
+                    <i class="material-icons grey-text text-darken-4">keyboard_arrow_left</i>
+                </button>
+                <h5 class="animated lightSpeedInLeft faster delay-15">
+                    Bem-vindo!
+                </h5>
+            </div>
+
+            <form novalidate id="frm-login" class="" action="{{ route('admin.auth.login') }}" method="post"
+                enctype="multipart/form-data" autocomplete="off">
 
                 <div class="form">
 
-                    <div id="input-login"
-                         class="slow">
-                        <div class="input-field amber-text">
-                            <input type="email"
-                                   name="login"
-                                   class="amber-border"
-                                   id="login"
-                                   autofocus="autofocus">
+                    <div id="input-login" class="slow">
+                        <div class="input-field">
+                            <input type="email" name="login" id="login" autofocus="autofocus">
                             <label for="login">
-                                {__USERNAME__}
+                                Usuário
                             </label>
                         </div>
-                        <button type="button"
-                                id="relembrar_login"
-                                name="relembrar_login"
-                                class="btn btn-flat pl-0 pr-0 transparent left">
-                            {__RETRIEVE_LOGIN__}
-                        </button>
+                        {{-- <button type="button" id="relembrar_login" name="relembrar_login"
+                            class="btn btn-flat pl-0 pr-0 transparent left">
+                            Esqueci meu login
+                        </button> --}}
                     </div>
 
-                    <div id="input-pass"
-                         class="slow">
-                        <div class="input-field amber-text">
-                            <input type="password"
-                                   name="senha"
-                                   class="amber-border"
-                                   id="senha"
-                                   disabled="disabled"
-                                   autofocus="autofocus"
-                                   minlength="5">
+                    <div id="input-pass" class="slow">
+                        <div class="input-field">
+                            <input type="password" name="senha" id="senha" disabled="disabled" autofocus="autofocus"
+                                minlength="5">
                             <label for="pass">
-                                {__PASSWORD__}
+                                Senha
                             </label>
                         </div>
-                        <button type="button"
-                                id="relembrar_senha"
-                                name="relembrar_senha"
-                                class="btn btn-flat pl-0 pr-0 transparent right">
-                            {__RETRIEVE_PASSWORD__}
-                        </button>
+                        {{-- <button type="button" id="relembrar_senha" name="relembrar_senha"
+                            class="btn btn-flat pl-0 pr-0 transparent right">
+                            Recuperar senha
+                        </button> --}}
                     </div>
 
                 </div>
 
-                <div class="row">
-                    <button type="submit"
-                            id="entrar"
-                            name="entrar"
-                            class="btn btn-large waves-effect waves-light col next amber">
-                        {__NEXT__}
-                        <i class="material-icons margin-left">input</i>
-                    </button>
-                </div>
+                <button type="submit" id="entrar" name="entrar"
+                    class="btn btn-small waves-effect waves-light right mb-2 next">
+                    Próximo
+                    <i class="material-icons margin-left">input</i>
+                </button>
 
-                <input type="hidden"
-                       name="acao"
-                       value="login">
-                <input type="hidden"
-                       name="url"
-                       id="url"
-                       value="">
-                <input type="hidden"
-                       name="_method"
-                       value="post">
+                <input type="hidden" name="acao" value="login">
+                <input type="hidden" name="url" id="url" value="">
+                <input type="hidden" name="_method" value="post">
 
                 @csrf
 
@@ -117,13 +77,12 @@
 
             <br>
 
-            <div class="aviso">
+            <p class="aviso">
                 Caso tenha esquecido seus dados de acesso, favor entrar em contato com o desenvolvedor.<br><br> TacticWeb /
                 Luiz Felipe:<br> fone: <strong>(83)98833-6804</strong><br> e-mail: <strong>tacticwebcg@gmail.com</strong>
-            </div>
+            </p>
 
         </div>
-
     </div>
 
 @endsection

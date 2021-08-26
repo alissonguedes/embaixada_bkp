@@ -6,6 +6,12 @@ var Request = {
 
     addEvent: (link) => {
 
+        $("[data-action]").on("click", function(e) {
+            var action = $(this).data("action");
+            if (action === "back") window.history.back();
+            else if (action === "next") window.history.forward();
+        });
+
         var ln = typeof link === 'undefined' ? links : link;
 
         $('body').find(ln).on('click', function(e) {

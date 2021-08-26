@@ -8,7 +8,6 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="Organização Atos" content="Organização Atos">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="robots" content="index, follow">
@@ -20,11 +19,12 @@
 
     <title>
         {{ tradutor([
-			'en' => 'EMBASSY OF THE REPUBLIC OF ANGOLA IN HUNGARY',
-			'hr' => 'A KÖZTÁRSASÁG NAGYKÖVETSÉGE ANGOLA MAGYARORSZÁGON',
-			'pt-br' => 'EMBAIXADA DA REPÚBLICA DE ANGOLA NA HUNGRIA',
-		]) }} - @yield('title')
-	</title>
+    'en' => 'EMBASSY OF THE REPUBLIC OF ANGOLA IN HUNGARY',
+    'hr' => 'A KÖZTÁRSASÁG NAGYKÖVETSÉGE ANGOLA MAGYARORSZÁGON',
+    'pt-br' => 'EMBAIXADA DA REPÚBLICA DE ANGOLA NA HUNGRIA',
+]) }}
+        - @yield('title')
+    </title>
 
     @include('admin.layouts.styles')
 
@@ -37,20 +37,37 @@
         @include('admin.layouts.header')
         @include('admin.layouts.sidebar')
 
-        <div id="main">
+        @section('container')
 
-            @section('container')
-                @yield('content')
-            @show
+            <div id="main">
 
-            @include('admin/layouts/footer')
-            <meta name="csrf-token" content="{{ csrf_token() }}">
+                <div class="row">
 
-        </div>
+                    <div class="col s12">
+
+                        <div class="container">
+
+                            <div class="section vertical-dashboard">
+                                @yield('content')
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+
+            </div>
+
+            @include('admin.layouts.footer')
+
+        @show
 
     </div>
 
-    @include('admin/layouts/scripts')
+    @include('admin.layouts.scripts')
 
 </body>
 

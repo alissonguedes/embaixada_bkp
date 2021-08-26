@@ -1,55 +1,31 @@
 @extends('admin.layouts.app')
 
 @section('search')
-    <button data-action="back" class="btn btn-flat btn-small btn-floating transparent waves-effect waves-light white-text btn-flat mr-1"
-        data-tooltip="Voltar">
+    <button data-action="back" class="btn btn-flat btn-medium btn-floating waves-effect waves-light" data-tooltip="Voltar">
         <i class="material-icons">arrow_back</i>
     </button>
 @endsection
 
 @section('content')
 
-    <div class="panel">
-
-        <!-- BEGIN panel-content -->
-        <div class="panel-content">
-
-            <!-- BEGIN panel-header -->
-            <div class="panel-header">
-
-                <!-- BEGIN Toolbar -->
-                <div class="toolbar bts_acao f_bebas">
-
-                    <div class="buttons">
-
-                        <!-- BEGIN Lista de Botões -->
-                        <div class="buttons show-buttons">
-
-							@section('buttons')
-							@show
-
-                        </div>
-                        <!-- END Lista de Botões -->
-
-                    </div>
-
-                </div>
-                <!-- END Toolbar -->
-
-            </div>
-            <!-- END panel-header -->
-
-            <!-- BEGIN panel-body -->
-            <div class="panel-body pl-0 pr-0 pt-1">
-
-                @section('form') @show
-
+    <div class="top flex mb-1">
+        <div class="actions action-btns flex-row align-itens-center">
+            @yield('buttons')
+            @yield('tabs')
         </div>
-        <!-- END panel-body -->
-
     </div>
-    <!-- END panel-content -->
 
-</div>
+    <div class="content mt-4 mb-4">
+        <div class="row">
+            <div class="col xl9 m8 s12">
+                <div class="card z-depth-1 bg-opacity-2">
+                    <div class="card-content">
+                        <span class="card-title mb-3">@yield('title')</span>
+                        @section('form') @show
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
