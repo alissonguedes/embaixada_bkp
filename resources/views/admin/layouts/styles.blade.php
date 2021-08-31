@@ -20,6 +20,7 @@
 <link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/quill/css/quill.snow.css') }}">
 <link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/quill/css/quill.bubble.css') }}">
 <link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/animate.css') }}">
+<link rel="stylesheet" media="screen" href="{{ asset('assets/plugins/magnific-popup/magnific-popup.css') }}">
 
 <!-- others styles -->
 <link rel="stylesheet" media="screen" href="{{ asset('assets/styles/colors.css') }}">

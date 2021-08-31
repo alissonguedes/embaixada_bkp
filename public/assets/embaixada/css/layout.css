@@ -267,11 +267,15 @@ header .topbar {
 
 .icon_idioma {
     background-color: #b40000;
-    padding: 5px 20px;
     border-radius: 5px;
     margin: 0 5px;
-    cursor: pointer;
     float: left;
+}
+
+.icon_idioma a {
+    padding: 5px 20px;
+    border-radius: inherit;
+    display: block;
 }
 
 .active {

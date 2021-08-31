@@ -51,7 +51,7 @@ $input_label_hidden = null;
             <div class="row">
                 <div class="col s12 mb-1">
                     <div class="input-field">
-                        <label class="">Nome da página</label>
+                        <label class="___class_+?8___">Nome da página</label>
                         <input type="text" name="descricao" id="descricao" value="{{ isset($row) ? $row->descricao : null }}" autofocus="autofocus">
                     </div>
                 </div>
@@ -62,7 +62,7 @@ $input_label_hidden = null;
             <div class="row">
                 <div class="col s12 mb-1">
                     <div class="input-field">
-                        <label class="">Menu da página</label>
+                        <label class="___class_+?12___">Menu da página</label>
                         <select name="menu">
                             <option value="" disabled="disabled" selected="selected">Selecione o menu da página</option>
                             @foreach ($menus as $menu)
@@ -78,7 +78,7 @@ $input_label_hidden = null;
             <div class="row">
                 <div class="col s12 mb-1">
                     <div class="input-field">
-                        <label class="">Grupo</label>
+                        <label class="___class_+?16___">Grupo</label>
                         <select name="grupo">
                             <option value="" disabled="disabled" selected="selected">Selecione o grupo da página</option>
                             <option value="0">Nenhum</option>
@@ -97,7 +97,7 @@ $input_label_hidden = null;
             <div class="row">
                 <div class="col s12 mb-1">
                     <div class="input-field">
-                        <label class="">Idioma Padrão da página</label>
+                        <label class="___class_+?20___">Idioma Padrão da página</label>
                         <select name="idioma">
                             <option value="" disabled="disabled" selected="selected">Selecione o idioma padrão da página</option>
 
@@ -112,9 +112,8 @@ $input_label_hidden = null;
             <!-- END Idioma -->
 
             <!-- BEGIN Status -->
-            <div class="row mb-3">
-
-                <div class="col s12">
+            <div class="row">
+                <div class="col s12 mb-3">
                     <label for="status">Ativo</label>
                     <div class="switch right">
                         <label class=" no-margin">
@@ -124,7 +123,6 @@ $input_label_hidden = null;
                         </label>
                     </div>
                 </div>
-
             </div>
             <!-- END Status -->
 
@@ -170,7 +168,7 @@ $input_label_hidden = null;
                     </div>
                 </div>
                 <div class="modal" id="modal-galeria">
-                    <div class="modal-content black white-text">
+                    <div class="modal-content">
                         @php
                             $fotos = new App\Models\Admin\FotoModel();
                         @endphp
@@ -200,8 +198,8 @@ $input_label_hidden = null;
                             </ul>
                         @endif
                     </div>
-                    <div class="modal-footer black">
-                        <button type="button" class="modal-close waves-effect waves-green btn-flat">Feito</button>
+                    <div class="modal-footer bordered">
+                        <button type="button" class="btn btn-small btn-flat right mr-2 modal-close waves-effect">Feito</button>
                     </div>
                 </div>
             </div>
@@ -253,7 +251,7 @@ $input_label_hidden = null;
 
                             @if (isset($arquivos))
                                 <div class="input-field media">
-                                    <div class="">
+                                    <div class="___class_+?53___">
                                         <span class="count-files">{{ count($arquivos) }}</span>
                                         @if (count($arquivos) > 1)
                                             arquivos cadastrados
@@ -268,7 +266,7 @@ $input_label_hidden = null;
                                                 {{-- <img src="{{ asset($file->path) }}" alt=""	class="circle"> --}}
                                                 <p>{{ $file->realname }}</p>
                                                 <span class="title ">{{ asset($file->path) }}</span>
-                                                <button type="button"  class="secondary-content btn btn-floating btn-small waves-effect right remover_arquivo" data-url="{{ route('admin.paginas.delete.file', [$row->id, $file->id]) }}" id="{{ $file->id }}" data-tooltip="Excluir">
+                                                <button type="button" class="secondary-content btn btn-floating btn-small waves-effect right remover_arquivo" data-url="{{ route('admin.paginas.delete.file', [$row->id, $file->id]) }}" id="{{ $file->id }}" data-tooltip="Excluir">
                                                     <i class="material-icons">close</i>
                                                 </button>
                                                 <input type="hidden" name="arquivos[]" value="{{ $file->path }}">
@@ -310,7 +308,7 @@ $input_label_hidden = null;
                     <div class="row">
                         <div class="col s12 mb-1">
                             <div class="input-field">
-                                <label class="">Título</label>
+                                <label class="___class_+?66___">Título</label>
                                 <input type="text" name="{{ $idioma->sigla }}:titulo" id="title" value="{{ isset($row) ? $titulo[$idioma->sigla] : null }}" autofocus="autofocus">
                             </div>
                         </div>
@@ -321,7 +319,7 @@ $input_label_hidden = null;
                     <div class="row">
                         <div class="col s12 mb-1">
                             <div class="input-field">
-                                <label class="">Subtítulo</label>
+                                <label class="___class_+?70___">Subtítulo</label>
                                 <input type="text" name="{{ $idioma->sigla }}:subtitulo" id="subtitulo" value="{{ isset($row) ? $subtitulo[$idioma->sigla] : null }}">
                             </div>
                         </div>

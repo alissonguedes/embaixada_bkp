@@ -1,3 +1,4 @@
+<div class="clearfix"></div>
 {{-- <div class="title_area_preta">{{ tradutor('conheca_mais_a_hungria') }}</div>
 
     @php $foto = new App\Models\Main\PaginaModel(); @endphp
@@ -23,6 +24,7 @@
 <div class="area_preta_bottom">
     <img src="{{ asset('assets/embaixada/img/top_middle.png') }}" class="img_cem">
 </div>
+
 <footer>
 
     <div class="cols_footer mil-pixel">

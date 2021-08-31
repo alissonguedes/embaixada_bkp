@@ -2,193 +2,213 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admin\FotoModel;
+use App\Models\Admin\IdiomaModel;
+use App\Models\Admin\MenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 
-use App\Models\Admin\FotoModel;
-use App\Models\Admin\MenuModel;
-use App\Models\Admin\IdiomaModel;
-
 class FotosController extends Controller
 {
-	public function __construct()
-	{
-		$this->foto_model = new FotoModel();
-		$this->menu_model = new MenuModel();
-		$this->idioma_model = new IdiomaModel();
-	}
+    public function __construct()
+    {
+        $this->foto_model = new FotoModel();
+        $this->menu_model = new MenuModel();
+        $this->idioma_model = new IdiomaModel();
+    }
 
-	public function index(Request $request)
-	{
+    public function index(Request $request)
+    {
 
-		if ( ! Session::has('userdata')) {
-			if ( $request -> ajax() )
-				return abort(403);
-			else
-				return redirect() -> route('admin.auth.login');
-		}
+        if (!Session::has('userdata')) {
+            if ($request->ajax()) {
+                return abort(403);
+            } else {
+                return redirect()->route('admin.auth.login');
+            }
 
-		if ($request->ajax()) {
-			$dados['paginate'] = $this->foto_model->getAlbum();
+        }
 
-			return view('admin.fotos.list', $dados);
-		}
+        if ($request->ajax()) {
+			return response($this -> foto_model->getLastAlbum(), 200);
+        }
 
-		return view('admin.fotos.index');
-	}
+        $dados['paginate'] = $this->foto_model->getAlbum();
 
-	public function show_form(Request $request, $id = null)
-	{
+        return view('admin.fotos.index', $dados);
 
-		if ( ! Session::has('userdata')) {
-			if ( $request -> ajax() )
-				return abort(403);
-			else
-				return redirect() -> route('admin.auth.login');
-		}
+    }
 
-		$dados = [];
+    public function show_form(Request $request, $id = null)
+    {
 
-		if (!is_null($id)) {
-			$dados['row'] = $this->foto_model->getAlbum($id)->first();
-		}
+        if (!Session::has('userdata')) {
+            if ($request->ajax()) {
+                return abort(403);
+            } else {
+                return redirect()->route('admin.auth.login');
+            }
+        }
 
-		$dados['idiomas'] = $this->idioma_model->getIdioma();
-		$dados['menus'] = $this->menu_model->getMenu();
+        $dados = [];
 
-		return view('admin.fotos.form', $dados);
-	}
+        if (!is_null($id)) {
+            $dados['row'] = $this->foto_model->getAlbum($id)->first();
+        }
 
-	public function insert(Request $request)
-	{
+        $dados['idiomas'] = $this->idioma_model->getIdioma();
+        $dados['menus'] = $this->menu_model->getMenu();
 
-		if ( ! Session::has('userdata')) {
-			if ( $request -> ajax() )
-				return abort(403);
-			else
-				return redirect() -> route('admin.auth.login');
-		}
+        if ($request->action == 'rename') {
 
-		$request->validate([
-			'nome' => ['required', 'unique:tb_album,nome', 'max:255'],
-		]);
+            return response($dados['row'], 200);
 
-		$url = url('admin/fotos ');
-		$type = 'back';
+        } else {
+            return view('admin.fotos.form', $dados);
+        }
 
-		if ($this->foto_model->create($request)) {
-			$status = 'success';
-			$message = 'Idioma cadastrado com sucesso!';
-		} else {
-			$status = 'error';
-			$message = 'Não foi possível cadastrar o idioma. Por favor, tente novamente.';
-		}
+    }
 
-		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
-	}
+    public function insert(Request $request)
+    {
 
-	public function update(Request $request)
-	{
+        if (!Session::has('userdata')) {
+            if ($request->ajax()) {
+                return abort(403);
+            } else {
+                return redirect()->route('admin.auth.login');
+            }
 
-		if ( ! Session::has('userdata')) {
-			if ( $request -> ajax() )
-				return abort(403);
-			else
-				return redirect() -> route('admin.auth.login');
-		}
+        }
 
-		$request->validate([
-			'nome' => ['required', Rule::unique('tb_album', 'nome')->ignore($_POST['id'], 'id'), 'max:255'],
-		]);
+        $request->validate([
+            'nome' => ['required', 'unique:tb_album,nome', 'max:255'],
+        ]);
 
-		$url = url('admin/fotos ');
-		$type = 'back';
+        $url = url('admin/fotos ');
+        $type = 'back';
 
-		if ($this->foto_model->edit($request)) {
-			$status = 'success';
-			$message = 'Foto atualizado com sucesso!';
-		} else {
-			$status = 'error';
-			$message = 'Não foi possível atualizar o foto. Por favor, tente novamente.';
-		}
+        if ($this->foto_model->create($request)) {
+            $status = 'success';
+            $message = 'Álbum cadastrado com sucesso!';
+        } else {
+            $status = 'error';
+            $message = 'Não foi possível cadastrar o álbum. Por favor, tente novamente.';
+        }
 
-		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
-	}
+        return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+    }
 
-	public function replace(Request $request, $field)
-	{
+    public function update(Request $request)
+    {
 
-		if ( ! Session::has('userdata')) {
-			if ( $request -> ajax() )
-				return abort(403);
-			else
-				return redirect() -> route('admin.auth.login');
-		}
+        if (!Session::has('userdata')) {
+            if ($request->ajax()) {
+                return abort(403);
+            } else {
+                return redirect()->route('admin.auth.login');
+            }
 
-		$url = url('admin/fotos');
-		$type = null;
+        }
 
-		if ($this->foto_model->edit($request, $field)) {
-			$status = 'success';
-			$message = 'Foto atualizado com sucesso!';
-		} else {
-			$status = 'error';
-			$message = 'Não foi possível atualizar o foto. Por favor, tente novamente.';
-		}
+        $request->validate([
+            'nome' => ['required', Rule::unique('tb_album', 'nome')->ignore($_POST['id'], 'id'), 'max:255'],
+        ]);
 
-		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
-	}
+        $url = url('admin/fotos ');
+        $type = 'back';
 
-	public function delete(Request $request)
-	{
+        if ($this->foto_model->edit($request)) {
+            $status = 'success';
+            $message = 'Foto atualizado com sucesso!';
+        } else {
+            $status = 'error';
+            $message = 'Não foi possível atualizar o foto. Por favor, tente novamente.';
+        }
 
-		if ( ! Session::has('userdata')) {
-			if ( $request -> ajax() )
-				return abort(403);
-			else
-				return redirect() -> route('admin.auth.login');
-		}
+        return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+    }
 
-		$url = url('admin/fotos');
-		$type = 'back';
+    public function replace(Request $request, $field)
+    {
 
-		if ($this->foto_model->remove($request)) {
-			$status = 'success';
-			$message = 'Foto removido com sucesso!';
-		} else {
-			$type = null;
-			$status = 'error';
-			$message = 'Não foi possível remover o foto. Por favor, tente novamente.';
-		}
+        if (!Session::has('userdata')) {
+            if ($request->ajax()) {
+                return abort(403);
+            } else {
+                return redirect()->route('admin.auth.login');
+            }
 
-		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
-	}
+        }
 
-	public function delete_file(Request $request, $id, $file)
-	{
+        $url = url('admin/fotos');
+        $type = null;
 
-		if ( ! Session::has('userdata')) {
-			if ( $request -> ajax() )
-				return abort(403);
-			else
-				return redirect() -> route('admin.auth.login');
-		}
+        if ($this->foto_model->edit($request, $field)) {
+            $status = 'success';
+            $message = 'Foto atualizado com sucesso!';
+        } else {
+            $status = 'error';
+            $message = 'Não foi possível atualizar o foto. Por favor, tente novamente.';
+        }
 
-		$url = url('admin/fotos');
-		$type = 'back';
+        return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+    }
 
-		if ($this->foto_model->remove_file($file)) {
-			$status = 'success';
-			$message = 'Arquivo removido com sucesso!';
-		} else {
-			$type = null;
-			$status = 'error';
-			$message = 'Não foi possível remover o arquivo. Por favor, tente novamente.';
-		}
+    public function delete(Request $request, $id)
+    {
 
-		return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+        if (!Session::has('userdata')) {
+            if ($request->ajax()) {
+                return abort(403, 'Acesso não autorizado');
+            } else {
+                return redirect()->route('admin.auth.login');
+            }
 
-	}
+        }
+
+        $url = url('admin/fotos');
+        $type = 'back';
+
+        if ($this->foto_model->remove([$id])) {
+            $status = 'success';
+            $message = 'Foto removido com sucesso!';
+        } else {
+            $type = null;
+            $status = 'error';
+            $message = 'Não foi possível remover o foto. Por favor, tente novamente.';
+        }
+
+        return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+    }
+
+    public function delete_file(Request $request, $id, $file)
+    {
+
+        if (!Session::has('userdata')) {
+            if ($request->ajax()) {
+                return abort(403);
+            } else {
+                return redirect()->route('admin.auth.login');
+            }
+
+        }
+
+        $url = url('admin/fotos');
+        $type = 'back';
+
+        if ($this->foto_model->remove_file($file)) {
+            $status = 'success';
+            $message = 'Arquivo removido com sucesso!';
+        } else {
+            $type = null;
+            $status = 'error';
+            $message = 'Não foi possível remover o arquivo. Por favor, tente novamente.';
+        }
+
+        return json_encode(['status' => $status, 'message' => $message, 'type' => $type, 'url' => $url]);
+
+    }
 
 }

@@ -14,171 +14,202 @@
 
         <div class="menu_categs">
 
-            <nav>
-                <a href="javascript:void(0);" class="mobile-menu-trigger">Open mobile menu</a>
-                <ul class="menu menu-bar">
-                    <li>
-                        <a href="javascript:void(0);" class="menu-link menu-bar-link" aria-haspopup="true">1. Multilevel
-                            mega menu</a>
-                        <ul class="mega-menu mega-menu--multiLevel">
-                            <li>
-                                <a href="javascript:void(0);" class="menu-link mega-menu-link" aria-haspopup="true">1.1
-                                    Flyout link</a>
-                                <ul class="menu menu-list">
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">1.1.1 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="menu-link menu-list-link"
-                                            aria-haspopup="true">1.1.2 Flyout link</a>
-                                        <ul class="menu menu-list">
-                                            <li>
-                                                <a href="/page" class="menu-link menu-list-link">1.1.2.1 Page link</a>
-                                            </li>
-                                            <li>
-                                                <a href="/page" class="menu-link menu-list-link">1.1.2.2 Page link</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">1.1.3 Page link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-link mega-menu-link" aria-haspopup="true">1.2
-                                    Flyout link</a>
-                                <ul class="menu menu-list">
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">1.2.1 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">1.2.2 Page link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-link mega-menu-link" aria-haspopup="true">1.3
-                                    Flyout link</a>
-                                <ul class="menu menu-list">
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">1.3.1 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">1.3.2 Page link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/page" class="menu-link mega-menu-link">1.4 Page link</a>
-                            </li>
-                            <li class="mobile-menu-back-item">
-                                <a href="javascript:void(0);" class="menu-link mobile-menu-back-link">Back</a>
-                            </li>
-                        </ul>
-                    </li>
+            {{-- <ul class="menu">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">
+                        Sobre
+                        <i class="material-icons">arrow_right</i>
+                    </a>
+                    <ul class="sub-menu clearfix">
+                        <li>
+                            <a href="#">
+                                O que fazemos
+                            </a>
+                            <ul class="sub-menu clearfix">
+                                <li>
+                                    <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">SEO</a>
+                                </li>
+                                <li>
+                                    <a href="#">Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">Desenvolivmento</a>
+                                    <ul class="sub-menu clearfix">
+                                        <li>
+                                            <a href="#">Aplicativos</a>
+                                            <ul class="sub-menu clearfix">
+                                                <li>
+                                                    <a href="#">Android</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">IOs</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sistemas para Internet 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sistemas para Internet 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Contato</a>
+                </li>
+            </ul> --}}
 
-                    <li>
-                        <a href="javascript:void(0);" class="menu-link menu-bar-link" aria-haspopup="true">2. Flat mega menu
-                            (3 cols)</a>
-                        <ul class="mega-menu mega-menu--flat">
-                            <li>
-                                <a href="/page" class="menu-link mega-menu-link mega-menu-header">2.1 Page link header</a>
-                                <ul class="menu menu-list">
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.1.1 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.1.2 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.1.3 Page link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/page" class="menu-link mega-menu-link mega-menu-header">2.2 Page link header</a>
-                                <ul class="menu menu-list">
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.2.1 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.2.2 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.2.3 Page link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/page" class="menu-link mega-menu-link mega-menu-header">2.3 Page link header</a>
-                                <ul class="menu menu-list">
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.2.1 Page link</a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">2.2.2 Page link</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="mobile-menu-back-item">
-                                <a href="javascript:void(0);" class="menu-link mobile-menu-back-link">Back</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript:void(0);" class="menu-link menu-bar-link" aria-haspopup="true">3. Flat mega menu
-                            (2 cols)</a>
-                        <ul class="mega-menu mega-menu--flat">
-                            <li>
-                                <a href="#" class="menu-link mega-menu-link mega-menu-header">3.1 Page link header</a>
-                                <ul class="menu menu-list">
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">
-                                            3.1.1 Page link<br />
-                                            <small>Short decription of link</small>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">
-                                            3.1.2 Page link<br />
-                                            <small>Short decription of link</small>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/page" class="menu-link menu-list-link">
-                                            3.1.2 Page link<br />
-                                            <small>Short decription of link</small>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="mega-menu-content">
-                                <p class="mega-menu-header">3.2 Page link header</p>
-                                <p>This is just static content. You can add anything here. Images, text, buttons, your
-                                    grandma's secrect recipe.</p>
-                            </li>
-                            <li class="mobile-menu-back-item">
-                                <a href="javascript:void(0);" class="menu-link mobile-menu-back-link">Back</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="/page" class="menu-link menu-bar-link">Static link</a>
-                    </li>
-
-                    <li class="mobile-menu-header">
-                        <a href="/home" class="">
-                            <span>Home</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            {{-- @php echo $paginas -> getMenus($row->id_menu) @endphp --}}
+            @php echo $paginas -> getMenus($row->id_menu) @endphp
 
         </div>
+
+        <style>
+            .clearfix {
+                clear: both;
+            }
+
+            .geral {
+                overflow: unset;
+            }
+
+            .menu_categs {
+                overflow: unset;
+                margin-top: 0;
+                padding-top: 50px;
+            }
+
+            .menu_categs ul {
+                width: 200px;
+                overflow: unset;
+            }
+
+            .menu_categs ul li {
+                position: relative;
+                margin-bottom: 2px;
+            }
+
+            .menu_categs ul li a {
+                padding: 10px;
+                display: block;
+                background: #454545;
+                transition: all 200ms ease-in-out;
+            }
+
+            .menu_categs ul a:hover {
+                background: #656565
+            }
+
+            .menu_categs ul li:hover>a {
+                background: #545454;
+                padding-left: 15px;
+            }
+
+            .menu_categs ul li a i {
+                position: absolute;
+                right: 10px;
+                padding: 0;
+                top: 0;
+                bottom: 0;
+                line-height: 2.5;
+                font-size: 15px;
+            }
+
+            .menu_categs ul li ul {
+                position: absolute;
+                top: 0;
+                left: calc(100% - 0px);
+                display: none;
+            }
+
+            .menu_categs ul li:hover>ul {
+                display: block;
+            }
+
+            /* .menu_categs {
+                                                                overflow: hidden;
+                                                                height: auto;
+                                                            }
+
+                                                            .menu {
+                                                                height: auto;
+                                                                width: 300px;
+                                                            }
+
+                                                            ul.menu li {
+                                                                position: relative;
+                                                            }
+
+                                                            ul.menu li a {
+                                                                color: #000;
+                                                            }
+
+                                                            .menu,
+                                                            .sub-menu {
+                                                                margin: 0;
+                                                                padding: 0;
+                                                            }
+
+                                                            .sub-menu {
+                                                                background: #454545;
+                                                                display: none;
+                                                                position: absolute;
+                                                                left: 199px;
+                                                                top: 0;
+                                                            }
+
+                                                            .menu li>.sub-menu {
+                                                                position: relative;
+                                                            }
+
+                                                            .sub-menu li a:after {
+                                                                content: '+';
+                                                                float: right;
+                                                                width: 30px;
+                                                                height: 30px;
+                                                                background: blue;
+                                                            }
+
+                                                            .clearfix:after {
+                                                                content: '.';
+                                                                display: block;
+                                                                clear: both;
+                                                                height: 0;
+                                                                line-height: 0;
+                                                                font-size: 0;
+                                                                visibility: hidden;
+                                                            }
+
+                                                            .menu a {
+                                                                display: block;
+                                                                padding: 10px;
+                                                                color: #fff;
+                                                            }
+
+                                                            .menu li:hover>a {
+                                                                background: blue;
+                                                            }
+
+                                                            .menu li:hover>ul.sub-menu {
+                                                                display: block;
+                                                            }
+
+                                                            .menu li:hover ul:hover {
+                                                                display: block;
+                                                            }
+                                                */
+
+        </style>
+
 
         <div class="container2">
 
@@ -189,7 +220,7 @@
 
             <div class="subtitlepage">{{ tradutor($row->subtitulo) }}</div>
 
-			{? $imagem = !empty($noticia -> imagem) && file_exists(public_path($row->imagem)) ? asset($noticia -> imagem) : null; ?}
+            {? $imagem = !empty($noticia -> imagem) && file_exists(public_path($row->imagem)) ? asset($noticia -> imagem) : null; ?}
 
             @if (!is_null($imagem))
                 <div class="img_news">

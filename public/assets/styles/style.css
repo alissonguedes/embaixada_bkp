@@ -183,6 +183,7 @@ textarea {
 
 .sidenav-main {
     width: 260px;
+    z-index: 999;
 }
 
 .sidebar .sidebar-content .sidebar-menu#sidebar-list {
@@ -558,12 +559,31 @@ select {
 }
 
 .dropdown-content li>a,
-.dropdown-content li>span {
+.dropdown-content li>span,
+.dropdown-content li>button {
     font-size: 16px;
     line-height: 22px;
     display: block;
     padding: 14px 16px;
     color: #000;
+}
+
+.dropdown-content button {
+    font-family: inherit;
+    font-size: 16px;
+    background-color: transparent;
+    display: flex !important;
+    align-items: center;
+    flex: 1 1 100%;
+    width: 100%;
+    border: none;
+    color: #fff !important;
+    white-space: nowrap;
+}
+
+.dropdown-content button i {
+    float: left;
+    margin-right: 12px;
 }
 
 .border-radius-1 {
@@ -1034,6 +1054,24 @@ nav ul a {
     opacity: 0.5 !important;
 }
 
+.modal {
+    /* background-color: transparent; */
+}
+
+.modal>form {
+    margin: 0;
+}
+
+.modal-footer.bordered {
+    border: none;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: inherit;
+    border-radius: inherit !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
 .modal,
 .swal-modal,
 #materialbox-overlay {
@@ -1360,10 +1398,13 @@ input.no-border,
     place-content: center flex-end;
     flex-direction: column;
     font-size: 16px;
-    margin-right: 5px;
     position: absolute;
     right: 0;
-    top: -34px;
+    line-height: 3rem;
+}
+
+.sufix.help {
+    color: rgba(0, 0, 0, 0.6) !important
 }
 
 .input-field .error {
@@ -1384,6 +1425,10 @@ input.no-border,
     left: 3rem;
 }
 
+.input-field .error i {
+    line-height: normal;
+}
+
 .input-field.error input,
 .input-field.error textarea,
 .input-field.error input:focus {
@@ -1399,7 +1444,7 @@ input.no-border,
 }
 
 .input-field.error label,
-.input-field.error .sufix {
+.input-field.error .sufix:not(.help) {
     color: #b00020 !important;
 }
 
@@ -1909,6 +1954,8 @@ footer.page-footer {
     line-height: inherit;
     top: 0;
     z-index: 1;
+    left: 0;
+    line-height: 3rem;
 }
 
 .panel-header .toolbar .input-field input {
@@ -1971,6 +2018,11 @@ label.divider:after {
 .label-buttons label input[type="checkbox"]~i~span:not(.lever) {
     padding-left: 2px;
     font-size: 1rem;
+}
+
+.label-buttons label input[type="checkbox"]:checked~i,
+.label-buttons label input[type="radio"]:checked~i {
+    color: inherit;
 }
 
 .label-buttons label i+input[type="checkbox"]+span:before,
@@ -2081,7 +2133,7 @@ label.divider:after {
     height: 52px;
     padding-top: 10px;
     top: 64px;
-    z-index: 999;
+    z-index: 998;
     padding-left: 285px;
     padding-right: 20px;
     right: 0;

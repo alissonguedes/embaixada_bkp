@@ -29,13 +29,14 @@ var Request = {
 
             } else {
 
-                if (target && target != '_self') {
-                    window.open(link, target);
-                } else
-                if (target && target == '_self') {
-                    window.location.href = link;
+                if (target) {
+                    if (target == '_self')
+                        window.location.href = link;
+                    else if (target == '_top')
+                        return null;
+                    else
+                        window.open(link, target);
                 }
-
             }
 
         });

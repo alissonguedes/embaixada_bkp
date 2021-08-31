@@ -102,6 +102,10 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus,
     color: #fff !important;
 }
 
+.sufix.help {
+    color: rgba(255, 255, 255, 0.6) !important
+}
+
 .prefix {
     line-height: 3rem;
 }
@@ -199,8 +203,11 @@ h6 {
     box-shadow: 0 1px 10px 0 rgba(255, 255, 255, 0.1)
 }
 
+
+/** Cards **/
+
 .card {
-    overflow: hidden;
+    /* overflow: hidden; */
     background: transparent;
 }
 
@@ -216,6 +223,98 @@ h6 {
 .card .card-content .card-title small {
     font-size: 14px;
 }
+
+.card {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.card.album .card-content {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 20px;
+}
+
+.card.album .card-image {
+    /* height: 210px; */
+}
+
+.card.album .card-image img {
+    height: inherit;
+}
+
+.card.album .btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9
+}
+
+.card.album .dropdown-content {
+    height: auto !important;
+    max-height: inherit !important;
+    top: 10px !important;
+}
+
+.card.album .btn i {
+    top: -1px;
+    position: relative;
+}
+
+
+/*
+.card.card-animation-1 {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card.card-animation-1 .card-content {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 20px;
+}
+
+.card.card-animation-1 .card-image img {
+    z-index: 1;
+}
+
+.card.card-animation-1 .card-action {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 62px;
+    z-index: 0;
+}
+
+ .card.card-animation-1 .card-action a {
+    color: var(--amber) !important
+}
+
+.card.card-animation-1 .card-action a:hover {
+    color: var(--amber-lighten-4) !important
+}
+
+.card.card-animation-1 .card-image img {
+    transition: .3s;
+    -webkit-transition: .3s;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.card.card-animation-1:hover .card-image img {
+    position: relative;
+    top: -50px;
+}
+
+.card.card-animation-1 .card-image img:hover {
+    top: 0;
+} */
+
+
+/* Dashboard*/
 
 .dashboard .card .card-title {
     line-height: 3rem;
@@ -380,6 +479,18 @@ header,
     background: rgba(255, 255, 255, 0.05);
     height: 70px;
     min-height: 1px !important;
+    margin-bottom: 1px;
+    border-bottom: none;
+}
+
+.collection .collection-item:first-child {
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+}
+
+.collection .collection-item:last-of-type {
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
 }
 
 .collection .collection-item p {
@@ -413,11 +524,48 @@ header,
 }
 
 
-/** Menu **/
+/** Modal **/
 
-.sidenav-main {
-    z-index: 9999;
+.modal {
+    background: transparent;
+    box-shadow: 0px 0px 20px var(--grey-darken-4);
 }
+
+.modal-overlay {
+    opacity: 0.9 !important;
+}
+
+.modal.album {
+    width: inherit;
+}
+
+.modal .modal-title {
+    color: var(--amber);
+}
+
+.modal.album .material-icons {
+    cursor: pointer;
+}
+
+.modal .modal-content,
+.modal .modal-footer {
+    background-color: rgba(0, 0, 0, 0.91);
+}
+
+.modal .modal-footer.bordered {
+    border-color: #000;
+}
+
+.modal .modal-content .collection .collection-item {
+    background: #000;
+}
+
+.modal-content .collection-item span {
+    color: #fff;
+}
+
+
+/** Menu **/
 
 .sidenav-main ul {
     top: 80px;
@@ -602,6 +750,11 @@ header,
 
 .input-field div.error {
     font-size: 13px !important;
+}
+
+.label-buttons label input[type="checkbox"]:checked~i,
+.label-buttons label input[type="radio"]:checked~i {
+    color: var(--amber);
 }
 
 #login-page form button[type="submit"] {

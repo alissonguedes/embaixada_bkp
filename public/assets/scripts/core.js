@@ -66,8 +66,6 @@ function core() {
         layoutMode: "fitRows",
     });
 
-    $(".modal").modal();
-
     // bind filter button click
     $("#filters").on("click", "[data-filter]", function() {
         var filterValue = $(this).attr("data-filter");
@@ -175,10 +173,18 @@ function core() {
     $(".remover_arquivo").on("click", function(e) {
         e.preventDefault();
         var self = $(this);
-        Http.delete($(this).data("url"), function() {
+        Http.delete($(this).data("url"), function(response) {
+
+            console.log(response);
             var len = self.parents("ul").find("li").length;
-            self.parents("li#file_" + self.attr("id")).remove();
+            self.parents("#file_" + self.attr("id")).remove();
             $(".count-files").html(len - 1);
+            if ($('body').find('#album').length) {
+                $('#album').masonry({
+                    'itemSelector': '.col'
+                });
+            }
+
         });
     });
 

@@ -76,6 +76,11 @@ var Http = {
                         return callback(response);
                     else
                         return callback = response;
+
+                },
+                'error': (error, status, a, b) => {
+                    console.log(error);
+                    Form.showMessage((typeof error.responseJSON.message !== 'undefined' && error.responseJSON.message != '' ? error.responseJSON.message : 'Algum erro ocorreu ao tentar realizar esta ação.'), status);
                 }
 
             });

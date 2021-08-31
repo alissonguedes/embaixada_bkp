@@ -12,6 +12,7 @@ class BannersController extends Controller
     {
 
         if (!Session::has('userdata')) {
+
             if ($request->ajax()) {
                 return abort(403);
             } else {

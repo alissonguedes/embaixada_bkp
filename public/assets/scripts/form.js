@@ -244,7 +244,7 @@ var Form = {
 
         if (type.type === 'back') {
 
-            Form.reset();
+            // Form.reset();
             Http.goTo(type.url)
 
         }

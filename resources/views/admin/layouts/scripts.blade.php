@@ -12,6 +12,8 @@
 <script src="{{ asset('assets/plugins/datatable/v10.2/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/isotope/js/isotope.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/masonry/masonry.pkgd.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/requirejs/require.js') }}"></script>
 
 <!-- scripts | Padrão -->

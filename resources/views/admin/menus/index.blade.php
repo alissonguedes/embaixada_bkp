@@ -18,9 +18,9 @@
 
                 <div class="hide-buttons">
 
-                    <button class="btn btn-large waves-effect translator" data-link="{{ route('admin.dicionario') }}" data-tooltip="Traduzir" style="border: none">
+                    {{-- <button class="btn btn-large waves-effect translator" data-link="{{ route('admin.dicionario') }}" data-tooltip="Traduzir" style="border: none">
                         <i class="material-icons">translate</i>
-                    </button>
+                    </button> --}}
 
                     <button class="btn btn-large update waves-effect" name="status" value="0" data-tooltip="" data-on="Bloquear" data-off="Desbloquear" data-link="{{ route('admin.menus.patch', 'status') }}" data-method="patch">
                         <i class="material-icons" data-on="lock" data-off="lock_open"></i>

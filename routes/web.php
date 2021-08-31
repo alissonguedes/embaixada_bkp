@@ -156,9 +156,9 @@ Route::prefix('/admin') -> group(function($admin){
 		Route::post('/', [FotosController::class, 'insert']) -> name('admin.fotos.insert');
 		Route::put('/', [FotosController::class, 'update']) -> name('admin.fotos.put') -> where('id', '[0-9]+');
 		Route::patch('/{campo}', [FotosController::class, 'replace']) -> name('admin.fotos.patch') -> where('id', '[0-9]+');
-		Route::delete('/', [FotosController::class, 'delete']) -> name('admin.fotos.delete');
+		Route::delete('/album/{id}', [FotosController::class, 'delete']) -> name('admin.fotos.delete.album') -> where('id', '[0-9]+');
 
-		Route::delete('{id}/arquivo/{file}', [FotosController::class, 'delete_file']) -> name('admin.fotos.delete.file');
+		Route::delete('/fotos/{id}', [FotosController::class, 'delete_file']) -> name('admin.fotos.delete.file');
 
 	});
 

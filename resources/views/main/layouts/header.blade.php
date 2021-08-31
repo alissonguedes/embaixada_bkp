@@ -27,7 +27,7 @@
 
                     <div class="icon_idioma {{ $class }}">
                         <a href="{{ url('api/translate/' . $lang->sigla) }}" class="languages" id="pt-br">
-                            {{ $lang->descricao }}
+                            {{ $lang->sigla }}
                             {{-- <img src="{{ asset($lang->imagem) }}" class="img_cem"> --}}
                         </a>
                     </div>
